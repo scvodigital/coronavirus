@@ -10,9 +10,14 @@
     "should": [
       {{>queries_submission_search_filters_locations @root.request.params.query}}
       {{>queries_submission_search_filters_areas @root.request.params.query}}
+      {
+        "term": {
+          "where_slug": "across-the-whole-of-scotland"
+        }
+      },
       {{>queries_do_nothing}}
     ],
-    "minimum_should_match": 2
+    "minimum_should_match": {{#ifAll location lat lng distance}}2{{else}}3{{/ifAll}}
   }
 },
 {{/if ~}}
