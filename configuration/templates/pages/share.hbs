@@ -12,15 +12,350 @@
     <li><a href="/share/organisations">To other organisations who are responding to the impact of the pandemic</a></li>
   </ul>
   {{else}}
-  {{#switch @root.request.params.type ~}}
-  {{#case "people" ~}}
-  <h2>Help available to people</h2>
+  {{#ifAny (compare @root.request.params.type "people") (compare @root.request.params.type "organisations") ~}}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <form action="/share/submit" method="post">
+    {{#switch @root.request.params.type ~}}
+    {{#case "people" ~}}
+    <h2>Help available to people</h2>
+    {{/case ~}}
+    {{#case "organisations" ~}}
+    <h2>Help available to organisations</h2>
+    {{/case ~}}
+    {{/switch ~}}
 
-  {{/case ~}}
-  {{#case "organisations" ~}}
-  <h2>Help available to organisations</h2>
+    <div class="form-group">
+      <label class="form-label">What is the main type of support you can offer?</label>
+      {{#switch @root.request.params.type ~}}
+      {{#case "people" ~}}
+      <label class="form-radio">
+        <input type="radio" name="support" value="Emotional or psychosocial support (e.g. befriending)">
+        <i class="form-icon"></i> Emotional or psychosocial support (e.g. befriending)
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="support" value="Food / grocery delivery">
+        <i class="form-icon"></i> Food / grocery delivery
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="support" value="Transportation">
+        <i class="form-icon"></i> Transportation
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="support" value="Information and advice">
+        <i class="form-icon"></i> Information and advice
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="support" value="Other (please describe)" id="support-other-option">
+        <i class="form-icon"></i> Other (please describe)
+      </label>
+      {{/case ~}}
+      {{#case "organisations" ~}}
+      <label class="form-radio">
+        <input type="radio" name="support" value="Care staff or trained volunteers">
+        <i class="form-icon"></i> Care staff or trained volunteers
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="support" value="Transportation / vehicles">
+        <i class="form-icon"></i> Transportation / vehicles
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="support" value="Discharge support">
+        <i class="form-icon"></i> Discharge support
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="support" value="Premises">
+        <i class="form-icon"></i> Premises
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="support" value="Counselling / bereavement support ">
+        <i class="form-icon"></i> Counselling / bereavement support
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="support" value="Other (please describe)" id="support-other-option">
+        <i class="form-icon"></i> Other (please describe)
+      </label>
+      {{/case ~}}
+      {{/switch ~}}
+    </div>
+    <div class="form-group hidden" id="support-other-field">
+      <textarea class="form-input" name="support-other-description" id="support-other-description" placeholder="" rows="3"></textarea>
+    </div>
+    <script>
+    $('#support-other-option').click(function() {
+      $('#support-other-field').removeClass('hidden');
+    });
+    </script>
 
-  {{/case ~}}
-  {{/switch ~}}
+    <div class="form-group">
+      <label class="form-label">Where can you provide support?</label>
+      <label class="form-radio">
+        <input type="radio" name="where" id="where-local" value="In a local community" required>
+        <i class="form-icon"></i> In a local community
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="where" id="where-areas" value="Across one or more local authority areas" required>
+        <i class="form-icon"></i> Across one or more local authority areas
+      </label>
+      <label class="form-radio">
+        <input type="radio" name="where" id="where-national" value="Across the whole of Scotland" required>
+        <i class="form-icon"></i> Across the whole of Scotland
+      </label>
+    </div>
+    <div class="form-group hidden" id="where-local-options">
+      <label class="form-label" for="postcodes">Please enter a postcode in the community you serve (e.g. your office location). Organisations will be able to search for support by how close it is to them. If you serve communities more than 5 miles apart, you can enter multiple postcodes, separated by commas.</label>
+      <input class="form-input" type="text" name="postcodes" id="postcodes" placeholder="e.g. EH3 6BB">
+    </div>
+    <div class="form-group hidden" id="where-areas-options">
+      <p>
+        <strong>Please tick which area(s) you operate across.</strong>
+      </p>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Aberdeen">
+        <i class="form-icon"></i> Aberdeen
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Aberdeenshire">
+        <i class="form-icon"></i> Aberdeenshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Angus">
+        <i class="form-icon"></i> Angus
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Argyll & Bute">
+        <i class="form-icon"></i> Argyll & Bute
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Clackmannanshire">
+        <i class="form-icon"></i> Clackmannanshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Dumfries & Galloway">
+        <i class="form-icon"></i> Dumfries & Galloway
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Dundee">
+        <i class="form-icon"></i> Dundee
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="East Ayrshire">
+        <i class="form-icon"></i> East Ayrshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="East Dunbartonshire">
+        <i class="form-icon"></i> East Dunbartonshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="East Lothian">
+        <i class="form-icon"></i> East Lothian
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="East Renfrewshire">
+        <i class="form-icon"></i> East Renfrewshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Edinburgh">
+        <i class="form-icon"></i> Edinburgh
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Falkirk">
+        <i class="form-icon"></i> Falkirk
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Fife">
+        <i class="form-icon"></i> Fife
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Glasgow">
+        <i class="form-icon"></i> Glasgow
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Highland">
+        <i class="form-icon"></i> Highland
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Inverclyde">
+        <i class="form-icon"></i> Inverclyde
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Midlothian">
+        <i class="form-icon"></i> Midlothian
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Moray">
+        <i class="form-icon"></i> Moray
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Na h-Eileanan Siar">
+        <i class="form-icon"></i> Na h-Eileanan Siar
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="North Ayrshire">
+        <i class="form-icon"></i> North Ayrshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="North Lanarkshire">
+        <i class="form-icon"></i> North Lanarkshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Orkney">
+        <i class="form-icon"></i> Orkney
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Perth & Kinross">
+        <i class="form-icon"></i> Perth & Kinross
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Renfrewshire">
+        <i class="form-icon"></i> Renfrewshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Scottish Borders">
+        <i class="form-icon"></i> Scottish Borders
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Shetland">
+        <i class="form-icon"></i> Shetland
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="South Ayrshire">
+        <i class="form-icon"></i> South Ayrshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="South Lanarkshire">
+        <i class="form-icon"></i> South Lanarkshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="Stirling">
+        <i class="form-icon"></i> Stirling
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="West Dunbartonshire">
+        <i class="form-icon"></i> West Dunbartonshire
+      </label>
+      <label class="form-checkbox">
+        <input type="checkbox" name="areas" id="areas" value="West Lothian">
+        <i class="form-icon"></i> West Lothian
+      </label>
+    </div>
+    <script>
+    $('#where-local').click(function() {
+      $('#where-local-options').removeClass('hidden');
+      $('#where-areas-options').addClass('hidden');
+    });
+    $('#where-areas').click(function() {
+      $('#where-local-options').addClass('hidden');
+      $('#where-areas-options').removeClass('hidden');
+    });
+    $('#where-national').click(function() {
+      $('#where-local-options').addClass('hidden');
+      $('#where-areas-options').addClass('hidden');
+    });
+    </script>
+
+    <div class="form-group">
+      <label class="form-label" for="help-offered">What help can you offer? Please be very specific and realistic, rather than a description of your general services.</label>
+      <textarea class="form-input" name="help-offered" id="help-offered" placeholder="" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="access-support">How can {{@root.request.params.type}} access your support?</label>
+      <textarea class="form-input" name="access-support" id="access-support" placeholder="" rows="3"></textarea>
+    </div>
+
+    {{#switch @root.request.params.type ~}}
+    {{#case "people" ~}}
+    <p>
+      <strong>Where can people find out more? Please complete the contact details with specific links / contact details where people can access your support.</strong>
+    </p>
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="website">Website</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="website" id="website" placeholder="e.g. https://example.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="telephone">Telephone</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="telephone" id="telephone" placeholder="e.g. 0131 474 8000">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="email">Email</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="email" id="email" placeholder="e.g. info@example.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="facebook">Facebook</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="facebook" id="facebook" placeholder="e.g. https://facebook.com/page">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="twitter">Twitter</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="twitter" id="twitter" placeholder="e.g. https://twitter.com/account">
+        </div>
+      </div>
+    </div>
+    {{/case ~}}
+    {{#case "organisations" ~}}
+    <p>
+      <strong>How should organisations / professionals get in touch? Please complete the contact details with specific contact details to access your support.</strong>
+    </p>
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="name">Contact name</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="name" id="name" placeholder="e.g. Your Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="email">Email address</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="email" id="email" placeholder="e.g. info@example.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="telephone">Telephone number</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="telephone" id="telephone" placeholder="e.g. 0131 474 8000">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="website">Website</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="website" id="website" placeholder="e.g. https://example.com">
+        </div>
+      </div>
+    </div>
+    {{/case ~}}
+    {{/switch ~}}
+
+    <div class="text-centre v-padding-full">
+      <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
+    </div>
+  </form>
+  {{/ifAny ~}}
   {{/unless ~}}
 </div>

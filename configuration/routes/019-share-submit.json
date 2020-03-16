@@ -1,0 +1,51 @@
+{
+  "name": "share_submit",
+  "pattern": "/share/submit",
+  "debug": true,
+  "errorRoute": "five_hundred",
+  "tasks": [
+    {
+      "name": "id",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": "{{hash (concat (moment null 'X') '-' (hash @root.request.body.help-offered))}}",
+        "output": "data"
+      }
+    },
+    {
+      "name": "save_data",
+      "taskModule": "firebaseRtbSet",
+      "renderer": "handlebars",
+      "config": {
+        "dataTemplate": ">context.metaData.handlebars.templates.database_firebase",
+        "setOrUpdate": "set",
+        "appName": "coronavirus",
+        "pathTemplate": "/submissions/{{@root.data.id}}/"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "body": ">context.metaData.handlebars.templates.pages_share-thanks"
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+  ]
+}

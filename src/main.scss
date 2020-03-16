@@ -556,7 +556,7 @@ footer a {
   .input-group .form-select {
     background-color: white !important;
     color: $secondary-color-dark !important;
-    border-color: $primary-color !important;
+    // border-color: $primary-color !important;
   }
   .input-group-btn {
     background-color: $primary-color !important;
@@ -1442,6 +1442,11 @@ a.pure-menu-link:hover {
   background-color: $secondary-color-dark;
 }
 
+.form-label {
+  font-weight: $body-link-weight;
+}
+
+.hidden,
 .column.hidden {
   display: none !important;
 }
@@ -1565,7 +1570,7 @@ aside {
 .input-group .form-input,
 .form-group .form-select,
 .input-group .form-select {
-  border-color: $primary-color;
+  // border-color: $primary-color;
 }
 .input-group.input-inline {
   width: 100%;
