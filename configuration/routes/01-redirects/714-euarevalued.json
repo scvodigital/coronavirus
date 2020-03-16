@@ -1,0 +1,14 @@
+{
+  "name": "euarevalued",
+  "pattern": "/euarevalued",
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/policy/campaigns/eu-are-valued",
+        "statusCode": 301
+      }
+    }
+  ]
+}

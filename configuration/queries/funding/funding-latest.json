@@ -1,0 +1,24 @@
+{
+  "size": 6,
+  "_source": [
+    "Id",
+    "title",
+    "title_slug",
+    "funder_organisation",
+    "date_last_modified"
+  ],
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "fund_status_slug": "open"
+          }
+        }
+      ]
+    }
+  },
+  "sort": {
+    "date_last_modified": "desc"
+  }
+}

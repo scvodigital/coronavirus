@@ -1,0 +1,139 @@
+{
+  "size": 10,
+  "from": {{multiply (subtract (default @root.request.params.query.page 1) 1) 10}},
+  "_source": [
+    "categories_id",
+    "title",
+    "publish_on",
+    "updated",
+    "path",
+    "url",
+    "wpid",
+    "description",
+    "description_truncated",
+    "is_press_release",
+    "author_slug",
+    "author_name_full",
+    "author_avatar",
+    "staff_profile",
+    "og_image",
+    "categories",
+    "categories_slug",
+    "post_tags",
+    "post_tags_slug"
+  ],
+  "query": {
+    "bool": {
+      {{#switch (default @root.request.params.category_slug (replace @root.request.url.pathname '/' '')) ~}}
+      {{#case "about" ~}}
+      "should": [
+        {
+          "terms": {
+            "post_tags_slug": [
+              "scvo",
+              "scvo-news",
+              "scvo-labs",
+              "scvo-blog"
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1,
+      {{/case ~}}
+      {{#case "support" ~}}
+      "should": [
+        {
+          "terms": {
+            "post_tags_slug": [
+              "digital-blog",
+              "events-blog",
+              "running-your-organisation-blog"
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1,
+      {{/case ~}}
+      {{#case "services" ~}}
+      "should": [
+        {
+          "terms": {
+            "post_tags_slug": [
+              "scvo-blog"
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1,
+      {{/case ~}}
+      {{#case "funding" ~}}
+      "should": [
+        {
+          "terms": {
+            "post_tags_slug": [
+              "funding-blog",
+              "funding"
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1,
+      {{/case ~}}
+      {{#case "jobs" ~}}
+      "should": [
+        {
+          "terms": {
+            "post_tags_slug": [
+              "employability-blog",
+              "employability"
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1,
+      {{/case ~}}
+      {{#case "policy" ~}}
+      "should": [
+        {
+          "terms": {
+            "post_tags_slug": [
+              "campaign-blog",
+              "policy-blog",
+              "research-blog"
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1,
+      {{/case ~}}
+      {{#switchDefault ~}}
+      "should": [
+        {
+          "terms": {
+            "post_tags_slug": [
+              "{{default @root.request.params.category_slug (replace @root.request.url.pathname '/' '')}}"
+            ]
+          }
+        }
+      ],
+      "minimum_should_match": 1,
+      {{/switchDefault ~}}
+      {{/switch ~}}
+      "must_not": [
+        {
+          "term": {
+            "hide_in_results": true
+          }
+        },
+        {
+          "term": {
+            "hide_from_search": "1"
+          }
+        }
+      ]
+    }
+  },
+  "sort": {
+    "publish_on": "desc"
+  }
+}

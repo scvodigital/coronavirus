@@ -1,0 +1,59 @@
+{
+  "domains": [
+    "scvo.scot",
+    "scvo.local",
+    "scvo.org.uk",
+    "amp.scvo.org",
+    "scvo.org",
+    "scvo-frontend-dot-scvo-net.appspot.com",
+    "scvo-net.appspot.com",
+    "test.scvo.scot"
+  ],
+  "routes": [
+    "{:./routes/**/*.json}"
+  ],
+  "metaData": {
+    "assetsVersion": "{:../package.json@version}",
+    "assetsBase": "https://storage.googleapis.com/scvo-assets/test/scvo/",
+    "title": "SCVO",
+    "accountName": "SCVO account",
+    "url": "https://scvo.org",
+    "twitter": "scvotweet",
+    "contacts": {
+      "admin": "enquiries@scvo.org.uk",
+      "noreply": "noreply@scvo.org.uk",
+      "technical": "webhelpdesk@scvo.org.uk"
+    },
+    "layoutMenus": "{:./data/menu-layout.json}",
+    "sidebarMenus": "{:./data/menu-sidebar.json}",
+    "accountInfoValidation": "{:./data/info-account-validation.json}",
+    "globalGoals": "{:./data/info-global-goals.json}",
+    "handlebars": {
+      "partials": {
+        "{$./partials/**/*.*}": "includeRelativePath=false&regexExpression=(-)&regexOptions=gi&regexReplace=_"
+      },
+      "templates": {
+        "{$./templates/**/*.*}": ""
+      },
+      "layouts": {
+        "{$./layouts/**/*.*}": ""
+      },
+      "queries": {
+        "{$./queries/**/*.*}": ""
+      },
+      "frontend": {
+        "tasks": {
+          "{$./frontend/tasks/**/*.*}": ""
+        },
+        "configs": {
+          "{$./frontend/configs/**/*.*}": ""
+        },
+        "partials": {
+          "{$./frontend/partials/**/*.*}": "includeRelativePath=false&regexExpression=(-)&regexOptions=gi&regexReplace=_"
+        }
+      }
+    },
+    "commonTasks": "{:./data/common-tasks.json}",
+    "elasticsearchUrl": "{$./data/elasticsearch-url.txt}"
+  }
+}

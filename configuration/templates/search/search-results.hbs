@@ -1,0 +1,9 @@
+{{> search_info paging=@root.data.primaryResponse.pagination}}
+
+{{#each @root.data.primaryResponse.hits.hits ~}}
+{{#with this ~}}
+{{> site_search_result}}
+{{/with ~}}
+{{/each ~}}
+
+{{> pagination paging=@root.data.primaryResponse.pagination}}

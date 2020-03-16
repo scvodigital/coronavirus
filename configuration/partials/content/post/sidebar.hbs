@@ -1,0 +1,22 @@
+<li class="card card-no-padding list scvo-post scvo-post-{{wpid}} supplimentary-list-item">
+  <div class="card-header">
+    <div class="card-title h5">
+      <a href="{{path}}">{{{title}}}</a>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="post-info">
+      {{> content_post_info_published}}
+    </div>
+    <p>
+      {{{truncate description 140}}}
+    </p>
+  </div>
+  {{#ifAll categories post_tags ~}}
+  <div class="card-footer">
+    <div class="post-info">
+      {{> content_post_info_categories}}
+    </div>
+  </div>
+  {{/ifAll ~}}
+</li>

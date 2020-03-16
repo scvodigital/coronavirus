@@ -1,0 +1,212 @@
+{{!-- <div class="bg-white sidebar-present v-padding-full">
+  <div class="container">
+    <div class="columns">
+      <main class="body column col-xs-auto">
+        {{> content_page_full @root.data.primaryResponse.hits.hits.[0]._source}}
+      </main>
+      <aside class="sidebar sidebar-right column col-3 col-xl-4 hide-lg">
+        {{> sidebars_menu}}
+      </aside>
+    </div>
+  </div>
+</div> --}}
+
+<div class="bg-gray sidebar-not-present v-padding-full">
+  <div class="container t-padding">
+    <div class="columns">
+      <div class="column col-4 col-lg-6 col-md-12">
+        <h4 class="no-margin">The Scottish Council for Voluntary Organisations (SCVO) is the national membership organisation for the voluntary sector</h4>
+      </div>
+      <div class="column col-8 col-lg-6 col-md-12">
+        <p>
+          <strong>We champion the sector, provide services and debate big issues</strong>
+        </p>
+        <p>
+          We’re passionate about what the voluntary sector can achieve. Along with our community of 2,000+ members, we believe that charities, social enterprises and voluntary groups make Scotland a better place. <a href="/about/constitution">Find out more</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white sidebar-not-present v-padding-full">
+  <div class="container">
+    <div class="columns">
+      <div class="column col-4 col-lg-6 col-md-12">
+        <h2>Who we are</h2>
+        <p>
+          <a href="/about/constitution" class="no-underline">Constitution</a><br />
+          <a href="/about/staff-team" class="no-underline">Staff team</a><br />
+          <a href="/about/board-of-trustees" class="no-underline">Board of trustees</a><br />
+          <a href="/about/work-with-us" class="no-underline">Work with us</a><br />
+          <a href="/about/offices" class="no-underline">Offices</a>
+        </p>
+      </div>
+      <div class="column col-4 col-lg-6 col-md-12">
+        <h2>What we do</h2>
+        <p>
+          <a href="/about/press-media" class="no-underline">Press releases</a><br />
+          <a href="/about/blog" class="no-underline">Blog</a><br />
+          <a href="/about/annual-review" class="no-underline">Annual review</a><br />
+          <a href="/about/accounts" class="no-underline">Accounts</a><br />
+          <a href="/about/strategy" class="no-underline">Strategy 2019-22</a><br />
+          {{!-- <a href="/about/partnership-projects" class="no-underline">Partnership projects</a><br /> --}}
+          <a href="/about/european-projects" class="no-underline">European projects</a>
+        </p>
+      </div>
+      <div class="column col-4 col-lg-6 col-md-12">
+        <h2>Join our community</h2>
+        <p>
+          <a href="/about/membership" class="no-underline">Membership</a><br />
+          <a href="/about/members" class="no-underline">Our members</a><br />
+          <a href="/about/networks" class="no-underline">Networks</a>
+        </p>
+      </div>
+    </div>
+    {{!--
+    <div class="column col-3 col-lg-6 col-md-12">
+      <h2>Support our network</h2>
+      <p>
+        [*TBC* this will contain business development stuff but doesn’t need to exist yet, although may affect layout if ends up being 4-across]
+      </p>
+    </div>
+     --}}
+    {{!-- <img src="https://storage.googleapis.com/scvo-cms/wp-content/uploads/2019/10/logo-strip-for-website.png" alt="" style="max-width:600px; text-align:center; margin:1rem auto; display:block;" /> --}}
+    <div class="about sponsors v-margin-full">
+      <div class="sponsor oscr">
+        <a href="https://www.oscr.org.uk/about-charities/search-the-register/charity-details?number=SC003558" target="_blank" class="no-ext no-underline"><img src="{{~>asset_url url='images/about/oscr-scvo-landscape.png'~}}" class="img-responsive" title="OSCR Registered SCIO SC003558" /></a>
+      </div>
+      <div class="sponsor healthy-working-lives">
+        <a href="https://www.healthyworkinglives.scot" target="_blank" class="no-ext no-underline"><img src="{{~>asset_url url='images/about/healthy-working-lives-bronze.png'~}}" class="img-responsive" title="Healthy Working Lives - Bronze Award" /></a>
+      </div>
+      <div class="sponsor flexible-working">
+        <a href="https://www.workingfamilies.org.uk/campaigns/happy-to-talk-flexible-working" target="_blank" class="no-ext no-underline"><img src="{{~>asset_url url='images/about/flexible-working.png'~}}" class="img-responsive" title="Happy to talk flexible working" /></a>
+      </div>
+      <div class="sponsor carer-positive">
+        <a href="http://www.carerpositive.org/carer-positive-employers" target="_blank" class="no-ext no-underline"><img src="{{~>asset_url url='images/about/carer-positive.png'~}}" class="img-responsive" title="Carer positive employer in Scotland - Engaged" /></a>
+      </div>
+      <div class="sponsor living-wage">
+        <a href="https://scottishlivingwage.org" target="_blank" class="no-ext no-underline"><img src="{{~>asset_url url='images/about/living-wage-employer.png'~}}" class="img-responsive" title="We are a Living Wage Employer" /></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-secondary section-social sidebar-not-present v-padding-full">
+  <div class="container v-padding">
+    {{!-- SECTION 2 – social media icons and links (banner) --}}
+    <div class="columns">
+      <div class="column col-4 col-lg-12 align-self-centre">
+        <div class="columns">
+          <div class="column col-6 col-sm-12">
+            <h4 class="text-center">
+              <a href="https://www.linkedin.com/company/scvo" class="no-underline no-ext" title="LinkedIn">
+                <div class="icon-rouleaux" style="background-image:url('/rouleaux.svg?color=ffffff&style=solid');">
+                  <span class="icon fab fa-linkedin-in fa-fw fa-2x" aria-hidden="true"></span>
+                </div>
+              </a>
+            </h4>
+          </div>
+          <div class="column col-6 col-sm-12">
+            <h4 class="text-center">
+              <a href="https://www.facebook.com/SCVO1939" class="no-underline no-ext" title="Facebook">
+                <div class="icon-rouleaux" style="background-image:url('/rouleaux.svg?color=ffffff&style=solid');">
+                  <span class="icon fab fa-facebook-f fa-fw fa-2x" aria-hidden="true"></span>
+                </div>
+              </a>
+            </h4>
+          </div>
+          <div class="column col-6 col-sm-12">
+            <h4 class="text-center">
+              <a href="https://soundcloud.com/scvo-1" class="no-underline no-ext" title="Soundcloud">
+                <div class="icon-rouleaux" style="background-image:url('/rouleaux.svg?color=ffffff&style=solid');">
+                  <span class="icon fab fa-soundcloud fa-fw fa-2x" aria-hidden="true"></span>
+                </div>
+              </a>
+            </h4>
+          </div>
+          <div class="column col-6 col-sm-12">
+            <h4 class="text-center">
+              <a href="https://www.youtube.com/user/SCVOtv" class="no-underline no-ext" title="YouTube">
+                <div class="icon-rouleaux" style="background-image:url('/rouleaux.svg?color=ffffff&style=solid');">
+                  <span class="icon fab fa-youtube fa-fw fa-2x" aria-hidden="true"></span>
+                </div>
+              </a>
+            </h4>
+          </div>
+        </div>
+        {{!-- <iframe src="https://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2FSCVO1939&width=800&colorscheme=dark&show_faces=true&border_color&stream=true&header=true&height=200" scrolling="yes" style="border:none; overflow:hidden; width:100%; height:200px; background: white; float:left;" allowtransparency="true" frameborder="0"></iframe> --}}
+      </div>
+      <div class="column col-4 col-lg-6 col-md-12 align-self-centre">
+        <iframe width="100%" height="315" src="https://www.youtube.com/embed/IK0wVIwfejM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="column col-4 col-lg-6 col-md-12 align-self-centre">
+        <a class="twitter-timeline" href="https://twitter.com/scvotweet" data-tweet-limit="1" data-width="100%" data-chrome="transparent noscrollbar noborders noheader nofooter" data-theme="dark"></a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bg-white sidebar-not-present v-padding-full">
+  <div class="container">
+    <h2>About the voluntary sector</h2>
+    <div class="columns">
+      {{!-- <div class="column col-4 col-lg-6 col-md-12">
+        <h4>What is a modern charity</h4>
+        <p>
+          Every story starts at the beginning. That’s why we’ve created this resource (see clip below!) to enable people outwith the charity sector to see what exactly the modern voluntary sector does in Scotland, to create a better understanding of the sector as a whole.
+        </p>
+        <p>
+          In February 2018, we published a report which showed that public trust in charities has declined in the last two years. As a result, we launched the #ILoveCharity campaign, to inspire trust in charities by supporting good governance within organisations to ensure they are well run, open and transparent, and to encourage charities to work harder at promoting the positive impact of their work.
+        </p>
+        <p>
+          Over the next 12 months we will be hosting a storytelling conference, network events, roadshows and training to enable charities, social enterprises and voluntary organisations across the country to better share their impact and stories. For more information see our menu on the right, or for the latest updates follow us at <a href="http://twitter.com/scvotweet">@scvotweet</a> or <a href="https://twitter.com/hashtag/ilovecharity">#ilovecharity</a>.
+        </p>
+      </div> --}}
+      {{!-- <div class="column col-4 col-lg-6 col-md-12">
+        <h4>State of the Sector</h4>
+        <p>
+          <a href="/policy/sector-stats">View the latest sector stats</a>
+        </p>
+      </div> --}}
+      <div class="column col-4 col-lg-12">
+        <h4>Guide to working and volunteering in the sector</h4>
+        <p>
+          With three new charities registered in Scotland every working day, the sector is vast, vibrant and varied – and changing all the time.
+        </p>
+        <p>
+          <a href="/about/guide-to-working-and-volunteering-in-the-sector">Find out more</a>
+        </p>
+        {{!-- <p>
+          Read more:
+          <a href="https://storage.googleapis.com/scvo-cms/wp-content/uploads/2019/08/A-Guide-to-Working-and-Volunteering-in-Scotlands-Voluntary-Sector-2019-PDF.pdf" class="chip" download>PDF download</a>
+          <a href="https://storage.googleapis.com/scvo-cms/wp-content/uploads/2019/08/A-Guide-to-Working-and-Volunteering-in-Scotlands-voluntary-sector-2019-WORD.docx" class="chip" download>Word download</a>
+        </p> --}}
+      </div>
+      <div class="column col-4 col-lg-12">
+        <h4>Intermediaries</h4>
+        <p>
+          Intermediaries are voluntary sector organisations whose members are primarily other voluntary sector organisations that share a common interest or purpose. Their main role is to support and represent these members. Intermediaries are also called umbrella bodies, membership bodies or network bodies.
+        </p>
+        <p>
+          <a href="/policy/intermediaries">Find out more</a>
+        </p>
+      </div>
+      {{!-- <div class="column col-4 col-lg-6 col-md-12">
+        <p>
+          [*TBC* Goodmoves job salaries info]
+        </p>
+      </div> --}}
+      <div class="column col-4 col-lg-12">
+        <h4>Terrific Trustees</h4>
+        <p>
+          With over 250,000 trustees across the country who help manage, shape and guide voluntary sector organisations, we think it’s important to provide practical help and information which caters specifically to board members.
+        </p>
+        <p>
+          <a href="/support/terrific-trustees">Find out more</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

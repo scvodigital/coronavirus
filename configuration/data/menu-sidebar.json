@@ -1,0 +1,1331 @@
+{
+	"about": [{
+		"label": "About SCVO",
+		"path": "/about",
+		"route": "^/about$",
+		"children": [
+			{
+				"label": "Constitution",
+				"path": "/about/constitution",
+				"route": "^/about/constitution"
+			},
+			{
+				"label": "Staff team",
+				"path": "/about/staff-team",
+				"route": "^/about/staff-team"
+			},
+			{
+				"label": "Board of trustees",
+				"path": "/about/board-of-trustees",
+				"route": "^/about/board-of-trustees"
+			},
+			{
+				"label": "Work with us",
+				"path": "/about/work-with-us",
+				"route": "^/about/work-with-us"
+			},
+			{
+				"label": "Offices",
+				"path": "/about/offices",
+				"route": "^/about/offices"
+			},
+			{
+				"label": "Press releases",
+				"path": "/about/press-media",
+				"route": "^/about/press-media"
+			},
+			{
+				"label": "Blog",
+				"path": "/about/blog",
+				"route": "^/about/blog"
+			},
+			{
+				"label": "Annual review",
+				"path": "/about/annual-review",
+				"route": "^/about/annual-review"
+			},
+			{
+				"label": "Accounts",
+				"path": "/about/accounts",
+				"route": "^/about/accounts"
+			},
+			{
+				"label": "Strategy 2019-22",
+				"path": "/about/strategy",
+				"route": "^/about/strategy"
+			},
+			{
+				"label": "European projects",
+				"path": "/about/european-projects",
+				"route": "^/about/european-projects$",
+				"children": [{
+					"label": "SCOPE",
+					"path": "/about/european-projects/scope",
+					"route": "^/about/european-projects/scope$"
+				},
+				{
+					"label": "Food, poverty and social inclusion",
+					"path": "/about/european-projects/food-poverty-social-inclusion",
+					"route": "^/about/european-projects/food-poverty-social-inclusion$"
+				},
+				{
+					"label": "Young people & the SDGs",
+					"path": "/about/european-projects/young-people-the-sdgs",
+					"route": "^/about/european-projects/young-people-the-sdgs$"
+				},
+				{
+					"label": "mPower",
+					"path": "/about/european-projects/mpower",
+					"route": "^/about/european-projects/mpower$"
+				}]
+			},
+			{
+				"label": "Membership",
+				"path": "/about/membership",
+				"route": "^/about/membership$",
+				"children": [{
+						"label": "Review",
+						"path": "/about/membership/review",
+						"route": "^/about/membership/review$"
+					},
+					{
+						"label": "Eligibility",
+						"path": "/about/membership/eligibility",
+						"route": "^/about/membership/eligibility$"
+					},
+					{
+						"label": "Fees",
+						"path": "/about/membership/fees",
+						"route": "^/about/membership/fees$"
+					},
+					{
+						"label": "Members",
+						"path": "/about/membership/members",
+						"route": "^/about/membership/members$"
+					},
+					{
+						"label": "Supporters",
+						"path": "/about/membership/supporters",
+						"route": "^/about/membership/supporters$"
+					},
+					{
+						"label": "Join us",
+						"path": "/about/membership/join",
+						"route": "^/about/membership/join$"
+					},
+					{
+						"label": "FAQ",
+						"path": "/about/membership/faq",
+						"route": "^/about/membership/faq$"
+					}
+				]
+			},
+			{
+				"label": "Our members",
+				"path": "/about/members",
+				"route": "^/about/members$|^/about/members/"
+			},
+			{
+				"label": "Networks",
+				"path": "/about/networks",
+				"route": "^/about/networks"
+			}
+		]
+	}],
+	"charity-awards": [{
+		"label": "Scottish Charity Awards",
+		"path": "/scottish-charity-awards",
+		"route": "^/scottish-charity-awards$",
+		"children": [{
+				"label": "Application forms",
+				"path": "/scottish-charity-awards/apply-2020",
+				"route": "^/scottish-charity-awards/apply-2020"
+			},
+			{
+				"label": "2019 winners",
+				"path": "/scottish-charity-awards/winners-2019",
+				"route": "^/scottish-charity-awards/winners-2019"
+			},
+			{
+				"label": "2018 winners",
+				"path": "/scottish-charity-awards/winners-2018",
+				"route": "^/scottish-charity-awards/winners-2018"
+			},
+			{
+				"label": "2017 winners",
+				"path": "/scottish-charity-awards/winners-2017",
+				"route": "^/scottish-charity-awards/winners-2017"
+			},
+			{
+				"label": "FAQs",
+				"path": "/scottish-charity-awards/faqs",
+				"route": "^/scottish-charity-awards/faqs"
+			}
+		]
+	}],
+	"cjs": [{
+		"label": "Community Jobs Scotland",
+		"path": "/jobs/community-jobs-scotland",
+		"route": "^/jobs/community-jobs-scotland$",
+		"children": [{
+				"label": "Get involved: Employers",
+				"path": "/jobs/community-jobs-scotland/information-for-employers",
+				"route": "^/jobs/community-jobs-scotland/information-for-employers$",
+				"children": [{
+						"label": "Become an employer",
+						"path": "/jobs/community-jobs-scotland/information-for-employers/become-an-employer",
+						"route": "^/jobs/community-jobs-scotland/information-for-employers/become-an-employer"
+					},
+					{
+						"label": "Responsibilities",
+						"path": "/jobs/community-jobs-scotland/information-for-employers/responsibilities",
+						"route": "^/jobs/community-jobs-scotland/information-for-employers/responsibilities"
+					},
+					{
+						"label": "Job criteria",
+						"path": "/jobs/community-jobs-scotland/information-for-employers/job-criteria",
+						"route": "^/jobs/community-jobs-scotland/information-for-employers/job-criteria"
+					},
+					{
+						"label": "Funding",
+						"path": "/jobs/community-jobs-scotland/information-for-employers/funding",
+						"route": "^/jobs/community-jobs-scotland/information-for-employers/funding"
+					},
+					{
+						"label": "Flexible training fund",
+						"path": "/jobs/community-jobs-scotland/information-for-employers/flexible-training-fund",
+						"route": "^/jobs/community-jobs-scotland/information-for-employers/flexible-training-fund"
+					},
+					{
+						"label": "Contacts",
+						"path": "/jobs/community-jobs-scotland/information-for-employers/contacts",
+						"route": "^/jobs/community-jobs-scotland/information-for-employers/contacts"
+					},
+					{
+						"label": "Quarterly bulletins",
+						"path": "/jobs/community-jobs-scotland/information-for-employers/quarterly-bulletins",
+						"route": "^/jobs/community-jobs-scotland/information-for-employers/quarterly-bulletins"
+					},
+					{
+						"label": "Vacancies",
+						"path": "/jobs/community-jobs-scotland/vacancies",
+						"route": "^/jobs/community-jobs-scotland/vacancies$"
+					}
+				]
+			},
+			{
+				"label": "Get involved: Young people",
+				"path": "/jobs/community-jobs-scotland/information-for-employees",
+				"route": "^/jobs/community-jobs-scotland/information-for-employees$",
+				"children": [{
+						"label": "Applying for a job",
+						"path": "/jobs/community-jobs-scotland/information-for-employees/applying",
+						"route": "^/jobs/community-jobs-scotland/information-for-employees/applying"
+					},
+					{
+						"label": "Responsibilities",
+						"path": "/jobs/community-jobs-scotland/information-for-employees/responsibilities",
+						"route": "^/jobs/community-jobs-scotland/information-for-employees/responsibilities"
+					},
+					{
+						"label": "Flexible training fund",
+						"path": "/jobs/community-jobs-scotland/information-for-employees/flexible-training-fund",
+						"route": "^/jobs/community-jobs-scotland/information-for-employees/flexible-training-fund"
+					},
+					{
+						"label": "Aftercare information",
+						"path": "/jobs/community-jobs-scotland/information-for-employees/aftercare",
+						"route": "^/jobs/community-jobs-scotland/information-for-employees/aftercare"
+					},
+					{
+						"label": "Success stories",
+						"path": "/jobs/community-jobs-scotland/information-for-employees/success-stories",
+						"route": "^/jobs/community-jobs-scotland/information-for-employees/success-stories"
+					},
+					{
+						"label": "Vacancies",
+						"path": "/jobs/community-jobs-scotland/vacancies",
+						"route": "^/jobs/community-jobs-scotland/vacancies"
+					}
+				]
+			}
+		]
+	}],
+	"credit-union": [{
+		"label": "Credit Union",
+		"path": "/services/credit-union",
+		"route": "^/services/credit-union$",
+		"children": [{
+				"label": "Member news and reports",
+				"path": "/services/credit-union/important-news",
+				"route": "^/services/credit-union/important-news"
+			},
+			{
+				"label": "Member section",
+				"path": "/services/credit-union/members-guide",
+				"route": "^/services/credit-union/members-guide"
+			},
+			{
+				"label": "Employer section",
+				"path": "/services/credit-union/employers-guide",
+				"route": "^/services/credit-union/employers-guide"
+			},
+			{
+				"label": "FAQs & general information",
+				"path": "/services/credit-union/faqs",
+				"route": "^/services/credit-union/faqs"
+			},
+			{
+				"label": "Loans calculator & APR & interest rates",
+				"path": "/services/credit-union/loan-calculator",
+				"route": "^/services/credit-union/loan-calculator"
+			},
+			{
+				"label": "Information and application forms",
+				"path": "/services/credit-union/loan-forms",
+				"route": "^/services/credit-union/loan-forms"
+			},
+			{
+				"label": "Joining information and general forms",
+				"path": "/services/credit-union/join",
+				"route": "^/services/credit-union/join"
+			}
+		]
+	}],
+	"policy": [{
+		"label": "Policy & research",
+		"path": "/policy",
+		"route": "^/policy$",
+		"children": [{
+				"label": "Events",
+				"path": "/policy/events",
+				"route": "^/policy/events$"
+			},
+			{
+				"label": "Evidence Library",
+				"path": "/policy/evidence-library",
+				"route": "^/policy/evidence-library$"
+			},
+			{
+				"label": "Policy Forum",
+				"path": "/policy/forum",
+				"route": "^/policy/forum$",
+				"children": [{
+						"label": "Manifesto for the Future",
+						"path": "/policy/forum/manifesto-for-the-future",
+						"route": "^/policy/forum/manifesto-for-the-future$"
+					}
+				]
+			},
+			{
+				"label": "Positive partnerships",
+				"path": "/policy/positive-partnerships",
+				"route": "^/policy/positive-partnerships$"
+			},
+			{
+				"label": "Intermediaries",
+				"path": "/policy/intermediaries",
+				"route": "^/policy/intermediaries$"
+			},
+			{
+				"label": "SCVO Core Grant Plan 2018-20",
+				"path": "https://app.powerbi.com/view?r=eyJrIjoiYzk1NTg3YmYtODU4Mi00ZjM4LWJiNjgtMjYxMjAxYmY3ZWVhIiwidCI6ImMyOTQ5NGY5LTNhY2EtNGE3MS05NWUyLWM4ODBjNWE1ZThmOSIsImMiOjh9",
+				"route": "^/policy/core-grant-plan$"
+			},
+			{
+				"label": "Campaigns",
+				"path": "/policy/campaigns",
+				"route": "^/policy/campaigns$",
+				"children": [{
+					"label": "#EUareValued",
+					"path": "/policy/campaigns/eu-are-valued",
+					"route": "^/policy/campaigns/eu-are-valued$",
+					"children": [{
+							"label": "Background",
+							"path": "/policy/campaigns/eu-are-valued/background",
+							"route": "^/policy/campaigns/eu-are-valued/background"
+						},
+						{
+							"label": "Applying for settled status",
+							"path": "/policy/campaigns/eu-are-valued/applying-for-settled-status",
+							"route": "^/policy/campaigns/eu-are-valued/applying-for-settled-status"
+						},
+						{
+							"label": "Case studies",
+							"path": "/policy/campaigns/eu-are-valued/case-studies",
+							"route": "^/policy/campaigns/eu-are-valued/case-studies"
+						},
+						{
+							"label": "Challenging hate crime",
+							"path": "/policy/campaigns/eu-are-valued/challenging-hate-crime",
+							"route": "^/policy/campaigns/eu-are-valued/challenging-hate-crime"
+						}
+					]
+				},
+				{
+					"label": "20 Years Delivering Change",
+					"path": "/policy/campaigns/20-years-delivering-change",
+					"route": "^/policy/campaigns/20-years-delivering-change$",
+					"children": [{
+							"label": "Introduction",
+							"path": "/policy/campaigns/20-years-delivering-change/introduction",
+							"route": "^/policy/campaigns/20-years-delivering-change/introduction$"
+						},
+						{
+							"label": "Smoke Free Public Places",
+							"path": "/policy/campaigns/20-years-delivering-change/smoke-free-public-places",
+							"route": "^/policy/campaigns/20-years-delivering-change/smoke-free-public-places$"
+						},
+						{
+							"label": "Saving Marine Life",
+							"path": "/policy/campaigns/20-years-delivering-change/saving-marine-life",
+							"route": "^/policy/campaigns/20-years-delivering-change/saving-marine-life$"
+						},
+						{
+							"label": "Abolition of Tuition Fees",
+							"path": "/policy/campaigns/20-years-delivering-change/abolition-of-tuition-fees",
+							"route": "^/policy/campaigns/20-years-delivering-change/abolition-of-tuition-fees$"
+						},
+						{
+							"label": "Climate Change",
+							"path": "/policy/campaigns/20-years-delivering-change/climate-change",
+							"route": "^/policy/campaigns/20-years-delivering-change/climate-change$"
+						},
+						{
+							"label": "Minimum Alcohol Pricing",
+							"path": "/policy/campaigns/20-years-delivering-change/minimum-alcohol-pricing",
+							"route": "^/policy/campaigns/20-years-delivering-change/minimum-alcohol-pricing$"
+						},
+						{
+							"label": "Justice for Victims of Asbestos Related Diseases",
+							"path": "/policy/campaigns/20-years-delivering-change/justice-for-victims-of-asbestos-related-diseases",
+							"route": "^/policy/campaigns/20-years-delivering-change/justice-for-victims-of-asbestos-related-diseases$"
+						},
+						{
+							"label": "Organ Donation Opt Out",
+							"path": "/policy/campaigns/20-years-delivering-change/organ-donation-opt-out",
+							"route": "^/policy/campaigns/20-years-delivering-change/organ-donation-opt-out$"
+						},
+						{
+							"label": "Debt Arrangement Schemes",
+							"path": "/policy/campaigns/20-years-delivering-change/debt-arrangement-schemes",
+							"route": "^/policy/campaigns/20-years-delivering-change/debt-arrangement-schemes$"
+						},
+						{
+							"label": "Making Renting Right",
+							"path": "/policy/campaigns/20-years-delivering-change/making-renting-right",
+							"route": "^/policy/campaigns/20-years-delivering-change/making-renting-right$"
+						},
+						{
+							"label": "Affordable Homes",
+							"path": "/policy/campaigns/20-years-delivering-change/affordable-homes",
+							"route": "^/policy/campaigns/20-years-delivering-change/affordable-homes$"
+						},
+						{
+							"label": "Continue to Care",
+							"path": "/policy/campaigns/20-years-delivering-change/continue-to-care",
+							"route": "^/policy/campaigns/20-years-delivering-change/continue-to-care$"
+						},
+						{
+							"label": "Free Personal Care for Older People",
+							"path": "/policy/campaigns/20-years-delivering-change/free-personal-care-for-older-people",
+							"route": "^/policy/campaigns/20-years-delivering-change/free-personal-care-for-older-people$"
+						},
+						{
+							"label": "Scottish Welfare Fund",
+							"path": "/policy/campaigns/20-years-delivering-change/scottish-welfare-fund",
+							"route": "^/policy/campaigns/20-years-delivering-change/scottish-welfare-fund$"
+						},
+						{
+							"label": "Free School Meals",
+							"path": "/policy/campaigns/20-years-delivering-change/free-school-meals",
+							"route": "^/policy/campaigns/20-years-delivering-change/free-school-meals$"
+						},
+						{
+							"label": "Human Trafficking and Exploitation",
+							"path": "/policy/campaigns/20-years-delivering-change/human-trafficking-and-exploitation",
+							"route": "^/policy/campaigns/20-years-delivering-change/human-trafficking-and-exploitation$"
+						},
+						{
+							"label": "Social Security",
+							"path": "/policy/campaigns/20-years-delivering-change/social-security",
+							"route": "^/policy/campaigns/20-years-delivering-change/social-security$"
+						},
+						{
+							"label": "Equal Marriage",
+							"path": "/policy/campaigns/20-years-delivering-change/equal-marriage",
+							"route": "^/policy/campaigns/20-years-delivering-change/equal-marriage$"
+						},
+						{
+							"label": "Right to Roam",
+							"path": "/policy/campaigns/20-years-delivering-change/right-to-roam",
+							"route": "^/policy/campaigns/20-years-delivering-change/right-to-roam$"
+						},
+						{
+							"label": "Repealing Ban on Discussing Homosexuality in Schools",
+							"path": "/policy/campaigns/20-years-delivering-change/repealing-ban-on-discussing-homosexuality-in-schools",
+							"route": "^/policy/campaigns/20-years-delivering-change/repealing-ban-on-discussing-homosexuality-in-schools$"
+						},
+						{
+							"label": "Community Right to Buy",
+							"path": "/policy/campaigns/20-years-delivering-change/community-right-to-buy",
+							"route": "^/policy/campaigns/20-years-delivering-change/community-right-to-buy$"
+						}
+					]
+				},
+				{
+					"label": "The Right Approach",
+					"path": "/policy/campaigns/right-approach",
+					"route": "^/policy/campaigns/right-approach$"
+				}]
+			}
+		]
+	}],
+	"i-love-charity": [{
+		"label": "Policy",
+		"path": "/policy",
+		"route": "^/policy$",
+		"children": [{
+			"label": "I Love Charity",
+			"path": "/policy/i-love-charity",
+			"route": "^/policy/i-love-charity$",
+			"children": [{
+					"label": "Modern charity FAQs",
+					"path": "/policy/i-love-charity/modern-charity-faqs",
+					"route": "^/policy/i-love-charity/modern-charity-faqs$"
+				},
+				{
+					"label": "Campaign plan",
+					"path": "/policy/i-love-charity/campaign-plan",
+					"route": "^/policy/i-love-charity/campaign-plan$"
+				},
+				{
+					"label": "Public trust in charities report",
+					"path": "/post/2018/02/21/the-public-view-trust-confidence-and-support-of-charities-in-scotland",
+					"route": "^/policy/i-love-charity/public-trust-report$"
+				},
+				{
+					"label": "Guide to working in the sector",
+					"path": "/policy/i-love-charity/guide-to-working-in-the-sector",
+					"route": "^/policy/i-love-charity/guide-to-working-in-the-sector$"
+				},
+				{
+					"label": "Case studies",
+					"path": "/policy/i-love-charity/case-studies",
+					"route": "^/policy/i-love-charity/case-studies$"
+				},
+				{
+					"label": "Sector stats",
+					"path": "/policy/i-love-charity/sector-stats",
+					"route": "^/policy/i-love-charity/sector-stats$"
+				},
+				{
+					"label": "Support our campaign",
+					"path": "/policy/i-love-charity/support-our-campaign",
+					"route": "^/policy/i-love-charity/support-our-campaign$"
+				}
+			]
+		}]
+	}],
+	"support": [{
+		"label": "Support &amp; learning",
+		"path": "/support",
+		"route": "^/support$",
+		"children": [{
+			"label": "Information Service",
+			"path": "/support/information-service",
+			"route": "^/support/information-service$"
+		},
+		{
+			"label": "Setting up a charity",
+			"path": "/support/setting-up-a-charity",
+			"route": "^/support/setting-up-a-charity$",
+			"children": [{
+					"label": "1. Get started",
+					"path": "/support/setting-up-a-charity/get-started",
+					"route": "^/support/setting-up-a-charity/get-started"
+				},
+				{
+					"label": "2. Make a plan",
+					"path": "/support/setting-up-a-charity/make-a-plan",
+					"route": "^/support/setting-up-a-charity/make-a-plan"
+				},
+				{
+					"label": "3. Decide on membership",
+					"path": "/support/setting-up-a-charity/decide-on-membership",
+					"route": "^/support/setting-up-a-charity/decide-on-membership"
+				},
+				{
+					"label": "4. Decide on charitable status",
+					"path": "/support/setting-up-a-charity/decide-on-charitable-status",
+					"route": "^/support/setting-up-a-charity/decide-on-charitable-status"
+				},
+				{
+					"label": "5. Consider the risks",
+					"path": "/support/setting-up-a-charity/consider-the-risks",
+					"route": "^/support/setting-up-a-charity/consider-the-risks"
+				},
+				{
+					"label": "6. Decide on structure",
+					"path": "/support/setting-up-a-charity/decide-on-structure",
+					"route": "^/support/setting-up-a-charity/decide-on-structure"
+				},
+				{
+					"label": "7. Write your constitution",
+					"path": "/support/setting-up-a-charity/write-your-constitution",
+					"route": "^/support/setting-up-a-charity/write-your-constitution"
+				},
+				{
+					"label": "8. Next steps",
+					"path": "/support/setting-up-a-charity/next-steps",
+					"route": "^/support/setting-up-a-charity/next-steps"
+				},
+				{
+					"label": "Frequently asked questions",
+					"path": "/support/setting-up-a-charity/frequently-asked-questions",
+					"route": "^/support/setting-up-a-charity/frequently-asked-questions"
+				}
+			]
+		},
+		{
+			"label": "Running your organisation",
+			"path": "/support/running-your-organisation",
+			"route": "^/support/running-your-organisation$",
+			"children": [{
+					"label": "Financial responsibilities",
+					"path": "/support/running-your-organisation/finance-business-management",
+					"route": "^/support/running-your-organisation/finance-business-management$",
+					"children": [{
+							"label": "Bank accounts",
+							"path": "/support/running-your-organisation/finance-business-management/bank-accounts",
+							"route": "^/support/running-your-organisation/finance-business-management/bank-accounts"
+						},
+						{
+							"label": "Water and sewerage exemption scheme",
+							"path": "/support/running-your-organisation/finance-business-management/water-sewerage-exemption-scheme",
+							"route": "^/support/running-your-organisation/finance-business-management/water-sewerage-exemption-scheme"
+						},
+						{
+							"label": "Accounts &#038; reporting",
+							"path": "/support/running-your-organisation/finance-business-management/charity-accounts-financial-reporting",
+							"route": "^/support/running-your-organisation/finance-business-management/charity-accounts-financial-reporting"
+						},
+						{
+							"label": "Tax &#038; VAT",
+							"path": "/support/running-your-organisation/finance-business-management/tax-vat",
+							"route": "^/support/running-your-organisation/finance-business-management/tax-vat"
+						},
+						{
+							"label": "Organisational development",
+							"path": "/support/running-your-organisation/finance-business-management/organisational-development",
+							"route": "/support/running-your-organisation/finance-business-management/organisational-development"
+						},
+						{
+							"label": "Property",
+							"path": "/support/running-your-organisation/finance-business-management/property",
+							"route": "^/support/running-your-organisation/finance-business-management/property"
+						},
+						{
+							"label": "Insurance",
+							"path": "/support/running-your-organisation/finance-business-management/insurance",
+							"route": "^/support/running-your-organisation/finance-business-management/insurance"
+						},
+						{
+							"label": "Trading",
+							"path": "/support/running-your-organisation/finance-business-management/trading",
+							"route": "^/support/running-your-organisation/finance-business-management/trading"
+						}
+					]
+				},
+				{
+					"label": "Business planning",
+					"path": "/support/running-your-organisation/business-planning",
+					"route": "^/support/running-your-organisation/business-planning$",
+					"children": [{
+							"label": "Writing a business plan",
+							"path": "/support/running-your-organisation/business-planning/writing-business-plan",
+							"route": "^/support/running-your-organisation/business-planning/writing-business-plan"
+						},
+						{
+							"label": "Risk analysis &#038; management",
+							"path": "/support/running-your-organisation/business-planning/risk-analysis-management",
+							"route": "^/support/running-your-organisation/business-planning/risk-analysis-management"
+						},
+						{
+							"label": "Reserves",
+							"path": "/support/running-your-organisation/business-planning/reserves",
+							"route": "^/support/running-your-organisation/business-planning/reserves"
+						},
+						{
+							"label": "Monitoring, evaluation and review",
+							"path": "/support/running-your-organisation/business-planning/monitoring-evaluation-review",
+							"route": "^/support/running-your-organisation/business-planning/monitoring-evaluation-review"
+						},
+						{
+							"label": "Mergers &#038; collaborations",
+							"path": "/support/running-your-organisation/business-planning/mergers-collaborations",
+							"route": "^/support/running-your-organisation/business-planning/mergers-collaborations"
+						}
+					]
+				},
+				{
+					"label": "Legislation &#038; regulation",
+					"path": "/support/running-your-organisation/legislation",
+					"route": "^/support/running-your-organisation/legislation$",
+					"children": [{
+							"label": "Data protection &#038; GDPR",
+							"path": "/support/running-your-organisation/legislation/data-protection",
+							"route": "^/support/running-your-organisation/legislation/data-protection"
+						},
+						{
+							"label": "Lobbying",
+							"path": "/support/running-your-organisation/legislation/lobbying",
+							"route": "^/support/running-your-organisation/legislation/lobbying"
+						},
+						{
+							"label": "Fire safety",
+							"path": "/support/running-your-organisation/legislation/fire-safety",
+							"route": "^/support/running-your-organisation/legislation/fire-safety"
+						},
+						{
+							"label": "Music &#038; film licensing",
+							"path": "/support/running-your-organisation/legislation/music-film-licensing",
+							"route": "^/support/running-your-organisation/legislation/music-film-licensing"
+						},
+						{
+							"label": "Premises licensing",
+							"path": "/support/running-your-organisation/legislation/premises-licensing",
+							"route": "^/support/running-your-organisation/legislation/premises-licensing"
+						},
+						{
+							"label": "Food hygiene &#038; catering",
+							"path": "/support/running-your-organisation/legislation/food-hygiene-catering",
+							"route": "^/support/running-your-organisation/legislation/food-hygiene-catering"
+						},
+						{
+							"label": "Health &#038; safety",
+							"path": "/support/running-your-organisation/legislation/health-safety",
+							"route": "^/support/running-your-organisation/legislation/health-safety"
+						},
+						{
+							"label": "PVG scheme",
+							"path": "/support/running-your-organisation/legislation/pvg-scheme",
+							"route": "^/support/running-your-organisation/legislation/pvg-scheme"
+						},
+						{
+							"label": "Freedom of information",
+							"path": "/support/running-your-organisation/legislation/foi-act",
+							"route": "^/support/running-your-organisation/legislation/foi-act"
+						}
+					]
+				},
+				{
+					"label": "Good Governance",
+					"path": "/support/running-your-organisation/governance",
+					"route": "^/support/running-your-organisation/governance$",
+					"children": [{
+							"label": "Scottish Governance Code & checkup",
+							"path": "/support/running-your-organisation/governance/scottish-governance-code-checkup",
+							"route": "^/support/running-your-organisation/governance/scottish-governance-code-checkup$",
+							"secret_children": [{
+									"label": "Start",
+									"path": "/support/running-your-organisation/governance/checkup/questions",
+									"route": "^/support/running-your-organisation/governance/checkup/questions"
+								},
+								{
+									"label": "Results",
+									"path": "/support/running-your-organisation/governance/checkup/results",
+									"route": "^/support/running-your-organisation/governance/checkup/results"
+								},
+								{
+									"label": "Blogs",
+									"path": "/support/running-your-organisation/governance/checkup/blogs",
+									"route": "^/support/running-your-organisation/governance/checkup/blogs"
+								},
+								{
+									"label": "About",
+									"path": "/support/running-your-organisation/governance/checkup/about",
+									"route": "^/support/running-your-organisation/governance/checkup/about"
+								}
+							]
+						},
+						{
+							"label": "Roles &#038; responsibilities",
+							"path": "/support/running-your-organisation/governance/roles-responsibilities",
+							"route": "^/support/running-your-organisation/governance/roles-responsibilities"
+						},
+						{
+							"label": "Recruitment &#038; induction",
+							"path": "/support/running-your-organisation/governance/recruitment-induction",
+							"route": "^/support/running-your-organisation/governance/recruitment-induction"
+						},
+						{
+							"label": "Meetings",
+							"path": "/support/running-your-organisation/governance/meetings",
+							"route": "^/support/running-your-organisation/governance/meetings"
+						},
+						{
+							"label": "Developing your board",
+							"path": "/support/running-your-organisation/governance/developing-board",
+							"route": "^/support/running-your-organisation/governance/developing-board"
+						},
+						{
+							"label": "Jargon buster",
+							"path": "/support/running-your-organisation/governance/jargon-buster",
+							"route": "^/support/running-your-organisation/governance/jargon-buster"
+						},
+						{
+							"label": "Mediation",
+							"path": "/support/running-your-organisation/governance/mediation",
+							"route": "^/support/running-your-organisation/governance/mediation"
+						},
+						{
+							"label": "Scottish Governance Code for the Third Sector",
+							"path": "https://governancecode.scot",
+							"route": "^https://governancecode.scot"
+						}
+					]
+				},
+				{
+					"label": "Managing staff &#038; volunteers",
+					"path": "/support/running-your-organisation/staff-volunteers",
+					"route": "^/support/running-your-organisation/staff-volunteers$",
+					"children": [{
+							"label": "Staff",
+							"path": "/support/running-your-organisation/staff-volunteers/staff",
+							"route": "^/support/running-your-organisation/staff-volunteers/staff"
+						},
+						{
+							"label": "Volunteers",
+							"path": "/support/running-your-organisation/staff-volunteers/volunteers",
+							"route": "^/support/running-your-organisation/staff-volunteers/volunteers"
+						},
+						{
+							"label": "Safeguarding",
+							"path": "/support/running-your-organisation/staff-volunteers/safeguarding",
+							"route": "^/support/running-your-organisation/staff-volunteers/safeguarding"
+						},
+						{
+							"label": "More information",
+							"path": "/support/running-your-organisation/staff-volunteers/more-information",
+							"route": "^/support/running-your-organisation/staff-volunteers/more-information"
+						}
+					]
+				},
+				{
+					"label": "Funding",
+					"path": "/support/running-your-organisation/funding",
+					"route": "^/support/running-your-organisation/funding$",
+					"children": [{
+							"label": "Finding funding step by step",
+							"path": "/support/running-your-organisation/funding/step-by-step-guide",
+							"route": "^/support/running-your-organisation/funding/step-by-step-guide$",
+							"children": [{
+									"label": "Get ready",
+									"path": "/support/running-your-organisation/funding/step-by-step-guide/get-ready",
+									"route": "^/support/running-your-organisation/funding/step-by-step-guide/get-ready"
+								},
+								{
+									"label": "Find your funds",
+									"path": "/support/running-your-organisation/funding/step-by-step-guide/find-your-funds",
+									"route": "^/support/running-your-organisation/funding/step-by-step-guide/find-your-funds"
+								},
+								{
+									"label": "Make the ask",
+									"path": "/support/running-your-organisation/funding/step-by-step-guide/make-the-ask",
+									"route": "^/support/running-your-organisation/funding/step-by-step-guide/make-the-ask"
+								},
+								{
+									"label": "Success & sustainability",
+									"path": "/support/running-your-organisation/funding/step-by-step-guide/success-and-sustainability",
+									"route": "^/support/running-your-organisation/funding/step-by-step-guide/success-and-sustainability"
+								},
+								{
+									"label": "Other sources",
+									"path": "/support/running-your-organisation/funding/step-by-step-guide/other-sources",
+									"route": "^/support/running-your-organisation/funding/step-by-step-guide/other-sources"
+								},
+								{
+									"label": "Jargon buster",
+									"path": "/support/running-your-organisation/funding/step-by-step-guide/jargon-buster",
+									"route": "^/support/running-your-organisation/funding/step-by-step-guide/jargon-buster"
+								}
+							]
+						},
+						{
+							"label": "Useful links",
+							"path": "/support/running-your-organisation/funding/useful-links",
+							"route": "^/support/running-your-organisation/funding/useful-links$"
+						}
+					]
+				},
+				{
+					"label": "EU exit (Brexit)",
+					"path": "/support/running-your-organisation/planning-for-eu-exit-brexit",
+					"route": "^/support/running-your-organisation/planning-for-eu-exit-brexit"
+				},
+				{
+					"label": "KeyStone",
+					"path": "/support/running-your-organisation/keystone",
+					"route": "^/support/running-your-organisation/keystone$",
+					"children": [{
+							"label": "Governance",
+							"path": "/support/running-your-organisation/keystone/governance",
+							"route": "^/support/running-your-organisation/keystone/governance$"
+						},
+						{
+							"label": "Managing people",
+							"path": "/support/running-your-organisation/keystone/managing-people",
+							"route": "^/support/running-your-organisation/keystone/managing-people$"
+						},
+						{
+							"label": "Managing money",
+							"path": "/support/running-your-organisation/keystone/managing-money",
+							"route": "^/support/running-your-organisation/keystone/managing-money$"
+						},
+						{
+							"label": "Managing resources",
+							"path": "/support/running-your-organisation/keystone/managing-resources",
+							"route": "^/support/running-your-organisation/keystone/managing-resources$"
+						},
+						{
+							"label": "Working with users",
+							"path": "/support/running-your-organisation/keystone/working-with-users",
+							"route": "^/support/running-your-organisation/keystone/working-with-users$"
+						},
+						{
+							"label": "Legislation &#038; regulation",
+							"path": "/support/running-your-organisation/keystone/legislation-regulation",
+							"route": "^/support/running-your-organisation/keystone/legislation-regulation$"
+						},
+						{
+							"label": "How to use the KeyStone toolkit",
+							"path": "/support/running-your-organisation/keystone/how-to-use-the-keystone-toolkit",
+							"route": "^/support/running-your-organisation/keystone/how-to-use-the-keystone-toolkit$"
+						},
+						{
+							"label": "Glossary",
+							"path": "/support/running-your-organisation/keystone/glossary",
+							"route": "^/support/running-your-organisation/keystone/glossary$"
+						}
+					]
+				},
+				{
+					"label": "Events",
+					"path": "/support/running-your-organisation/events",
+					"route": "^/support/running-your-organisation/events"
+				}
+			]
+		},
+		{
+			"label": "Digital",
+			"path": "/support/digital",
+			"route": "^/support/digital$",
+			"children": [{
+					"label": "Participation",
+					"path": "/support/digital/participation",
+					"route": "^/support/digital/participation$",
+					"children": [{
+							"label": "Why digital matters",
+							"path": "/support/digital/participation/why-digital-matters",
+							"route": "^/support/digital/participation/why-digital-matters$"
+						},
+						{
+							"label": "Essential digital skills",
+							"path": "/support/digital/participation/skills",
+							"route": "^/support/digital/participation/skills$"
+						},
+						{
+							"label": "Digital Champions - training",
+							"path": "/support/digital/participation/champions",
+							"route": "^/support/digital/participation/champions$"
+						},
+						{
+							"label": "Digital Champions - housing",
+							"path": "/support/digital/participation/digital-champions-in-social-housing",
+							"route": "^/support/digital/participation/digital-champions-in-social-housing$"
+						},
+						{
+							"label": "Events",
+							"path": "/support/digital/events",
+							"route": "^/support/digital/events$"
+						},
+						{
+							"label": "Research",
+							"path": "/support/digital/participation/reports",
+							"route": "^/support/digital/participation/reports$"
+						}
+					]
+				},
+				{
+					"label": "Evolution",
+					"path": "/support/digital/evolution",
+					"route": "^/support/digital/evolution$",
+					"children": [{
+							"label": "Digital Check-up",
+							"path": "/support/digital/evolution/check-up",
+							"route": "^/support/digital/evolution/check-up"
+						},
+						{
+							"label": "Digitally Confident Scotland",
+							"path": "/support/digital/evolution/creating-a-digitally-confident-third-sector-in-scotland-what-next",
+							"route": "^/support/digital/evolution/creating-a-digitally-confident-third-sector-in-scotland-what-next"
+						},
+						{
+							"label": "Senior Leaders Programme 2020",
+							"path": "/support/digital/evolution/senior-leaders",
+							"route": "^/support/digital/evolution/senior-leaders$",
+							"secret_children": [{
+									"label": "Our Alumni",
+									"path": "/support/digital/evolution/senior-leaders/our-alumni",
+									"route": "^/support/digital/evolution/senior-leaders/our-alumni$"
+								},
+								{
+									"label": "Programme structure",
+									"path": "/support/digital/evolution/senior-leaders/programme-structure",
+									"route": "^/support/digital/evolution/senior-leaders/programme-structure$"
+								},
+								{
+									"label": "Eligibility and commitment",
+									"path": "/support/digital/evolution/senior-leaders/eligibility-and-commitment",
+									"route": "^/support/digital/evolution/senior-leaders/eligibility-and-commitment$"
+								},
+								{
+									"label": "Why apply?",
+									"path": "/support/digital/evolution/senior-leaders/why-apply",
+									"route": "^/support/digital/evolution/senior-leaders/why-apply$"
+								},
+								{
+									"label": "Application process",
+									"path": "/support/digital/evolution/senior-leaders/application-process",
+									"route": "^/support/digital/evolution/senior-leaders/application-process$"
+								}
+							]
+						},
+						{
+							"label": "Digital Pioneers",
+							"path": "/support/digital/evolution/digital-pioneers",
+							"route": "^/support/digital/evolution/digital-pioneers$"
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Milo",
+			"path": "/support/milo",
+			"route": "^/support/milo$",
+			"children": [{
+					"label": "Search Milo data",
+					"path": "https://getinvolved.scot/organisations",
+					"route": "https://getinvolved.scot/organisations"
+				},
+				{
+				"label": "Training",
+				"path": "/support/milo/training",
+				"route": "^/support/milo/training$",
+				"children": [{
+					"label": "Quick start guide",
+					"path": "/support/milo/training/quick-start-guide",
+					"route": "^/support/milo/training/quick-start-guide$"
+				},
+				{
+					"label": "Getting started",
+					"path": "/support/milo/training/getting-started",
+					"route": "^/support/milo/training/getting-started$"
+				},
+				{
+					"label": "Organisations",
+					"path": "/support/milo/training/organisations",
+					"route": "^/support/milo/training/organisations$"
+				},
+				{
+					"label": "Contacts",
+					"path": "/support/milo/training/contacts",
+					"route": "^/support/milo/training/contacts$"
+				},
+				{
+					"label": "Volunteer Registrations",
+					"path": "/support/milo/training/volunteer-registrations",
+					"route": "^/support/milo/training/volunteer-registrations$"
+				},
+				{
+					"label": "Volunteering Opportunities",
+					"path": "/support/milo/training/volunteering-opportunities",
+					"route": "^/support/milo/training/volunteering-opportunities$"
+				},
+				{
+					"label": "Interactions",
+					"path": "/support/milo/training/interactions",
+					"route": "^/support/milo/training/interactions$"
+				},
+				{
+					"label": "Reporting",
+					"path": "/support/milo/training/reporting",
+					"route": "^/support/milo/training/reporting$"
+				},
+				{
+					"label": "Reporting tips",
+					"path": "/support/milo/training/reporting-tips",
+					"route": "^/support/milo/training/reporting-tips$"
+				},
+				{
+					"label": "Training videos",
+					"path": "/support/milo/training/videos",
+					"route": "^/support/milo/training/videos$"
+				}]
+			},
+			{
+				"label": "Library",
+				"path": "/support/milo/library",
+				"route": "^/support/milo/library$"
+			}]
+		}]
+	}],
+	"funding": [{
+		"label": "Funding",
+		"path": "/funding",
+		"route": "^/funding$",
+		"children": [{
+			"label": "Carers Act Transformation Support Fund",
+			"path": "/funding/carers-act-transformation-support-fund",
+			"route": "^/funding/carers-act-transformation-support-fund$",
+			"children": [{
+				"label": "Supported organisations",
+				"path": "/funding/carers-act-transformation-support-fund/projects",
+				"route": "^/funding/carers-act-transformation-support-fund/projects$"
+			}],
+			"secret_children": [{
+					"label": "Application process",
+					"path": "/funding/carers-act-transformation-support-fund/application-process",
+					"route": "^/funding/carers-act-transformation-support-fund/application-process$"
+				},
+				{
+					"label": "Key dates",
+					"path": "/funding/carers-act-transformation-support-fund/key-dates",
+					"route": "^/funding/carers-act-transformation-support-fund/key-dates$"
+				},
+				{
+					"label": "Eligibility criteria",
+					"path": "/funding/carers-act-transformation-support-fund/eligibility-criteria",
+					"route": "^/funding/carers-act-transformation-support-fund/eligibility-criteria$"
+				},
+				{
+					"label": "Activity criteria",
+					"path": "/funding/carers-act-transformation-support-fund/activity-criteria",
+					"route": "^/funding/carers-act-transformation-support-fund/activity-criteria$"
+				},
+				{
+					"label": "Grant awards",
+					"path": "/funding/carers-act-transformation-support-fund/grant-awards",
+					"route": "^/funding/carers-act-transformation-support-fund/grant-awards$"
+				},
+				{
+					"label": "Guidance on completing the application form",
+					"path": "/funding/carers-act-transformation-support-fund/guidance-on-completing-the-application-form",
+					"route": "^/funding/carers-act-transformation-support-fund/guidance-on-completing-the-application-form$"
+				},
+				{
+					"label": "Hints & tips",
+					"path": "/funding/carers-act-transformation-support-fund/hints-tips",
+					"route": "^/funding/carers-act-transformation-support-fund/hints-tips$"
+				},
+				{
+					"label": "FAQs",
+					"path": "/funding/carers-act-transformation-support-fund/faqs",
+					"route": "^/funding/carers-act-transformation-support-fund/faqs$"
+				},
+				{
+					"label": "Apply",
+					"path": "/funding/carers-act-transformation-support-fund/apply",
+					"route": "^/funding/carers-act-transformation-support-fund/apply$"
+				}
+			]
+		},
+		{
+			"label": "Community Capacity and Resilience Fund",
+			"path": "/funding/community-capacity-resilience-fund",
+			"route": "^/funding/community-capacity-resilience-fund$",
+			"children": [{
+				"label": "Supported projects",
+				"path": "/funding/community-capacity-resilience-fund/projects",
+				"route": "^/funding/community-capacity-resilience-fund/projects$"
+			}],
+			"secret_children": [{
+					"label": "Introduction",
+					"path": "/funding/community-capacity-resilience-fund/introduction-ccrf-round-5",
+					"route": "^/funding/community-capacity-resilience-fund/introduction-ccrf-round-5$"
+				}, {
+					"label": "Key dates",
+					"path": "/funding/community-capacity-resilience-fund/key-dates",
+					"route": "^/funding/community-capacity-resilience-fund/key-dates$"
+				}, {
+					"label": "Criteria & eligibility",
+					"path": "/funding/community-capacity-resilience-fund/criteria",
+					"route": "^/funding/community-capacity-resilience-fund/criteria$"
+				},
+				{
+					"label": "Application form guidance notes",
+					"path": "/funding/community-capacity-resilience-fund/guidance",
+					"route": "^/funding/community-capacity-resilience-fund/guidance$"
+				},
+				{
+					"label": "Project ideas",
+					"path": "/funding/community-capacity-resilience-fund/project-ideas",
+					"route": "^/funding/community-capacity-resilience-fund/project-ideas$"
+				},
+				{
+					"label": "Hints & tips",
+					"path": "/funding/community-capacity-resilience-fund/application-hints-tips",
+					"route": "^/funding/community-capacity-resilience-fund/application-hints-tips$"
+				},
+				{
+					"label": "Frequently asked questions",
+					"path": "/funding/community-capacity-resilience-fund/faqs",
+					"route": "^/funding/community-capacity-resilience-fund/faqs$"
+				},
+				{
+					"label": "Apply",
+					"path": "/funding/community-capacity-resilience-fund/apply",
+					"route": "^/funding/community-capacity-resilience-fund/apply$"
+				}
+			]
+		},
+		{
+			"label": "Cyber Essentials fund",
+			"path": "/funding/cyber-essentials-fund",
+			"route": "^/funding/cyber-essentials-fund$",
+			"children": [{
+				"label": "Supported organisations",
+				"path": "/funding/cyber-essentials-fund/projects",
+				"route": "^/funding/cyber-essentials-fund/projects$"
+			},
+			{
+				"label": "Apply",
+				"path": "/funding/cyber-essentials-fund/apply",
+				"route": "^/funding/cyber-essentials-fund/apply$"
+			}]
+		},
+		{
+			"label": "Digital participation charter fund",
+			"path": "/funding/digital-participation-charter-fund",
+			"route": "^/funding/digital-participation-charter-fund$",
+			"children": [{
+				"label": "Supported projects",
+				"path": "/funding/digital-participation-charter-fund/projects",
+				"route": "^/funding/digital-participation-charter-fund/projects$"
+			}],
+			"secret_children": [{
+					"label": "Call for funding",
+					"path": "/funding/digital-participation-charter-fund/call-for-funding",
+					"route": "^/funding/digital-participation-charter-fund/call-for-funding$"
+				},
+				{
+					"label": "Key criteria",
+					"path": "/funding/digital-participation-charter-fund/call-for-funding/key-criteria",
+					"route": "^/funding/digital-participation-charter-fund/call-for-funding/key-criteria$"
+				},
+				{
+					"label": "FAQs",
+					"path": "/funding/digital-participation-charter-fund/call-for-funding/faqs",
+					"route": "^/funding/digital-participation-charter-fund/call-for-funding/faqs$"
+				},
+				{
+					"label": "Apply",
+					"path": "/funding/digital-participation-charter-fund/apply",
+					"route": "^/funding/digital-participation-charter-fund/apply$"
+				},
+				{
+					"label": "Projects",
+					"path": "/funding/digital-participation-charter-fund/projects",
+					"route": "^/funding/digital-participation-charter-fund/projects$"
+				}
+			]
+		}]
+	}],
+	"help": [{
+		"label": "Help",
+		"path": "",
+		"route": "^/help$",
+		"children": [{
+			"label": "Accessibility",
+			"path": "/accessibility",
+			"route": "^/accessibility$"
+		},
+		{
+			"label": "Transparency & open data",
+			"path": "/transparency",
+			"route": "^/transparency$"
+		},
+		{
+			"label": "Privacy",
+			"path": "/privacy",
+			"route": "^/privacy$"
+		},
+		{
+			"label": "Cookies",
+			"path": "/cookies",
+			"route": "^/cookies$"
+		},
+		{
+			"label": "Terms & conditions",
+			"path": "/terms",
+			"route": "^/terms$"
+		},
+		{
+			"label": "Feedback & complaints",
+			"path": "/feedback-complaints",
+			"route": "^/feedback-complaints$"
+		}]
+	}],
+	"covid-19": [{
+		"label": "Coronavirus information & guidance",
+		"path": "/support/covid-19",
+		"route": "^/support/covid-19$",
+		"children": [{
+			"label": "Coronavirus/COVID-19",
+			"path": "/support/covid-19/what-is-coronavirus-and-covid-19",
+			"route": "^/support/covid-19/what-is-coronavirus-and-covid-19$"
+		},
+		{
+			"label": "Symptoms",
+			"path": "/support/covid-19/symptoms",
+			"route": "^/support/covid-19/symptoms$"
+		},
+		{
+			"label": "Preventing the spread",
+			"path": "/support/covid-19/preventing-the-spread",
+			"route": "^/support/covid-19/preventing-the-spread$"
+		},
+		{
+			"label": "Supporting your people",
+			"path": "/support/covid-19/supporting-your-people",
+			"route": "^/support/covid-19/supporting-your-people$"
+		},
+		{
+			"label": "Service continuity",
+			"path": "/support/covid-19/service-continuity",
+			"route": "^/support/covid-19/service-continuity$"
+		},
+		{
+			"label": "Resources",
+			"path": "/support/covid-19/resources",
+			"route": "^/support/covid-19/resources$"
+		},
+		{
+			"label": "What SCVO are doing",
+			"path": "/support/covid-19/what-scvo-are-doing",
+			"route": "^/support/covid-19/what-scvo-are-doing$"
+		}]
+	}],
+	"account": [{
+		"label": "My account",
+		"path": "/account",
+		"route": "^/account|^/sign-up-details|^/scvo-account",
+		"children": [{
+			"label": "Explore",
+			"path": "/explore",
+			"route": "^/explore"
+		}]
+	}]
+}

@@ -1,0 +1,26 @@
+{{#if @root.data.primaryResponse.hits.hits.[0] ~}}
+<div class="container">
+  <div class="hero">
+    <div class="hero-body">
+      <div class="columns">
+        <div class="column col-8 col-lg-7 col-md-12 hero-text">
+          <h1 class="text-secondary">Support &amp; learning</h1>
+        </div>
+        <div class="column col-4 col-lg-5 col-md-12 hero-illustration">
+          <img src="{{~>asset_url url='images/headers/montage_blindmanwithwoman.png'~}}" alt="Illustration of a group of people" class="img-responsive" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bg-gray b-padding-full">
+  <div class="container v-padding-full">
+    <div class="columns">
+      <div class="column col-6 col-md-8 col-sm-12 col-mx-auto">
+        <h2 class="text-centre">What can we help you with?</h2>
+        {{> site_search_form placeholder='Search for resources' target='/search' type='scvo-page' id='support'}}
+      </div>
+    </div>
+  </div>
+</div>
+{{/if ~}}

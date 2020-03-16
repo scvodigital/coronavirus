@@ -1,0 +1,36 @@
+{{#withExtend this q=@root.request.params.query.q}}
+{
+  "size": 10,
+  "_source": [
+    "title",
+    "location_city",
+    "location_region",
+    "registered_charity_number",
+    "scvo_member"
+  ],
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "query_string": {
+             "fields": ["text_bag_boost"],
+             "query": {{{stringify q}}}
+          }
+        },
+        {
+          "wildcard": {
+            "registered_charity_number": "?*"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "registered_charity_number": "SC003558"
+          }
+        }
+      ]
+    }
+  }
+}
+{{/withExtend}}

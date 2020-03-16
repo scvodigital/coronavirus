@@ -1,0 +1,18 @@
+{
+  "size": 1,
+  "_source": [
+    "title",
+    "og_image",
+    "type",
+    "membership_number",
+    "charity_number",
+    "website",
+    "twitter",
+    "facebook"
+  ],
+  "query": {
+    "term": {
+      "Id": "{{@root.request.params.member_id}}"
+    }
+  }
+}

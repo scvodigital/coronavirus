@@ -1,0 +1,20 @@
+[
+  {{#each @root.data.search_data.hits.hits ~}}
+  {
+    "title": "{{{_source.title}}}",
+    "location": "{{{_source.city}}}",
+    {{#compare _source.scvo_member.membership_status "Active Member" ~}}
+      "scvo_member": true,
+      "sfid": "{{_source.scvo_member.Id}}",
+      "field_of_work": "{{_source.scvo_member.field_of_work}}",
+      "membership_type": "{{_source.scvo_member.membership_type}}",
+      "membership_category": "{{_source.scvo_member.membership_category}}",
+      "membership_number": "{{_source.scvo_member.membership_number}}",
+      "postcode": "{{_source.scvo_member.postcode}}",
+    {{else}}
+      "scvo_member": false,
+    {{/compare ~}}
+    "registered_charity_number": "{{_source.registered_charity_number}}"
+  }{{#unless @last}},{{/unless}}
+  {{/each ~}}
+]

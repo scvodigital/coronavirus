@@ -1,0 +1,78 @@
+{
+  "size": 0,
+  "_source": false,
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "status": "Subbed"
+          }
+        },
+        {{#compare @root.request.params.phase 'p52' ~}}
+        {
+          "term" : {
+            "cjs_lookup": "CJS PH9 PT 52wks"
+          }
+        }
+        {{else}}
+        {
+          "bool": {
+            "should": [
+              {
+                "term" : {
+                  "cjs_lookup": "CJS PH9"
+                }
+              },
+              {
+                "term" : {
+                  "cjs_lookup": "CJS PH9 26wks"
+                }
+              }
+            ],
+            "minimum_should_match": 1
+          }
+        }
+        {{/compare ~}}
+      ]
+    }
+  },
+  "aggs": {
+    "sectors": {
+      "terms": {
+        "field": "sector",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "sectors_slugs": {
+      "terms": {
+        "field": "sector_slug",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "regions": {
+      "terms": {
+        "field": "region",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "regions_slugs": {
+      "terms": {
+        "field": "region_slug",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    }
+  }
+}

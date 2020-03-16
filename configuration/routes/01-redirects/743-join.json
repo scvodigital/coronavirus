@@ -1,0 +1,14 @@
+{
+  "name": "join",
+  "pattern": "/join",
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/about/membership",
+        "statusCode": 301
+      }
+    }
+  ]
+}
