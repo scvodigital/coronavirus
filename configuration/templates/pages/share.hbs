@@ -15,6 +15,7 @@
   {{#ifAny (compare @root.request.params.type "people") (compare @root.request.params.type "organisations") ~}}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <form action="/share/submit" method="post">
+    <input type="hidden" name="type" value="{{@root.request.params.type}}" />
     {{#switch @root.request.params.type ~}}
     {{#case "people" ~}}
     <h2>Help available to people</h2>

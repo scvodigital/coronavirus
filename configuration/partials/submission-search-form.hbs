@@ -1,0 +1,246 @@
+{{#withExtend this
+  hasLocation=(ifAll
+    @root.request.params.query.lat
+    @root.request.params.query.lng
+    @root.request.params.query.distance
+  )
+  location=(if
+    @root.request.params.query.lat
+    (default
+      @root.request.params.query.location
+      (concat @root.request.params.query.lat ", " @root.request.params.query.lng)
+    )
+    else=""
+  )}}
+<div class="search-form">
+  <form id="search-view" class="search-form" action="{{#compare @root.route.name 'submission'}}/search{{else}}{{@root.request.url.pathname}}{{/compare}}" method="GET">
+    <input type="hidden" name="lat" value="{{@root.request.params.query.lat}}" id="location-lat" />
+    <input type="hidden" name="lng" value="{{@root.request.params.query.lng}}" id="location-lng" />
+    <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="default-sort" />
+    <div class="">
+      <div class="columns">
+        <div class="column col-4 col-xl-7 col-sm-12 filter-location b-padding" id="location-fields">
+          <div class="input-group has-icon-left">
+            <span data-component="Typeahead" data-Typeahead="typeahead-location">
+              <span class="form-icon far fa-location geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="geolocation"></span>
+              <input type="text" id="where-submissions" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
+            </span>
+            <select class="form-select select-lg" id="distance" name="distance">
+              {{#each (split "1,2,5,10,15,20,30,50" ",")}}
+              <option value="{{this}}" {{#compare (default @root.request.params.query.distance "5") "===" this}}selected{{/compare}}>{{inflect this "mile" "miles" true}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        <div class="column col-6 col-xl-12 keywords b-padding">
+          <div class="form-group full-width">
+            <input type="text" id="what-submissions" name="keywords" class="form-input input-lg" value="{{@root.request.params.query.keywords}}" placeholder="Search for help" autocomplete="off" data-lpignore="true">
+          </div>
+        </div>
+      </div>
+      <div class="columns">
+        <div class="column col-10 col-lg-9 col-md-8 col-sm-12 chips b-padding">
+          {{#each @root.context.metaData.volunteeringTerms}}
+            <div class="chip-set chip-filters" id="{{key}}-filters">
+              {{~#each (arrayify (getProperty @root.request.params.query key))~}}
+                {{~#if this~}}
+                  <span>
+                    <div class="chip" tabindex="0">
+                      <span class="chip__text">
+                        {{#each ../termGroups}}
+                          {{#each terms}}
+                            {{#compare key ../../this}}
+                              {{label}}
+                            {{/compare}}
+                          {{/each}}
+                        {{/each}}
+                      </span>
+                      <input type="hidden" name="{{../key}}[]" value="{{this}}" />
+                      <span class="chip__icon--trailing far fa-times-circle" tabindex="0" role="button" data-component="TasksTrigger" data-TasksTrigger="delete-chip"></span>
+                    </div>
+                  </span>
+                {{~/if~}}
+              {{~/each~}}
+            </div>
+          {{/each}}
+        </div>
+        <div class="column col-2 col-lg-3 col-md-4 col-sm-12 search-button b-padding">
+          <button type="submit" id="search-submissions" class="btn btn-primary btn-lg">
+            Search
+            <!-- <span class="far fa-search" aria-hidden="true"></span> -->
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{{{{raw}}}}
+<script data-component-config="geolocation" type="javascript/blocked">
+  {
+    click: {
+      tasks: [
+        { name: "geolocation", type: "geolocation", config: {} },
+        {
+          type: "switch",
+          config: {
+            which: { __template: "{{~#if errors.geolocation~}}error{{~else~}}{{~#unless data.geolocation.coords~}}notFound{{~/unless~}}{{~/if~}}" },
+            branches: {
+              notFound: {
+                halt: true,
+                tasks: [
+                  {
+                    type: "run",
+                    config: { "config": "console.log(`Geolocation not found`)" }
+                  },
+                  "empty-location-fields"
+                ]
+              },
+              error: {
+                halt: true,
+                tasks: [
+                  {
+                    type: "run",
+                    config: { "config": "console.log(`Geolocation error, probably denied access`, errors)" }
+                  },
+                  "empty-location-fields"
+                ]
+              }
+            }
+          }
+        },
+        {
+          name: "storingRawCoords",
+          type: "elementManipulator",
+          config: {
+            "#location-lat": { value: { __template: "{{data.geolocation.coords.latitude}}" } },
+            "#location-lng": { value: { __template: "{{data.geolocation.coords.longitude}}" } },
+            "#where-submissions": { value: { __template: "{{data.geolocation.coords.latitude}}, {{data.geolocation.coords.longitude}}" } },
+            "#location-fields": { removeClass: "hidden" }
+          }
+        },
+        {
+          name: "place",
+          type: "request",
+          config: {
+            url: {
+              __template: "/place-lookup?lat={{data.geolocation.coords.latitude}}&lng={{data.geolocation.coords.longitude}}"
+            }
+          }
+        },
+        {
+          type: "switch",
+          config: {
+            which: {
+              __template: "{{#if errors.place}}requestError{{else}}{{#if data.place.error}}lookupError{{/if}}{{/if}}"
+            },
+            branches: {
+              requestError: {
+                tasks: [
+                  {
+                    type: "run",
+                    config: { "config": "console.log(`Problem executing request`, data, errors)" }
+                  },
+                  "empty-location-fields"
+                ]
+              },
+              lookupError: {
+                tasks: [
+                  {
+                    type: "run",
+                    config: { "config": "console.log(`Problem getting place name`, data, errors)" }
+                  },
+                  "empty-location-fields"
+                ]
+              },
+              default: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      "#where-submissions": { value: { __template: "{{data.place.place}}" } }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+</script>
+
+<script data-task="empty-location-fields" type="javascript/blocked">
+  {
+    type: "elementManipulator",
+    config: {
+      "#location-lat": { value: "" },
+      "#location-lng": { value: "" }
+    }
+  }
+</script>
+
+<script data-component-config="delete-chip" type="javascript/blocked">
+  {
+    click: {
+      tasks: [
+        {
+          type: "elementManipulator",
+          config: { "<span": { delete: true } }
+        }
+      ]
+    }
+  }
+</script>
+{{{{/raw}}}}
+
+<script data-component-config="typeahead-location" type="javascript/blocked">
+{
+  typeaheadOptions: {
+    highlight: true,
+    minlength: 1
+  },
+  itemSelectedTasks: [
+    {
+      type: "elementManipulator",
+      config: {
+        "#location-lat": { value: { __pointer: "metadata.suggestion.point.lat" } },
+        "#location-lng": { value: { __pointer: "metadata.suggestion.point.lon" } },
+        ">.tt-input": { value: { __pointer: "metadata.suggestion.display" } }
+      }
+    },
+    {
+      type: "elementManipulator",
+      config: {
+        ">.tt-menu": { styles: { display: "none !important" } }
+      }
+    }
+  ],
+  nothingSelectedTasks: [
+    "empty-location-fields",
+    {
+      type: "run",
+      config: { code: "metadata.instance.clearSelection()" }
+    }
+  ],
+  datasets: [
+    {
+      name: "geo_lookup",
+      display: "display",
+      templates: { header: "" },
+      bloodhound: {
+        datumTokenizer: "objWhitespace",
+        datumTokenizerField: "place",
+        queryTokenizer: "whitespace",
+        remote: {
+          url: "/geo-lookup?q=*",
+          wildcard: "*"
+        }
+      }
+    },
+  ],
+  clearIfNothingSelected: true
+}
+</script>
+{{/withExtend}}
