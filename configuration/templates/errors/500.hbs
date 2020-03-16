@@ -1,0 +1,30 @@
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-exclamation-circle fa-3x text-error"></span>
+  </div>
+  <p class="empty-title h4">Error 500: Something went wrong</p>
+  <p class="empty-subtitle">This site is currently in development.</p>
+  <p class="empty-subtitle">Please try again, but contact us with a screenshot and as much information as you can provide if this happens again.</p>
+  <div class="empty-action">
+    <a href="/" class="btn btn-primary">Home</a>
+  </div>
+  <pre class="code">
+    <code>
+    {{#each errors ~}}
+    --------------------------------
+    {{#if name}}Name: {{name}}{{/if}}
+    {{#if message}}Message: {{message}}{{/if}}
+    {{#if stack}}Stack: {{stack}}{{/if}}
+    {{#if sourceRoute.route.name}}Source route: {{sourceRoute.route.name}}{{/if}}
+    {{#if routeName}}Route name: {{routeName}}{{/if}}
+    {{#if taskName}}Task name: {{taskName}}{{/if}}
+    {{#if redirectTo}}Redirect to: {{redirectTo}}{{/if}}
+    {{#if statusCode}}Status code: {{statusCode}}{{/if}}
+    {{#if data}}Data: {{{stringify data}}}{{/if}}
+    {{#if task}}Task: {{{stringify task}}}{{/if}}
+    {{#if destination}}Destination: {{{stringify destination}}}{{/if}}
+    --------------------------------
+    {{/each ~}}
+    </code>
+  </pre>
+</div>

@@ -1,146 +1,42 @@
 {
-	"main": [{
-			"label": "About",
-			"path": "/about",
-			"route": "^/about"
-		},
-		{
-			"label": "Support &#038; learning",
-			"path": "/support",
-			"route": "^/support"
-		},
-		{
-			"label": "Services",
-			"path": "/services",
-			"route": "^/services"
-		},
-		{
-			"label": "Funding",
-			"path": "/funding",
-			"route": "^/funding"
-		},
-		{
-			"label": "Jobs & employability",
-			"path": "/jobs",
-			"route": "^/jobs"
-		},
-		{
-			"label": "Policy &#038; research",
-			"path": "/policy",
-			"route": "^/policy"
-		}
-	],
-	"user-signed-in": [{
-			"label": "Explore",
-			"icon": "file-search",
-			"path": "/explore",
-			"route": "^/explore"
-		},
-		{
-			"label": "My account",
-			"icon": "user-cog",
-			"path": "/account",
-			"route": "^/account|^/sign-up-details|^/scvo-account"
-		}
-	],
-	"user-not-signed-in": [{
-			"label": "My account",
-			"icon": "user-cog",
-			"path": "/account",
-			"route": "^/account|^/sign-up-details|^/scvo-account"
-		}
-	],
-  "footer": [{
-			"label": "Accessibility",
-			"path": "/accessibility",
-			"route": "^/accessibility"
-		},
-		{
-			"label": "Transparency &#038; open data",
-			"path": "/transparency",
-			"route": "^/transparency"
-		},
-		{
-			"label": "Privacy",
-			"path": "/privacy",
-			"route": "^/privacy$"
-		},
-		{
-			"label": "Cookies",
-			"path": "/cookies",
-			"route": "^/cookies$"
-		},
-		{
-			"label": "Terms &#038; conditions",
-			"path": "/terms",
-			"route": "^/terms$"
-		},
-		{
-			"label": "Feedback &#038; complaints",
-			"path": "/feedback-complaints",
-			"route": "^/feedback-complaints$"
-		}
-	],
-	"awards": [{
-			"label": "Scottish Charity Awards",
-			"path": "/scottish-charity-awards",
-			"route": "^/scottish-charity-awards$"
-		},
-		{
-			"label": "Application forms",
-			"path": "/scottish-charity-awards/apply-2020",
-			"route": "^/scottish-charity-awards/apply-2020"
-		},
-		{
-			"label": "2019 winners",
-			"path": "/scottish-charity-awards/winners-2019",
-			"route": "^/scottish-charity-awards/winners-2019"
-		},
-		{
-			"label": "2018 winners",
-			"path": "/scottish-charity-awards/winners-2018",
-			"route": "^/scottish-charity-awards/winners-2018"
-		},
-		{
-			"label": "2017 winners",
-			"path": "/scottish-charity-awards/winners-2017",
-			"route": "^/scottish-charity-awards/winners-2017"
-		},
-		{
-			"label": "FAQs",
-			"path": "/scottish-charity-awards/faqs",
-			"route": "^/scottish-charity-awards/faqs"
-		}
-	],
-	"gathering": [{
-			"label": "The Gathering 2020",
-			"path": "/the-gathering-2020",
-			"route": "^/the-gathering-2020$"
-		},
-		{
-			"label": "About",
-			"path": "/the-gathering-2020/about",
-			"route": "^/the-gathering-2020/about"
-		},
-		{
-			"label": "Event programme",
-			"path": "/the-gathering-2020/event-programme",
-			"route": "^/the-gathering-2020/event-programme"
-		},
-		{
-			"label": "Exhibitors and event hosts",
-			"path": "/the-gathering-2020/exhibitors-and-event-hosts",
-			"route": "^/the-gathering-2020/exhibitors-and-event-hosts"
-		},
-		{
-			"label": "Resources",
-			"path": "/the-gathering-2020/resources",
-			"route": "^/the-gathering-2020/resources"
-		},
-		{
-			"label": "Contact",
-			"path": "/the-gathering-2020/contact-us",
-			"route": "^/the-gathering-2020/contact"
-		}
-	]
+  "main-not-signed-in": [
+    {
+      "label": "About",
+      "icon": "info-circle",
+      "path": "/about",
+      "route": "^/about"
+    },
+    {
+      "label": "Contact",
+      "icon": "envelope",
+      "path": "/contact",
+      "route": "^/contact"
+    }
+  ],
+  "footer-help": [
+    {
+      "label": "Accessibility",
+      "icon": "cog",
+      "path": "/accessibility",
+      "route": "^/accessibility"
+    },
+    {
+      "label": "Privacy notice",
+      "icon": "cog",
+      "path": "/privacy",
+      "route": "^/privacy"
+    },
+    {
+      "label": "Cookie policy",
+      "icon": "cog",
+      "path": "/cookies",
+      "route": "^/cookies"
+    },
+    {
+      "label": "Terms & conditions",
+      "icon": "cog",
+      "path": "/terms",
+      "route": "^/terms"
+    }
+  ]
 }

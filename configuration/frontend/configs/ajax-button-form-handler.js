@@ -1,5 +1,5 @@
 return {
-  submit: {
+  click: {
     preventDefault: true,
     tasks: [
       {
@@ -15,7 +15,7 @@ return {
           traditional : true,
           dataType: "json",
           data: {
-            __template: `\{{{json value=(parse (jquery null "serialize" context=metadata.instance.element) type="querystring")}}}`,
+            __template: `\{{{json key=(jquery rootElement 'data' (split 'field')) value= )}}}`,
             __parser: "json"
           }
         }

@@ -1,19 +1,19 @@
 {
-  "name": "@scvo/scvo",
-  "version": "0.0.201",
-  "description": "Site configuration and assets for scvo.org",
+  "name": "@scvo/coronavirus",
+  "version": "0.0.1",
+  "description": "Site configuration and assets for covid-19.scvo.org",
   "main": "index.js",
   "scripts": {
     "test": "echo \"No tests specified\" && exit 0",
-    "start": "npm run clear-build && LIBRARY=SCVO webpack --watch --env=dev",
-    "build": "npm run clear-build && LIBRARY=SCVO webpack --env=prod",
-    "publish": "npm run build && GOOGLE_APPLICATION_CREDENTIALS=\"secret.json\" SITE=scvo node  ./node_modules/@scvo/common/publish.js",
+    "start": "npm run clear-build && LIBRARY=Coronavirus webpack --watch --env=dev",
+    "build": "npm run clear-build && npm run compile-sa-email-templates && LIBRARY=Coronavirus webpack --env=prod",
+    "publish": "npm run build && GOOGLE_APPLICATION_CREDENTIALS=\"secret.json\" SITE=coronavirus node  ./node_modules/@scvo/common/publish.js",
     "clear-build": "rm -rf build/**",
     "deploy": "./node_modules/@scvo/common/deploy.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scvodigital/scvo.git"
+    "url": "git+https://github.com/scvodigital/coronavirus.git"
   },
   "keywords": [
     "SCVO",
@@ -22,9 +22,9 @@
   "author": "Matthew Wilkes (SCVO)",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/scvodigital/scvo/issues"
+    "url": "https://github.com/scvodigital/coronavirus/issues"
   },
-  "homepage": "https://scvo.org",
+  "homepage": "https://covid-19.scvo.org",
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/plugin-transform-runtime": "^7.3.4",
@@ -49,6 +49,7 @@
     "node-sass": "^4.9.3",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
+    "typedarray-to-buffer": "^3.1.5",
     "uglifyjs-webpack-plugin": "^1.3.0",
     "webpack": "3.11.0",
     "webpack-cli": "^3.2.3",
@@ -72,7 +73,6 @@
     "leaflet.markercluster": "^1.4.1",
     "loader-utils": "^1.1.0",
     "mapbox.js": "^3.1.1",
-    "material-components-web": "^1.1.0",
     "mustache": "^3.0.1",
     "pako": "^1.0.6",
     "request-promise-native": "^1.0.5",

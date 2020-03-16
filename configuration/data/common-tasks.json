@@ -1,16 +1,16 @@
 {
-  "authNotRequired": {
+	"authNotRequired": {
 		"name": "auth",
 		"taskModule": "firebaseAuth",
 		"config": {
-			"tokenPath": "request.cookies.scvo_token",
-			"cookieName": "scvo_cookie",
+			"tokenPath": "request.cookies.co_token",
+			"cookieName": "co_cookie",
 			"cookieOptions": {
 				"maxAge": 1209600000,
 				"secure": true,
 				"path": "/"
 			},
-			"appName": "scvo",
+			"appName": "saltireawards",
 			"notAuthenticatedRoute": ""
 		}
 	},
@@ -18,193 +18,343 @@
 		"name": "auth",
 		"taskModule": "firebaseAuth",
 		"config": {
-			"tokenPath": "request.cookies.scvo_token",
-			"cookieName": "scvo_cookie",
+			"tokenPath": "request.cookies.co_token",
+			"cookieName": "co_cookie",
 			"cookieOptions": {
 				"maxAge": 1209600000,
 				"secure": true,
 				"path": "/"
 			},
-			"appName": "scvo",
+			"appName": "saltireawards",
 			"notAuthenticatedRoute": "sign_in"
 		}
 	},
-  "cjsAuthNotRequired": {
-		"name": "cjsAuth",
-		"taskModule": "firebaseAuth",
-		"config": {
-			"tokenPath": "request.cookies.cjs_token",
-			"cookieName": "cjs_cookie",
-			"cookieOptions": {
-				"maxAge": 1209600000,
-				"secure": true,
-				"path": "/"
-			},
-			"appName": "cjs",
-			"notAuthenticatedRoute": ""
-		}
-	},
-	"cjsAuthRequired": {
-		"name": "cjsAuth",
-		"taskModule": "firebaseAuth",
-		"config": {
-			"tokenPath": "request.cookies.cjs_token",
-			"cookieName": "cjs_cookie",
-			"cookieOptions": {
-				"maxAge": 1209600000,
-				"secure": true,
-				"path": "/"
-			},
-			"appName": "cjs",
-			"notAuthenticatedRoute": "cjs_sign_in"
-		}
-	},
-  "getSignUpStatus": {
-		"name": "signUpStatus",
-		"taskModule": "firebaseRtbGet",
-		"renderer": "handlebars",
-		"config": {
-			"appName": "scvo",
-			"pathTemplate": "/{{default data.auth.uid 'no-such-read-profile'}}/signup-status",
-			"defaultData": ""
-		}
-	},
-	"getAccountInfoSF": {
+	"getAccountInfo": {
 		"name": "accountInfo",
 		"taskModule": "salesforceApex",
 		"renderer": "handlebars",
-    "cache": {
+		"cache": {
 			"keyProperties": ["$accountInfo"],
-			"partition": "scvo-profiles-{{data.auth.uid}}",
+			"partition": "saltire-profiles-{{@root.data.auth.uid}}",
 			"ttl": 3600
 		},
 		"config": {
-			"connection": "scvoAlexSandbox",
+			"connection": "scvoMiloProduction",
 			"output": "data",
 			"method": "GET",
-			"apexClassPath": "/User/?user_id={{@root.data.auth.uid}}"
+			"apexClassPath": "/SaltireUser/?user_id={{@root.data.auth.uid}}"
 		}
 	},
-  "getAccountInfo": {
+	"getAccountInfoExternal": {
 		"name": "accountInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$accountInfo"],
+			"partition": "saltire-profiles-{{default @root.request.params.query.user_id @root.request.params.uid}}",
+			"ttl": 3600
+		},
+		"config": {
+			"connection": "scvoMiloProduction",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireUser/?user_id={{default @root.request.params.query.user_id @root.request.params.uid}}"
+		}
+	},
+	"getTasksInfo": {
+		"name": "tasksInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$tasksInfo"],
+			"partition": "saltire-profiles-{{default @root.data.auth.uid @root.request.params.uid}}",
+			"ttl": 3600
+		},
+		"config": {
+			"connection": "scvoMiloProduction",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireTask/?user_id={{default @root.data.auth.uid @root.request.params.uid}}"
+		}
+	},
+	"getHoursInfo": {
+		"name": "hoursInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$hoursInfo"],
+			"partition": "saltire-profiles-{{default @root.data.auth.uid @root.request.params.uid}}",
+			"ttl": 3600
+		},
+		"config": {
+			"connection": "scvoMiloProduction",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireHours/?user_id={{default @root.data.auth.uid @root.request.params.uid}}"
+		}
+	},
+	"getTasksInfoUnverified": {
+		"name": "tasksInfoUnverified",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$tasksInfoUnverified"],
+			"partition": "saltire-profiles-{{@root.data.auth.uid}}",
+			"ttl": 3600
+		},
+		"config": {
+			"connection": "scvoMiloProduction",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}&verified=false"
+		}
+	},
+	"flushCache": {
+		"name": "flushCache",
+		"taskModule": "cacheFlush",
+		"renderer": "handlebars",
+		"config": {
+			"partition": "saltire-profiles-{{@root.data.auth.uid}}"
+		}
+	},
+	"verifyHoursInfo": {
+		"name": "verifyHoursInfo",
+		"taskModule": "firebaseRtbGet",
+		"renderer": "handlebars",
+		"config": {
+			"appName": "saltireawards",
+			"pathTemplate": "/users/{{default @root.data.auth.uid 'no-such-read-profile'}}/verify-hours/",
+			"defaultData": false
+		}
+	},
+	"verifyHoursInfoExternal": {
+		"name": "verifyHoursInfo",
+		"taskModule": "firebaseRtbGet",
+		"renderer": "handlebars",
+		"config": {
+			"appName": "saltireawards",
+			"pathTemplate": "/users/{{default @root.request.params.query.user_id 'no-such-read-profile'}}/verify-hours/",
+			"defaultData": false
+		}
+	},
+	"getTasksInfoUnverifiedExternal": {
+		"name": "tasksInfoUnverified",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"config": {
+			"connection": "scvoMiloProduction",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id}}&verified=false"
+		}
+	},
+	"getTasksInfoExternal": {
+		"name": "tasksInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$tasksInfo"],
+			"partition": "saltire-profiles-{{@root.request.params.query.user_id}}",
+			"ttl": 3600
+		},
+		"config": {
+			"connection": "scvoMiloProduction",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id}}"
+		}
+	},
+	"getAwardsInfoExternal": {
+		"name": "awardsInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"config": {
+			"connection": "scvoMiloProduction",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireAward/?user_id={{@root.request.params.query.user_id}}&award_id={{@root.request.params.award_id}}"
+		}
+	},
+	"hoursCodeVerify": {
+		"name": "codeVerified",
 		"taskModule": "render",
 		"renderer": "handlebars",
 		"config": {
 			"output": "data",
-			"template": "{\"external_id\":\"test\",\"verification_needed\":false}"
+			"template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify"
 		}
 	},
-  "getOrganisationInfo": {
-    "name": "organisationInfo",
-    "taskModule": "elasticsearch",
-    "config": {
-      "connectionStringTemplate": "{$elasticsearch-url.txt}",
-      "elasticsearchConfig": {
-        "apiVersion": "5.6"
-      },
-      "queryTemplates": {
-        "index": "{$elasticsearch-index.txt}",
-        "type": "scvo-member",
-        "template": ">context.metaData.handlebars.queries.members_explore-organisation"
-      }
-    },
-    "renderer": "handlebars"
-  },
-  "fullSignUpRequired": {
-		"name": "signUpReroute",
+	"handleHoursVerifyFail": {
+		"name": "handleVerifyFail",
 		"taskModule": "reroute",
 		"config": {
 			"if": [{
-					"missing": "data.accountInfo.external_id"
-				},
-				"sd-needed",
-				{
-					"if": [{
-							"var": "data.accountInfo.verification_needed"
+					"==": [{
+							"var": "data.codeVerified"
 						},
-						"approval-required",
-						null
+						"pass"
 					]
-				}
+				},
+				null,
+				"verify-hours-code-fail"
 			]
 		}
 	},
-  "redirectIfApprovalNeeded": {
+	"getAwardInfo": {
+		"name": "awardInfo",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"output": "data",
+			"template": ">context.metaData.handlebars.templates.volunteering_get-award-info",
+			"parseJson": true
+		}
+	},
+
+	"volunteeringTermsMaps": {
+		"name": "termsMaps",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"template": ">context.metaData.handlebars.partials.opportunity_terms_maps",
+			"output": "data",
+			"parseJson": true
+		}
+	},
+	"redirectIfApprovalNeeded": {
 		"name": "redirectIfPV",
 		"taskModule": "reroute",
 		"config": {
 			"if": [{
-					"var": "data.accountInfo.verification_needed"
+					"var": "data.accountInfo.approvalneeded"
 				},
 				"approval-required",
 				null
 			]
 		}
 	},
-  "flushCache": {
-		"name": "flushCache",
-		"taskModule": "cacheFlush",
-		"renderer": "handlebars",
+  "fullSignUpRequired": {
+		"name": "signUpReroute",
+		"taskModule": "reroute",
 		"config": {
-			"partition": "scvo-profiles-{{data.auth.uid}}"
+			"if": [
+						{
+							"missing": "data.accountInfo.external_id"
+						},
+						"sign-up-details",
+				{
+					"if": [
+						{
+							"or": [
+								{
+									"missing": "data.accountInfo.postcode"
+								},
+								{
+									"===": [{"var": "data.accountInfo.postcode"},"TR19 7AA"]
+								}
+							]
+						},
+						"account-missing-details",
+						null
+					]
+				}
+			]
+				}
+
+		},
+
+  "tasksRequired": {
+		"name": "noTasksReroute",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+					"===": [
+            {
+              "var": "data.tasksInfo.length"
+            },
+            0
+          ]
+				},
+				"no_tasks",
+				null
+			]
 		}
 	},
-  "getCheckupData": {
-    "name": "checkup",
-    "taskModule": "render",
-    "renderer": "handlebars",
-    "config": {
-      "output": "data",
-      "template": ">context.metaData.handlebars.templates.support_checkup_questions_data",
-      "parseJson": true
-    }
-  },
-  "postsLatest": {
-    "name": "postsLatest",
-    "taskModule": "elasticsearch",
-    "config": {
-      "connectionStringTemplate": "{$elasticsearch-url.txt}",
-      "elasticsearchConfig": {
-        "apiVersion": "5.6"
-      },
-      "queryTemplates": {
-        "index": "{$elasticsearch-index.txt}",
-        "type": "scvo-post",
-        "template": ">context.metaData.handlebars.queries.posts_latest"
-      }
-    },
-    "renderer": "handlebars"
-  },
-  "postsBlog": {
-    "name": "postsBlog",
-    "taskModule": "elasticsearch",
-    "config": {
-      "connectionStringTemplate": "{$elasticsearch-url.txt}",
-      "elasticsearchConfig": {
-        "apiVersion": "5.6"
-      },
-      "queryTemplates": {
-        "index": "{$elasticsearch-index.txt}",
-        "type": "scvo-post",
-        "template": ">context.metaData.handlebars.queries.posts_category-blog"
-      }
-    },
-    "renderer": "handlebars"
-  },
-  "postsRelated": {
-    "name": "postsRelated",
-    "taskModule": "elasticsearch",
-    "config": {
-      "connectionStringTemplate": "{$elasticsearch-url.txt}",
-      "elasticsearchConfig": {
-        "apiVersion": "5.6"
-      },
-      "queryTemplates": {
-        "index": "{$elasticsearch-index.txt}",
-        "type": "scvo-post",
-        "template": ">context.metaData.handlebars.queries.posts_related-random"
-      }
-    },
-    "renderer": "handlebars"
-  }
+	"isAdmin": {
+		"name": "isAdmin",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"template": "{{#ifAll (compare data.accountInfo.user_type 'Group Admin') (compare data.accountInfo.external_id data.auth.uid)}}true{{/ifAll}}",
+			"output": "data"
+		}
+	},
+	"getAwardsStatus" : {
+		"name": "awardsStatus",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"template": ">context.metaData.handlebars.partials.awards_status",
+			"output": "data",
+			"parseJson": true
+		}
+	},
+	"adminRequired": {
+		"name": "adminRequired",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+				"and": [{
+					"!=": [{
+						"var": "data.accountInfo.user_type"
+					}, "Group Admin"]
+				}
+				]
+			},
+				"redirect-home",
+				null
+			]
+		}
+	},
+	"adminOrCodeRequired": {
+		"name": "adminOrCodeRequired",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+					"and": [
+						{
+							"!=": [{"var": "data.isAdmin"}, "true"]
+						},
+						{
+							"!=": [{"var": "data.codeVerified"}, "pass"]
+						}
+					]
+				},
+				"redirect-home",
+				null
+			]
+		}
+	},
+	"anyAuthorityRequired": {
+		"name": "anyAuthorityRequired",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+				"and": [
+					{
+						"!=": [{"var": "data.isAdmin"}, "true"]
+					},
+					{
+						"!=": [{"var": "data.codeVerified"}, "pass"]
+					},
+					{
+						"!=": [{"var": "data.accountInfo.external_id"}, {"var": "data.auth.uid"} ]
+					}
+				]
+			},
+				"redirect-home",
+				null
+			]
+		}
+	}
 }

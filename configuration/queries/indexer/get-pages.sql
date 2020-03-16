@@ -1,1 +1,0 @@
-SELECT * FROM O6x3h_3_posts;

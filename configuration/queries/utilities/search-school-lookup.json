@@ -2,10 +2,8 @@
 {
   "size": 10,
   "_source": [
-    "title",
-    "location_city",
-    "location_region",
-    "registered_charity_number"
+    "Id",
+    "title"
   ],
   "query": {
     "bool": {
@@ -14,11 +12,6 @@
           "query_string": {
              "fields": ["text_bag_boost"],
              "query": {{{stringify q}}}
-          }
-        },
-        {
-          "wildcard": {
-            "registered_charity_number": "?*"
           }
         }
       ]

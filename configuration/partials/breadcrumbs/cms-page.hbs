@@ -1,9 +1,0 @@
-{{#with @root.data.primaryResponse.hits.hits.[0]._source ~}}
-<ul class="breadcrumb breadcrumb-length-{{breadcrumb.length}}" aria-hidden="true">
-  <li class="breadcrumb-item"><a href="/">Home</a></li>
-  {{#each breadcrumb ~}}
-  <li class="breadcrumb-item"><a href="{{replace (replace url 'http://cms.scvo.org' '') 'https://cms.scvo.org' ''}}">{{{striptags title}}}</a></li>
-  {{/each ~}}
-  <li class="breadcrumb-item">{{{striptags title}}}</li>
-</ul>
-{{/with ~}}

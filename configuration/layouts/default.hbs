@@ -1,341 +1,515 @@
 <!doctype html>
 <html lang="en">
-<head prefix="og: http://ogp.me/ns#">
+<head prefix="og: http://ogp.me/ns# profile: http://ogp.me/ns/profile#">
+  <meta charset="utf-8">
   {{{layoutParts.head}}}
-  {{> layout_head}}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--
+
+  Powered by:
+      ███████╗ ██████╗██╗   ██╗ ██████╗  ██╗   ██████╗  ██████╗ ██╗   ██╗████████╗███████╗██████╗
+     ██╔════╝██╔════╝██║   ██║██╔═══██╗ ╚██╗  ██╔══██╗██╔═══██╗██║   ██║╚══██╔══╝██╔════╝██╔══██╗
+    ███████╗██║     ██║   ██║██║   ██║  ╚██╗ ██████╔╝██║   ██║██║   ██║   ██║   █████╗  ██████╔╝
+   ╚════██║██║     ╚██╗ ██╔╝██║   ██║  ██╔╝ ██╔══██╗██║   ██║██║   ██║   ██║   ██╔══╝  ██╔══██╗
+  ███████║╚██████╗ ╚████╔╝ ╚██████╔╝ ██╔╝  ██║  ██║╚██████╔╝╚██████╔╝   ██║   ███████╗██║  ██║
+  ╚══════╝ ╚═════╝  ╚═══╝   ╚═════╝ ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝
+
+  -->
+
+  <link rel="android-chrome" sizes="512x512" href="{{~>asset_url url='images/icons/android-chrome-512x512.png'~}}">
+  <link rel="android-chrome" sizes="192x192" href="{{~>asset_url url='images/icons/android-chrome-192x192.png'~}}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{~>asset_url url='images/icons/apple-touch-icon.png'~}}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{~>asset_url url='images/icons/favicon-32x32.png'~}}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{~>asset_url url='images/icons/favicon-16x16.png'~}}">
+  <link rel="manifest" href="{{~>asset_url url='images/icons/site.webmanifest'~}}">
+  <link rel="mask-icon" href="{{~>asset_url url='images/icons/safari-pinned-tab.svg'~}}" color="#244B5A">
+  <link rel="shortcut icon" href="{{~>asset_url url='images/icons/favicon.ico'~}}">
+  <meta name="msapplication-TileColor" content="#244B5A">
+  <meta name="msapplication-config" content="{{~>asset_url url='images/icons/browserconfig.xml'~}}">
+  <meta name="theme-color" content="#244B5A">
+
+  {{!-- <link rel="canonical" href="https://scvo.scot{{request.params.uri.pathname}}" /> --}}
+  <link rel="search" type="application/opensearchdescription+xml" title="SCVO" href="{{~>asset_url url='opensearch.xml'~}}" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3467930-2"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-3467930-2', { 'send_page_view': true, 'anonymize_ip': true });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.8.3/polyfill.min.js"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+
+  {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
+    console.log('#### DEBUG MODE ON ####');
+    console.log('Request:', {{{regexReplace (regexReplace (stringify request) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    console.log('Route:', {{{regexReplace (regexReplace (stringify route) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    console.log('Context:', {{{regexReplace (regexReplace (stringify context) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    console.log('Data:', {{{regexReplace (regexReplace (stringify data) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    console.log('Menus:', {{{regexReplace (regexReplace (stringify @root.context.metaData.menus) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    {{#if errors.[0]}}
+      console.error('Task Errors:', {{{regexReplace (regexReplace (stringify errors) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    {{/if}}
+  {{/ifAny ~}}
+  </script>
+
+  <style type="text/css">
+  @font-face {
+  font-family: 'Asap';
+  src: url('{{~>asset_url url='fonts/Asap-Bold.eot'~}}');
+  src: url('{{~>asset_url url='fonts/Asap-Bold.eot?#iefix'~}}') format('embedded-opentype'),
+       url('{{~>asset_url url='fonts/Asap-Bold.woff2'~}}') format('woff2'),
+       url('{{~>asset_url url='fonts/Asap-Bold.woff'~}}') format('woff'),
+       url('{{~>asset_url url='fonts/Asap-Bold.ttf'~}}') format('truetype'),
+       url('{{~>asset_url url='fonts/Asap-Bold.svg#Asap-Bold'~}}') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  }
+  @font-face {
+  font-family: 'Ingra';
+  src: url('{{~>asset_url url='fonts/IngraSCVO-Regular.eot'~}}');
+  src: url('{{~>asset_url url='fonts/IngraSCVO-Regular.eot?#iefix'~}}') format('embedded-opentype'),
+       url('{{~>asset_url url='fonts/IngraSCVO-Regular.woff2'~}}') format('woff2'),
+       url('{{~>asset_url url='fonts/IngraSCVO-Regular.woff'~}}') format('woff'),
+       url('{{~>asset_url url='fonts/IngraSCVO-Regular.ttf'~}}') format('truetype'),
+       url('{{~>asset_url url='fonts/IngraSCVO-Regular.svg#IngraSCVO-Regular'~}}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  }
+  @font-face {
+  font-family: 'Ingra';
+  src: url('{{~>asset_url url='fonts/IngraSCVO-SemiBold.eot'~}}');
+  src: url('{{~>asset_url url='fonts/IngraSCVO-SemiBold.eot?#iefix'~}}') format('embedded-opentype'),
+       url('{{~>asset_url url='fonts/IngraSCVO-SemiBold.woff2'~}}') format('woff2'),
+       url('{{~>asset_url url='fonts/IngraSCVO-SemiBold.woff'~}}') format('woff'),
+       url('{{~>asset_url url='fonts/IngraSCVO-SemiBold.ttf'~}}') format('truetype'),
+       url('{{~>asset_url url='fonts/IngraSCVO-SemiBold.svg#IngraSCVO-SemiBold'~}}') format('svg');
+  font-weight: bold;
+  font-style: normal;
+  }
+  </style>
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/leaflet/leaflet.css'~}}" />
+  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/fontawesome-pro/css/all.min.css'~}}" />
+  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}" />
 </head>
-<body class="{{#if request.params.path}}{{replace (replace request.params.path '20-years' 'twenty-years') '_' ' '}}{{else}}home{{/if}}">
-  <div class="hide-lg">
-    {{> components_scvo_bar}}
+<body>
+  {{!-- {{#unless (contains request.url.hostname ".local") ~}}
+  <div class="text-white bg-warning text-centre v-padding">
+    This website is currently in development, but it will send emails so please only use your own email addresses when testing. Any accounts you create will be deleted by w/c 9th March.
   </div>
-  {{> layout_header_upper}}
+  {{/unless ~}} --}}
   <div class="page">
-    {{!-- style="background-image:url('/rouleaux.svg?color=FEF9F9&style={{itemAt (split 'solid,stripes,dots' ',') (random 0 2)}}');" --}}
-    <div class="bg-rouleaux">
-      <div class="container">
-        <header class="navbar header v-padding">
-          <section class="navbar-section">
-            <a href="/" class="navbar-brand b-margin-full" title="Scottish Council for Voluntary Organisations">
-              <img src="{{~>asset_url url='images/logos/scvo-primary.svg'~}}" alt="Scottish Council for Voluntary Organisations" />
-            </a>
-          </section>
-          <section class="navbar-section">
-            <div class="form-horizontal hide-lg">
-              {{> site_search_form id='header'}}
-              <a href="/about/membership" class="btn btn-primary btn-lg btn-cta float-right">Join our community</a>
-            </div>
-            <div class="mobile-header-buttons show-lg">
-              <a href="#" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
-                data-TasksTrigger='{
-                  click: {
-                    tasks: [
-                      {
-                        type: "elementManipulator",
-                        config: {
-                          ".mobile-search": {
-                            "removeClass": "mobile-search_closed mobile-search_closing",
-                            "addClass": "mobile-search_open"
-                          }
-                        }
-                      }
-                    ]
+  {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
+    {{#if errors.[0]}}
+      <div style="z-index:100;position:fixed;top:0;right:0;padding:5px;background-color:#ff0000;color:#ffffff;">
+        Route Task Errors (F12)
+      </div>
+      {{/if}}
+      {{#if logs.[0]}}
+      <div style="z-index:100;position:fixed;bottom:0;right:0;padding:5px;background-color:#0000ff;color:#ffffff;" onclick="document.querySelector('#route-debug-log').style.display='block';">
+        Route Log
+      </div>
+      <div style="z-index:100;position:fixed;bottom:0;left:0;right:0;padding:5px;background-color:#ededed;color:#000000;overflow:auto;height:50vh;display:none;border-top:1px solid #cccccc;" id="route-debug-log">
+        <a style="position:fixed;right:25px;" onclick="document.querySelector('#route-debug-log').style.display='none';">x</a>
+<pre style="white-space: pre-wrap;">
+{{~#each logs}}
+{{{this}}}
+
+{{/each~}}
+</pre>
+      </div>
+    {{/if}}
+  {{/ifAny}}
+
+    <header class="container">
+      <section class="brand">
+        <a href="/" class="logo">{{@root.context.metaData.title}}</a>
+      </section>
+      <div class="mobile-menu-button show-lg">
+        <a href="javascript:void()" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
+          data-TasksTrigger='{
+            click: {
+              tasks: [
+              {
+                type: "elementManipulator",
+                config: {
+                  ".mobile-menu": {
+                    "removeClass": "mobile-menu_closed mobile-menu_closing",
+                    "addClass": "mobile-menu_open"
                   }
-                }'>
-                <span class="far fa-search fa-fw fa-2x" aria-hidden="true"></span>
-              </a>
-              <a href="#" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
-                data-TasksTrigger='{
-                  click: {
-                    tasks: [
-                      {
-                        type: "elementManipulator",
-                        config: {
-                          ".mobile-menu": {
-                            "removeClass": "mobile-menu_closed mobile-menu_closing",
-                            "addClass": "mobile-menu_open"
-                          }
-                        }
-                      }
-                    ]
-                  }
-                }'>
-                <span class="far fa-bars fa-fw fa-2x" aria-hidden="true"></span>
-              </a>
-            </div>
-          </section>
-        </header>
-        <header class="navbar toolbar hide-lg">
-          <section class="navbar-section site-tab-bar">
-            {{#each context.metaData.layoutMenus.main ~}}
-            <a class="btn btn-link{{#if (regexMatch ../request.url.pathname route 'gi')}} active{{/if}}" href="{{stripTrailingSlash path}}">{{{label}}}</a>
-            {{/each ~}}
-          </section>
-          <section class="navbar-center"></section>
-          <section class="navbar-section">
+                }
+              }
+              ]
+            }
+          }'>
+          <span class="far fa-bars fa-2x" aria-hidden="true"></span>
+        </a>
+      </div>
+      <section class="nav hide-lg">
+        <div class="main-menu">
           {{#if @root.data.auth ~}}
-            <div class="dropdown my-account signed-in">
-              <div class="btn-group">
-                <a href="#" class="btn btn-link dropdown-toggle{{#each context.metaData.layoutMenus.user}}{{#if (regexMatch ../request.url.pathname route 'gi')}} active{{/if}}{{/each}}">
-                  {{#if @root.data.auth.photoURL ~}}
-                    <img src="{{@root.data.auth.photoURL}}" class="avatar avatar-sm" />
-                  {{else}}
-                    <span class="far fa-fw fa-user-circle"></span>
-                  {{/if ~}}
-                  {{default @root.data.auth.email @root.data.auth.displayName}}
-                  <span class="far fa-fw fa-angle-down"></span>
-                </a>
-                <ul class="menu">
-                  <li class="menu-item">
-                    <a href="/" class="l-padding">
-                      <span class="far fa-fw fa-home r-margin" aria-hidden="true"></span>
-                      Home
-                    </a>
-                  </li>
-                  {{#each context.metaData.layoutMenus.user-signed-in ~}}
-                  <li class="menu-item{{#if (regexMatch ../request.url.pathname route 'gi')}} active{{/if}}">
-                    <a href="{{stripTrailingSlash path}}" class="l-padding">
-                      {{#if icon ~}}
-                      <span class="far fa-fw fa-{{icon}} r-margin" aria-hidden="true"></span>
+            {{#ifAll @root.data.accountInfo.user_type (compare @root.data.accountInfo.approval_needed false) ~}}
+              {{#each @root.context.metaData.menus.main-signed-in ~}}
+                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+              {{/each}}
+              <div class="dropdown my-account signed-in">
+                <div class="btn-group">
+                  <a href="#" class="btn dropdown-toggle">
+                    {{#if @root.data.auth.photoURL ~}}
+                      <img src="{{@root.data.auth.photoURL}}" class="avatar avatar-sm" />
+                    {{else}}
+                      <span class="far fa-fw fa-user-circle"></span>
+                    {{/if ~}}
+                    {{default @root.data.auth.email @root.data.auth.displayName}}
+                    <span class="far fa-fw fa-angle-down"></span>
+                  </a>
+                  <ul class="menu">
+                    <li class="menu-item">
+                      <a href="/" class="l-padding-full {{#compare @root.request.url.pathname '/'}} active{{/compare}}{{#if @root.data.accountInfo.approval_needed}} disabled{{/if}}">
+                        <span class="far fa-fw fa-home" aria-hidden="true"></span>
+                        Home
+                      </a>
+                    </li>
+                    {{#each @root.context.metaData.menus.user-signed-in ~}}
+                      {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
+                        <li class="menu-item">
+                          <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
+                            {{#if icon ~}}
+                            <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                            {{/if ~}}
+                            {{{label}}}
+                          </a>
+                          {{!-- {{#if public_checkbox ~}}
+                          <div class="menu-badge">
+                            <label class="form-switch">
+                              <input type="checkbox">
+                              <i class="form-icon"></i> Public
+                            </label>
+                          </div>
+                          {{/if ~}} --}}
+                        </li>
                       {{/if ~}}
-                      {{{label}}}
-                    </a>
-                  </li>
-                  {{/each ~}}
-                  <li class="menu-item">
-                    <a href="/sign-out" class="l-padding" data-component="TasksTrigger" data-taskstrigger="sign-out">
-                      <span class="far fa-fw fa-sign-out-alt r-margin" aria-hidden="true"></span>
-                      Sign out
-                    </a>
-                  </li>
-                </ul>
+                    {{/each ~}}
+                    <li class="menu-item">
+                      <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
+                        <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
+                        Sign out
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
+            {{else}}
+              <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
+              {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+              {{/each}}
+              <a href="/sign-out" class="btn btn-link" data-component="TasksTrigger" data-TasksTrigger="sign-out">Sign out</a>
+            {{/ifAll ~}}
           {{else}}
-          {{#if @root.data.cjsAuth ~}}
-          <a href="/sign-out-cjs" class="btn btn-link" data-component="TasksTrigger" data-taskstrigger="sign-out-cjs">
-            Sign out
-          </a>
-          {{else}}
-          {{#each context.metaData.layoutMenus.user-not-signed-in ~}}
-          {{!-- <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
-            {{{label}}}
-          </a> --}}
-          {{/each ~}}
+            <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
+            {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+              <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+            {{/each}}
+            {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+              <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-account not-signed-in">{{label}}</a>
+            {{/each}}
           {{/if ~}}
-          {{/if ~}}
-          </section>
-        </header>
-      </div>
+        </div>
+      </section>
+    </header>
 
-      <div class="mobile-search mobile-search_closed">
-        <aside class="mobile-contents sidebar bg-primary">
-          <header class="navbar header">
-            <section class="navbar-section">
-              <a href="/" class="navbar-brand" title="Scottish Council for Voluntary Organisations">
-                <img src="{{~>asset_url url='images/logos/scvo-white.svg'~}}" alt="Scottish Council for Voluntary Organisations" />
-              </a>
-            </section>
-            <section class="navbar-section">
-              <div class="mobile-header-buttons">
-                <a href="#" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
-                data-TasksTrigger='{
-                  click: {
-                    tasks: [
-                      {
-                        type: "elementManipulator",
-                        config: {
-                          ".mobile-search": {
-                            removeClass: "mobile-search_open",
-                            addClass: "mobile-search_closing"
-                          }
-                        }
-                      },
-                      {
-                        type: "delay",
-                        config: {
-                          "200": [
-                            {
-                              type: "elementManipulator",
-                              config: {
-                                ".mobile-search": {
-                                  addClass: "mobile-search_closed",
-                                  removeClass: "mobile-search_closing"
-                                }
-                              }
-                            }
-                          ]
-                        }
+    <div class="mobile-menu mobile-menu_closed">
+      <div class="mobile-menu_background" data-component="TasksTrigger" data-TasksTrigger='{
+        click: {
+          tasks: [
+            {
+              type: "elementManipulator",
+              config: {
+                ".mobile-menu": {
+                  removeClass: "mobile-menu_open",
+                  addClass: "mobile-menu_closing"
+                }
+              }
+            },
+            {
+              type: "delay",
+              config: {
+                "500": [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ".mobile-menu": {
+                        addClass: "mobile-menu_closed",
+                        removeClass: "mobile-menu_closing"
                       }
-                    ]
+                    }
                   }
-                }'>
-                  <span class="far fa-times fa-fw fa-2x" aria-hidden="true"></span>
-                </a>
-                <a href="#" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
-                  data-TasksTrigger='{
-                    click: {
-                      tasks: [
+                ]
+              }
+            }
+          ]
+        }
+      }'></div>
+      <aside class="mobile-menu_contents sidebar">
+        <div class="b-margin-full b-padding-full v-padding">
+          <h2 class="l-padding-full">
+            Menu
+            <span class="far fa-angle-left fa-fw pull-right" data-component="TasksTrigger" data-TasksTrigger='{
+              click: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ".mobile-menu": {
+                        removeClass: "mobile-menu_open",
+                        addClass: "mobile-menu_closing"
+                      }
+                    }
+                  },
+                  {
+                    type: "delay",
+                    config: {
+                      "500": [
                         {
                           type: "elementManipulator",
                           config: {
                             ".mobile-menu": {
-                              "removeClass": "mobile-menu_closed mobile-menu_closing",
-                              "addClass": "mobile-menu_open"
-                            }
-                          }
-                        },
-                        {
-                          type: "elementManipulator",
-                          config: {
-                            ".mobile-search": {
-                              "removeClass": "mobile-search_open",
-                              "addClass": "mobile-search_closed"
+                              addClass: "mobile-menu_closed",
+                              removeClass: "mobile-menu_closing"
                             }
                           }
                         }
                       ]
                     }
-                  }'>
-                  <span class="far fa-bars fa-fw fa-2x" aria-hidden="true"></span>
+                  }
+                ]
+              }
+            }'></span>
+          </h2>
+          <ul class="menu">
+            <li class="menu-item">
+              <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">
+                <span class="far fa-fw fa-home" aria-hidden="true"></span>
+                Home
+              </a>
+            </li>
+            {{#if @root.data.auth ~}}
+              {{#each @root.context.metaData.menus.user-signed-in ~}}
+              {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
+                <li class="menu-item">
+                  <a href="{{stripTrailingSlash path}}" class="l-padding-full{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
+                    {{#if icon ~}}
+                    <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                    {{/if ~}}
+                    {{label}}
+                  </a>
+                  {{!-- {{#if public_checkbox ~}}
+                  <div class="menu-badge">
+                    <label class="form-checkbox">
+                      <input type="checkbox">
+                      <i class="form-icon"></i> Public
+                    </label>
+                  </div>
+                  {{/if ~}} --}}
+                </li>
+              {{/if ~}}
+              {{/each ~}}
+              {{#each @root.context.metaData.menus.main-signed-in ~}}
+                <li class="menu-item">
+                  <a href="{{stripTrailingSlash path}}" class="l-padding-full{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
+                    {{#if icon ~}}
+                    <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                    {{/if ~}}
+                    {{label}}
+                  </a>
+                </li>
+              {{/each ~}}
+              <li class="menu-item">
+                <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
+                  <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
+                  Sign out
                 </a>
-              </div>
-            </section>
-          </header>
-          <div class="b-margin-full v-padding-full">
-            {{> site_search_form id='mobile'}}
-          </div>
-        </aside>
-      </div>
+              </li>
+            {{else}}
+              {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                <li class="menu-item">
+                  <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
+                    {{#if icon ~}}
+                    <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                    {{/if ~}}
+                    {{label}}
+                  </a>
+                </li>
+              {{/each ~}}
+              {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+                <li class="menu-item">
+                  <a href="{{stripTrailingSlash path}}" class="l-padding-full{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
+                    {{#if icon ~}}
+                    <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                    {{/if ~}}
+                    {{label}}
+                  </a>
+                </li>
+              {{/each ~}}
+            {{/if ~}}
+          </ul>
+        </div>
+      </aside>
+    </div>
 
-      <div class="mobile-menu mobile-menu_closed">
-        <aside class="mobile-contents sidebar bg-primary">
-          <header class="navbar header">
-            <section class="navbar-section">
-              <a href="/" class="navbar-brand" title="Scottish Council for Voluntary Organisations">
+    {{#ifAll layoutParts.sidebar @root.data.accountInfo.user_type (compare @root.data.accountInfo.approval_needed false) ~}}
+    <div class="sidebar-present">
+      <div class="columns col-gapless">
+        <aside class="sidebar column col-2 col-lg-3 col-xl-3 hide-lg">
+          {{{layoutParts.sidebar}}}
+        </aside>
+        <main class="body column col-xs-auto">
+          {{{layoutParts.body}}}
+        </main>
+      </div>
+    </div>
+    {{else}}
+    <div class="sidebar-not-present">
+      <main class="body">
+        {{{layoutParts.body}}}
+      </main>
+    </div>
+    {{/ifAll ~}}
+
+    <div id="toaster"></div>
+
+    <footer class="footer">
+      <div class="footer-main">
+        <div class="container">
+          <div class="columns">
+            <div class="column col-3 col-xl-6 col-md-12 info">
+              <h4>Help</h4>
+              <ul class="b-margin">
+                {{#each @root.context.metaData.menus.footer-help ~}}
+                  <li>
+                    <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
+                  </li>
+                {{/each ~}}
+              </ul>
+            </div>
+            <div class="column col-9 col-xl-6 col-md-12 about">
+              <h4>About</h4>
+              <p class="b-margin">
+                This site is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          <div class="columns">
+            <div class="copyright column col-8 col-xl-12">
+              <p>
+                &copy; {{momentFormat (moment) "YYYY"}}. The Scottish Council for Voluntary Organisations (SCVO) is a Scottish Charitable Incorporated Organisation.<br />
+                Charity registered in Scotland <a href="https://www.oscr.org.uk/about-charities/search-the-register/charity-details?number=SC003558">SC003558</a>. Registered office Mansfield Traquair Centre, 15 Mansfield Place, Edinburgh EH3 6BB.
+              </p>
+            </div>
+            <div class="logos column col-4 col-xl-12">
+              <a href="https://www.gov.scot/policies/third-sector" class="brand-logo sg-logo" title="Scottish Government">
+                <img src="{{~>asset_url url='images/logos/sg_reversed.png'~}}" alt="Scottish Government" />
+              </a>
+              <a href="https://scvo.org" class="brand-logo scvo-logo" title="Scottish Council for Voluntary Organisations">
                 <img src="{{~>asset_url url='images/logos/scvo-white.svg'~}}" alt="Scottish Council for Voluntary Organisations" />
               </a>
-            </section>
-            <section class="navbar-section">
-              <div class="mobile-header-buttons">
-                <a href="#" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
-                  data-TasksTrigger='{
-                    click: {
-                      tasks: [
-                        {
-                          type: "elementManipulator",
-                          config: {
-                            ".mobile-search": {
-                              "removeClass": "mobile-search_closed mobile-search_closing",
-                              "addClass": "mobile-search_open"
-                            }
-                          }
-                        },
-                        {
-                          type: "elementManipulator",
-                          config: {
-                            ".mobile-menu": {
-                              "removeClass": "mobile-menu_open",
-                              "addClass": "mobile-menu_closed"
-                            }
-                          }
-                        }
-                      ]
-                    }
-                  }'>
-                <span class="far fa-search fa-fw fa-2x" aria-hidden="true"></span>
-              </a>
-              <a href="#" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
-                data-TasksTrigger='{
-                    click: {
-                      tasks: [
-                        {
-                          type: "elementManipulator",
-                          config: {
-                            ".mobile-menu": {
-                              removeClass: "mobile-menu_open",
-                              addClass: "mobile-menu_closing"
-                            }
-                          }
-                        },
-                        {
-                          type: "delay",
-                          config: {
-                            "200": [
-                              {
-                                type: "elementManipulator",
-                                config: {
-                                  ".mobile-menu": {
-                                    addClass: "mobile-menu_closed",
-                                    removeClass: "mobile-menu_closing"
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }'>
-                  <span class="far fa-times fa-fw fa-2x" aria-hidden="true"></span>
-                </a>
-              </div>
-            </section>
-          </header>
-          <div class="b-margin-full v-padding-full">
-            <ul class="menu b-padding-full">
-              <li class="menu-item">
-                <a href="/" class="{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">
-                  <span class="far fa-fw fa-home" aria-hidden="true"></span>
-                  Home
-                </a>
-              </li>
-              {{#each @root.context.metaData.layoutMenus.main ~}}
-              <li class="menu-item">
-                <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
-                  {{#if icon ~}}
-                  <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                  {{/if ~}}
-                  {{{label}}}
-                </a>
-              </li>
-              {{/each ~}}
-              {{#if @root.data.auth ~}}
-              {{#each @root.context.metaData.layoutMenus.user-signed-in ~}}
-              <li class="menu-item">
-                <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
-                  {{#if icon ~}}
-                  <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                  {{/if ~}}
-                  {{{label}}}
-                </a>
-              </li>
-              {{/each ~}}
-              {{else}}
-              {{#each @root.context.metaData.layoutMenus.user-not-signed-in ~}}
-              {{!-- <li class="menu-item">
-                <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
-                  {{#if icon ~}}
-                  <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                  {{/if ~}}
-                  {{{label}}}
-                </a>
-              </li> --}}
-              {{/each ~}}
-              {{/if ~}}
-            </ul>
-            <h5 class="x-padding">Our sites</h5>
-            {{> components_scvo_bar}}
+            </div>
           </div>
-        </aside>
+        </div>
       </div>
-
-      {{> layout_body}}
-
-      {{> layout_footer}}
-    </div>
+    </footer>
   </div>
 
-  {{> layout_foot}}
+  {{#each @root.context.metaData.handlebars.frontend.configs ~}}
+  <script data-component-config="{{@key}}" type="javascript/blocked">
+  {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
+  </script>
+  {{/each ~}}
+
+  {{#each @root.context.metaData.handlebars.frontend.tasks ~}}
+  <script data-task="{{@key}}" type="javascript/blocked">
+  {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
+  </script>
+  {{/each ~}}
+
+  {{#each @root.context.metaData.handlebars.frontend.partials ~}}
+  <script data-partial="{{@key}}" type="javascript/blocked">
+  {{{this}}}
+  </script>
+  {{/each ~}}
+
+  <script type="text/javascript" src="{{~>asset_url url='component-manager.js'~}}"></script>
+  <script type="text/javascript">
+  var jQuery = $;
+  window.firebaseTaskConfig = {
+    upgradeTokenUrl: '/upgrade-token?token={idToken}',
+    cookieName: 'co_cookie'
+  };
+  firebase.initializeApp({
+    "apiKey": "AIzaSyArZKibnh6U7uAnbAdG48_ESukQO16qP8k",
+    "authDomain": "scvo-coronavirus.firebaseapp.com",
+    "databaseURL": "https://scvo-coronavirus.firebaseio.com",
+    "projectId": "scvo-coronavirus",
+    "storageBucket": "scvo-coronavirus.appspot.com",
+    "messagingSenderId": "534322090227",
+    "appId": "1:534322090227:web:eebb6911ca77c3d423a786"
+  });
+
+  $(document).ready(function() {
+    if (is_touch_device()) {
+      $(".dropdown-toggle").click(function(e) {
+        e.preventDefault();
+        $(".dropdown").addClass("active");
+      });
+    }
+  });
+
+  function is_touch_device() {
+    var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+    var mq = function (query) {
+      return window.matchMedia(query).matches;
+    }
+    if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+      return true;
+    }
+    var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+    return mq(query);
+  }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+  window.cookieconsent.initialise({
+    "palette": {
+      "popup": {
+        "background": "#DEEFFB",
+        "text": "#005EB8"
+      },
+      "button": {
+        "background": "#005EB8"
+      }
+    },
+    "theme": "edgeless",
+    "position": "bottom-left",
+    "content": {
+      "message": "We use cookies to track anonymous usage statistics.",
+      "href": "/cookies"
+    }
+  });
+  </script>
+
   {{{layoutParts.foot}}}
 </body>
 </html>
