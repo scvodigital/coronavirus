@@ -5,7 +5,6 @@
   "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
-    "context.metaData.commonTasks.getAccountInfo",
     {
       "name": "primaryResponse",
       "taskModule": "elasticsearch",
@@ -16,7 +15,7 @@
         },
         "queryTemplates": {
           "index": "{$../data/elasticsearch-index.txt}",
-          "type": "saltireawards-page",
+          "type": "coronavirus-page",
           "template": ">context.metaData.handlebars.queries.pages_page",
           "noResultsRoute": "four_oh_four"
         }

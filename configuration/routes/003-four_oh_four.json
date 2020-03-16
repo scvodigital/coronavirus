@@ -15,7 +15,7 @@
         },
         "queryTemplates": {
           "index": "{$../data/elasticsearch-index.txt}",
-          "type": "saltireawards-page",
+          "type": "coronavirus-page",
           "template": ">context.metaData.handlebars.queries.pages_not-found"
         }
       },
