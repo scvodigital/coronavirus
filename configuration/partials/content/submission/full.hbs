@@ -32,10 +32,14 @@
         </p>
         {{/compare ~}}
         {{#compare where "Across one or more local authority areas" ~}}
-        <h4>Support provided in {{inflect areas "this area" "these areas"}}</h4>
+        <h4>Support provided in {{inflect (length (arrayify (split areas ','))) "this area" "these areas"}}</h4>
+        {{#compare (length (arrayify (split areas ','))) ">" 0 ~}}
         <p>
-          {{inflect areas "Area" "Areas"}}: {{#each areas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+          {{#each (arrayify (split areas ',')) ~}}
+          {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
+          {{/each ~}}
         </p>
+        {{/compare ~}}
         {{/compare ~}}
         {{#compare where "Across the whole of Scotland" ~}}
         <h4>Support provided across the whole of Scotland</h4>
@@ -96,88 +100,53 @@
       </div>
     </div>
 
+    {{#compare (length (arrayify (split postcodes ','))) ">" 0 ~}}
     <div class="column col-4 col-md-12">
-      <div class="location-info">
-        {{#compare (length (arrayify geo_coords)) ">" 0 ~}}
-        <div class="container-content container-map">
-          <div id="map-content-primary" style="height: 40vh; width: 100%;" data-component="LeafletMap,TasksTrigger" data-LeafletMap='{
-              mapOptions: {
-                fullscreenControl: true,
-                scrollWheelZoom: false,
-                trackResize: false,
-                zoom: 11
-              },
-              initialLatLng: { lat: 55.94528820000001, lng: -3.200755699999945 },
-              featureGroups: [
+      <div id="map-content-primary" style="height: 40vh; width: 100%;" data-component="LeafletMap,TasksTrigger" data-LeafletMap='{
+          mapOptions: {
+            fullscreenControl: true,
+            scrollWheelZoom: false,
+            trackResize: false,
+            zoom: 11
+          },
+          initialLatLng: { lat: 55.94528820000001, lng: -3.200755699999945 },
+          featureGroups: [
+            {
+              boundToThis: true,
+              features: [
+                {{#each (arrayify geo_coords) ~}}
                 {
-                  boundToThis: true,
-                  features: [
-                    {{#each (arrayify geo_coords) ~}}
-                    {
-                      type: "Marker",
-                      popupContent: `
-                        <strong>{{../organisation_name}}</strong>
-                        {{#if (itemAt ../postcodes @index) ~}}
-                        <div class="v-margin">
-                          Postcode: {{itemAt ../postcodes @index}}
-                        </div>
-                        {{/if ~}}
-                        <p class="">{{../title}}</p>
-                      `,
-                      latLng: { lat: {{lat}}, lng: {{lon}} }
-                    },
-                    {{/each}}
-                  ]
-                }
+                  type: "Marker",
+                  popupContent: `
+                    <strong>{{../organisation_name}}</strong>
+                    {{#if (itemAt ../postcodes @index) ~}}
+                    <div class="v-margin">
+                      Postcode: {{itemAt ../postcodes @index}}
+                    </div>
+                    {{/if ~}}
+                    <p class="">{{../title}}</p>
+                  `,
+                  latLng: { lat: {{lat}}, lng: {{lon}} }
+                },
+                {{/each}}
               ]
-            }' data-TasksTrigger='{
-              visibilityChange: {
-                visible: [
-                  {
-                    type: "run",
-                    config: {
-                      code: { __template: `ComponentManager.componentRegistry["\{{jquery rootElement "data" (split "LeafletMapUid")}}"].map.invalidateSize()` }
-                    }
-                  }
-                ]
+            }
+          ]
+        }' data-TasksTrigger='{
+          visibilityChange: {
+            visible: [
+              {
+                type: "run",
+                config: {
+                  code: { __template: `ComponentManager.componentRegistry["\{{jquery rootElement "data" (split "LeafletMapUid")}}"].map.invalidateSize()` }
+                }
               }
-            }'>
-          </div>
-        </div>
-        {{#compare areas.length ">" 0 ~}}
-        <div class="detailed-info">
-          <p>
-            This submission is also advertised across
-            {{#compare (getType areas) "string" ~}}
-            {{{areas}}}.
-            {{else}}
-            {{#each areas ~}}
-            {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
-            {{/each ~}}
-            {{/compare ~}}
-          </p>
-        </div>
-        {{/compare ~}}
-        {{else}}
-        <div class="container-content detailed-info">
-          <p>
-            {{#compare areas.length ">" 0 ~}}
-            This submission is not listed at a specific location but is available across
-            {{#compare (getType areas) "string" ~}}
-            {{{areas}}}.
-            {{else}}
-            {{#each areas ~}}
-            {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
-            {{/each ~}}
-            {{/compare ~}}
-            {{else}}
-            This submission is not listed at a specific location.
-            {{/compare ~}}
-          </p>
-        </div>
-        {{/compare ~}}
+            ]
+          }
+        }'>
       </div>
     </div>
+    {{/compare ~}}
   </div>
   <div class="mdc-typography--body1 report pull-right">
     <span class="fas fa-flag fa-fw text-error" title="Report this submission"></span>

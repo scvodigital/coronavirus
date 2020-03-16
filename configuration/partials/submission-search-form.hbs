@@ -23,17 +23,16 @@
           <select class="form-select select-lg" id="support" name="support">
             <option value="">Main type of support</option>
             {{#ifAny path (compare @root.request.params.type 'for-people') ~}}
-            {{#each (split "Emotional or psychosocial support (e.g. befriending),Food / grocery delivery,Transportation,Information and advice" ",") ~}}
+            {{#each (split "Emotional or psychosocial support,Food / grocery delivery,Transportation,Information and advice,Other" ",") ~}}
             <option value="{{slugify this}}"{{#compare @root.request.params.query.support (slugify this)}} selected{{/compare}}>{{this}}</option>
             {{/each ~}}
             {{else}}
             {{#compare @root.request.params.type 'for-organisations' ~}}
-            {{#each (split "Care staff or trained volunteers,Transportation / vehicles,Discharge support,Premises,Counselling / bereavement support" ",") ~}}
+            {{#each (split "Care staff or trained volunteers,Transportation / vehicles,Discharge support,Premises,Counselling / bereavement support,Other" ",") ~}}
             <option value="{{slugify this}}"{{#compare @root.request.params.query.support (slugify this)}} selected{{/compare}}>{{this}}</option>
             {{/each ~}}
             {{/compare ~}}
             {{/ifAny ~}}
-            <option value="other-please-describe"{{#compare @root.request.params.query.support "Other (please describe)"}} selected{{/compare}}>Other</option>
           </select>
         </div>
         <div class="column col-4 col-xl-6 col-sm-12 filter-location b-padding" id="location-fields">
