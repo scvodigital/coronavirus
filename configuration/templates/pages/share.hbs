@@ -12,6 +12,15 @@
     <li><a href="/share/organisations">To other organisations who are responding to the impact of the pandemic</a></li>
   </ul>
   {{else}}
+  {{#switch @root.request.params.type ~}}
+  {{#case "people" ~}}
+  <h2>Help available to people</h2>
 
+  {{/case ~}}
+  {{#case "organisations" ~}}
+  <h2>Help available to organisations</h2>
+
+  {{/case ~}}
+  {{/switch ~}}
   {{/unless ~}}
 </div>
