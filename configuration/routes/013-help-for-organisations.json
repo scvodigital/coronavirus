@@ -1,6 +1,6 @@
 {
-  "name": "help_people",
-  "pattern": "/help/people",
+  "name": "help_organisations",
+  "pattern": "/help-for-organisations",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
@@ -20,7 +20,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_help-people"
+              "body": ">context.metaData.handlebars.templates.pages_help-for-organisations"
             },
             "contentType": "text/html"
           }
