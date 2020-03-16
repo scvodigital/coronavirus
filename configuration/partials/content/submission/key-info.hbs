@@ -40,11 +40,11 @@
     {{/if ~}}
     {{/ifAll ~}}
     {{/ifAny ~}}
-    {{#compare @root.route.name "===" "opportunity" ~}}
+    {{#compare @root.route.name "===" "submission" ~}}
     {{#compare type "full" ~}}
     {{#unless (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null) "") ~}}
-    {{#ifAny @root.request.params.query.page @root.request.params.query.keywords @root.request.params.query.location ~}}
-    <a href="/search{{> query_search}}" class="back-to-results"><span class="far fa-chevron-circle-left" aria-hidden="true"></span> <span class="underline">Back to search results</span></a>
+    {{#ifAny @root.request.params.query.page @root.request.params.query.support @root.request.params.query.keywords @root.request.params.query.location ~}}
+    <a href="/help/for-people{{> query_search}}" class="back-to-results no-underline"><span class="far fa-chevron-circle-left" aria-hidden="true"></span> <span class="underline">Back to search results</span></a>
     {{/ifAny ~}}
     {{/unless ~}}
     {{/compare ~}}
@@ -55,7 +55,7 @@
     </h2>
     {{else}}
     <div class="card-title h5">
-      <a href="/search/opportunity/{{Id}}/{{title_slug}}{{> query_search}}">
+      <a href="/help/submission/{{Id}}/{{slugify title}}{{> query_search}}">
         <span class="hover-underline">{{{title}}}</span>
       </a>
     </div>
