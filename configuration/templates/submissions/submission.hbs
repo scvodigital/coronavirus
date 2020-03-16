@@ -6,11 +6,11 @@
     {{/each ~}}
   </div>
 
-  {{#compare @root.data.submissionSupplimentary.related.hits.total ">" 0 ~}}
+  {{!-- {{#compare @root.data.submissionSupplimentary.related.hits.total ">" 0 ~}}
   <div class="content-related">
-    <div class="mdc-typography--headline5 v-margin-full">
+    <h3 class="v-margin-full">
       Similar {{inflect @root.data.submissionSupplimentary.related.hits.total "submission" "submissions"}}
-    </div>
+    </h3>
     <div class="mdc-layout-grid equal-height">
       <div class="mdc-layout-grid__inner">
         {{#each @root.data.submissionSupplimentary.related.hits.hits ~}}
@@ -21,7 +21,7 @@
       </div>
     </div>
   </div>
-  {{/compare ~}}
+  {{/compare ~}} --}}
 
   {{else}}
   <p>

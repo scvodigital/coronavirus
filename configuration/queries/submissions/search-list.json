@@ -8,12 +8,7 @@
     }
   },
   "_source": [
-    "Id",
-    "access-support",
-    "help-offered",
-    "name",
-    "where",
-    "support"
+    "*"
   ],
   {{#ifAll @root.request.params.query.lat @root.request.params.query.lng}}
   "script_fields": {

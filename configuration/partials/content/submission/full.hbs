@@ -1,311 +1,187 @@
 <div class="{{#compare view 'widget'}}x-padding-full{{else}}mdc-card{{/compare}} content-primary full" data-submission-id="{{Id}}" data-submission-layout="Full" data-submission-context="{{default viewContext "Vacancy Page"}}">
   {{> content_submission_key_info type="full"}}
-  <hr class="mdc-list-divider" />
-  <div class="content-primary-info-container">
-    {{#unless (compare view 'widget') ~}}
-    {{!-- <div class="mdc-layout-grid">
-      <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone action">
-          {{#>components_tab_bar id="submission-tab-bar" defaultTabIdentifier="hash"}}
-          {{>components_tab iconClasses="far fa-list-ul fa-fw" label="Information" active=true tabName="information"}}
-          {{#if geo_coords}}
-          {{>components_tab iconClasses="far fa-map-marker-alt fa-fw" label="Location" active=false tabName="location"}}
-          {{/if}}
-          {{>components_tab iconClasses="far fa-edit fa-fw" label="Notes" active=false tabName="notes"}}
-          {{/components_tab_bar}}
-        </div>
-      </div>
-    </div> --}}
-    {{/unless ~}}
-    <div{{#unless (compare view 'widget')}} class="panels" for="submission-tab-bar"{{/unless}}>
-      <div{{#unless (compare view 'widget')}} class="panel panel--active mdc-card--full-content" role="tabpanel" aria-hidden="false" data-tab-name="information"{{/unless}}>
-        {{#ifAny activities.length themes.length end_date (compare start_date ">" (moment)) ~}}
-        <div class="key-info-extra">
-          <ul class="fa-ul">
-            {{#compare (length activities) ">" 0 ~}}
-            <li class="mdc-card__info--content-primary-work-type reference mdc-typography--body1">
-              {{#unless (compare view 'widget') ~}}
-              <span class="fa-li"><span class="far fa-briefcase fa-fw" title="Activites"></span></span>
-              {{/unless ~}}
-              {{#each activities}}
-              <a href="{{#compare ../view 'widget'}}#{{/compare}}/search?activities={{urlencode (slugify (replace this "/" "-"))}}{{#compare ../view 'widget'}}&view=widget{{/compare}}">{{{this}}}</a>{{#unless @last}}, {{/unless}}
-              {{/each}}
-            </li>
-            {{/compare ~}}
-            {{#compare (length themes) ">" 0 ~}}
-            <li class="mdc-card__info--content-primary-client-group mdc-typography--body1">
-              {{#unless (compare view 'widget') ~}}
-              <span class="fa-li"><span class="far fa-users fa-fw" title="Themes"></span></span>
-              {{/unless ~}}
-              {{#each themes ~}}
-              <a href="{{#compare ../view 'widget'}}#{{/compare}}/search?themes={{urlencode (slugify (replace this "/" "-"))}}{{#compare ../view 'widget'}}&view=widget{{/compare}}">{{{this}}}</a>{{#unless @last}}, {{/unless}}
-              {{/each ~}}
-            </li>
-            {{/compare ~}}
-            {{#ifAll start_date end_date ~}}
-            <li class="mdc-card__info--content-primary-from mdc-typography--body1">
-              {{#unless (compare view 'widget') ~}}
-              <span class="fa-li"><span class="far fa-calendar-plus fa-fw" title="Start date"></span></span>
-              {{/unless ~}}
-              submission start date: {{momentFormat (moment start_date "x") "Do MMMM YYYY"}}
-            </li>
-            <li class="mdc-card__info--content-primary-from mdc-typography--body1">
-              <span class="fa-li"><span class="far fa-calendar-times fa-fw" title="End date"></span></span>
-              submission end date: {{momentFormat (moment end_date "x") "Do MMMM YYYY"}}
-            </li>
-            {{else}}
-            {{#compare start_date ">" (moment) ~}}
-            <li class="mdc-card__info--content-primary-from mdc-typography--body1">
-              {{#unless (compare view 'widget') ~}}
-              <span class="fa-li"><span class="far fa-calendar-plus fa-fw" title="Start date"></span></span>
-              {{/unless ~}}
-              submission start date: {{momentFormat (moment start_date "x") "Do MMMM YYYY"}}
-            </li>
-            {{/compare ~}}
-            {{/ifAll ~}}
-          </ul>
-        </div>
-        {{/ifAny ~}}
-
-        <div class="detailed-info">
-          {{#ifAny description description_html ~}}
-          <h4 class="mdc-typography--headline6">Description</h4>
-          <p class="mdc-typography--body1">
-            {{#if description_html}}{{{description_html}}}{{else}}{{description}}{{/if}}
-          </p>
-          {{/ifAny ~}}
-          {{#if weblink ~}}
-          <ul class="fa-ul">
-            <li class="mdc-typography--body1">
-              {{#unless (compare view 'widget') ~}}
-              <span class="fa-li"><span class="far fa-link fa-fw" title="Website"></span></span>
-              {{/unless ~}}
-              <a href="{{fixUrl weblink "http"}}"{{#if weblink_tooltip}} title="{{weblink_tooltip}}"{{/if}}>{{#if weblink_title}}{{weblink_title}}{{else}}{{weblink}}{{/if}}</a>
-            </li>
-          </ul>
-          {{/if ~}}
-          {{#if organisation_aims_and_objectives ~}}
-          <h4 class="mdc-typography--headline6">Organisation aims and objectives</h4>
-          <p class="mdc-typography--body1">
-            {{{organisation_aims_and_objectives}}}
-          </p>
-          {{/if ~}}
-          {{#if availability_slugs.length ~}}
-          <h4 class="mdc-typography--headline6">Availability</h4>
-          <p class="mdc-typography--body1">
-            {{>submission_timings_display availability=availability_slugs view=view}}
-          </p>
-          {{#if timings_description ~}}
-          <p class="mdc-typography--body1">
-            {{{timings_description}}}
-          </p>
-          {{/if ~}}
-          {{/if ~}}
-          {{#if frequency_commitment_details ~}}
-          <h4 class="mdc-typography--headline6">Frequency and commitment details</h4>
-          <p class="mdc-typography--body1">
-            {{{frequency_commitment_details}}}
-          </p>
-          {{/if ~}}
-          {{#ifAny restriction_details experience_required travel_details minimum_age maximum_age ~}}
-          <h4 class="mdc-typography--headline6">Restrictions</h4>
-          <p class="mdc-typography--body1">
-            {{#if restriction_details ~}}
-            {{#compare restriction_details "!==" "n/a" ~}}
-            {{{restriction_details}}}<br />
-            {{/compare ~}}
-            {{/if ~}}
-            {{#if experience_required ~}}
-            <strong>Experience required: </strong> {{{experience_required}}}<br />
-            {{/if ~}}
-            {{#if travel_details ~}}
-            <strong>Travel details: </strong> {{{travel_details}}}<br />
-            {{/if ~}}
-            {{#if minimum_age ~}}
-            <strong>Minimum age: </strong> {{{minimum_age}}}<br />
-            {{/if ~}}
-            {{#if maximum_age ~}}
-            {{#compare maximum_age "<=" 26}}
-            <strong>Maximum age: </strong> {{{maximum_age}}}<br />
-            {{/compare}}
-            {{/if ~}}
-          </p>
-          {{/ifAny ~}}
-
-          {{#ifAny training_details travel_expenses expenses_paid taster_available taster_details support_options ~}}
-          <h4 class="mdc-typography--headline6">Support</h4>
-          <p class="mdc-typography--body1">
-            {{#if expenses_paid ~}}
-            <strong>Expenses paid: </strong> {{#compare expenses_paid "===" true}}Yes{{else}}No{{/compare}}<br />
-            {{/if ~}}
-            {{#if travel_expenses ~}}
-            <strong>Expenses details: </strong> {{{travel_expenses}}}<br />
-            {{/if ~}}
-            {{#if taster_available ~}}
-            <strong>Taster available: </strong> {{#compare taster_available "===" true}}Yes{{else}}No{{/compare}}<br />
-            {{/if ~}}
-            {{#if taster_details ~}}
-            <strong>Taster details: </strong> {{{taster_details}}}<br />
-            {{/if ~}}
-            {{#if training_details ~}}
-            <strong>Training details: </strong> {{{training_details}}}<br />
-            {{/if ~}}
-            {{#if support_options ~}}
-            <strong>Support: </strong>
-            {{#compare (getType support_options) "===" "string" ~}}
-            {{{support_options}}}<br />
-            {{else}}
-            {{#each support_options ~}}
-            {{{this}}}{{#unless @last}}, {{/unless}}<br />
-            {{/each ~}}
-            {{/compare ~}}
-            {{/if ~}}
-          </p>
-          {{/ifAny ~}}
-
-          <div class="mdc-typography--body1 report pull-right">
-            <span class="fas fa-flag fa-fw" title="Report this submission"></span>
-            <a href="mailto:digital@scvo.org.uk?subject=Report%20submission:%20{{urlencode title}}%20({{urlencode milo_ref}})%20via%20COVID-19%20help%20search&body=I%20would%20like%20to%20report%20this%20submission%20for%20the%20following%20reasons:">Report this submission</a>
-          </div>
-
-          {{#unless (compare view 'widget') ~}}
-          <div class="mdc-typography--body2 last-modified">
-            <span class="far fa-calendar-alt" aria-hidden="true"></span>
-            <span title="Added on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Added {{momentFromNow date_last_modified}}</span>
-          </div>
-          {{/unless ~}}
-        </div>
-      </div>
-
-      <div{{#unless (compare view 'widget')}} class="panel mdc-card--full-content" role="tabpanel" aria-hidden="true" data-tab-name="location"{{/unless}}>
-        <div class="location-info">
-          {{#compare (length (arrayify geo_coords)) ">" 0 ~}}
-          {{#compare view "widget" ~}}
-          <h4 class="mdc-typography--headline6">Location</h4>
-          <div class="map-results v-margin-full" data-component="LeafletMap" data-LeafletMap='{{#json}}
-            {{#json key="points" type="array"}}{{/json}},
-            {{#json key="mapOptions"}}
-              {{{json key="fullscreenControl" value=true}}},
-              {{{json key="scrollWheelZoom" value=false}}},
-              {{{json key="trackResize" value=false}}}
-            {{/json}},
-            {{#json key="initialLatLng"}}
-              {{{json key="lat" value=55.94528820000001}}},
-              {{{json key="lng" value=-3.200755699999945}}}
-            {{/json}},
-            {{{json key="initialZoom" value=9}}},
-            {{#ifAll @root.request.params.query.lat @root.request.params.query.lng @root.request.params.query.distance}}
-              {{#json key="featureGroups" type="array"}}
-                {{#json}}
-                  {{{json key="boundToThis" value=true}}},
-                  {{#json key="features" type="array"}}
-                    {{#json}}
-                      {{{json key="type" value="Circle"}}},
-                      {{#json key="latLng"}}
-                        {{{json key="lat" value=@root.request.params.query.lat}}},
-                        {{{json key="lng" value=@root.request.params.query.lng}}}
-                      {{/json}},
-                      {{#json key="options"}}
-                        {{{json key="radius" value=(multiply @root.request.params.query.distance 1609.344)}}}
-                      {{/json}}
-                    {{/json}}
-                  {{/json}}
-                {{/json}}
-              {{/json}},
-            {{/ifAll}}
-            {{#json key="markerClusterGroups" type="array"}}
-              {{#json}}
-                {{#json key="options"}}
-                  {{{json key="showCoverageOnHover" value=false}}}
-                {{/json}},
-                {{{json key="boundToThis" value=true}}},
-                {{#json key="markers" type="array"}}
-                  {{#each (arrayify geo_coords) ~}}
-                    {{#json}}
-                      {{#json key="latLng"}}
-                        {{{json key="lat" value=lat}}},
-                        {{{json key="lng" value=lon}}}
-                      {{/json}},
-                      {{#json key="popupContent" type="string"~}}
-                        <h4>{{../organisation_name}}</h4>
-                        <p>Postcode: {{itemAt (arrayify (split ../postcode ",")) @index}}</p>
-                        <p>{{../title}}</p>
-                      {{~/json}},
-                      {{#json key="options"}}
-                        {{{json key="title" value=(replace ../title "'" "&apos;")}}}
-                      {{/json}}
-                    {{/json}},
-                  {{/each ~}}
-                {{/json}}
-              {{/json}}
-            {{/json}}
-          {{/json}}'></div>
+  <div class="columns b-margin-full">
+    <div class="column col-8 col-md-12">
+      <div class="detailed-info">
+        {{#if support ~}}
+        <h4>Type of support for {{type}}</h4>
+        <p class="mdc-typography--body1">
+          {{#compare support "Other (please describe)" ~}}
+          {{support-other-description}}
           {{else}}
-          <div class="container-content container-map">
-            <div id="map-content-primary" data-map-name="submissionMap" data-map-clustered-options='{}'>
-              {{#each (arrayify geo_coords) ~}}
-              <marker style="display:none;" data-map="submissionMap" data-lat="{{lat}}" data-lng="{{lon}}" data-title="{{../organisation_name}} - {{../title}}">
-                <h4 class="mdc-typography--headline7">{{../organisation_name}}</h4>
-                {{#if (itemAt (arrayify (split ../postcode ",")) @index) ~}}
-                <div class="mdc-typography--body2 v-margin">
-                  Postcode: {{itemAt (arrayify (split ../postcode ",")) @index}}
-                </div>
-                {{/if ~}}
-                <p class="mdc-typography--body2">{{../title}}</p>
-              </marker>
-              {{/each ~}}
-            </div>
-          </div>
+          {{support}}
           {{/compare ~}}
-          {{#compare advertised_areas.length ">" 0 ~}}
-          <div class="detailed-info">
-            <p class="mdc-typography--body1">
-              This submission is also advertised across
-              {{#compare (getType advertised_areas) "string" ~}}
-              {{{advertised_areas}}}.
-              {{else}}
-              {{#each advertised_areas ~}}
-              {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../advertised_areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
-              {{/each ~}}
-              {{/compare ~}}
-            </p>
+        </p>
+        {{/if ~}}
+        {{#if help-offered ~}}
+        <h4>Help offered</h4>
+        <p class="mdc-typography--body1">
+          {{help-offered}}
+        </p>
+        {{/if ~}}
+        {{#if access-support ~}}
+        <h4>How to access this support</h4>
+        <p class="mdc-typography--body1">
+          {{access-support}}
+        </p>
+        {{/if ~}}
+        {{#compare where "In a local community" ~}}
+        <h4>Support provided locally</h4>
+        <p class="mdc-typography--body1">
+          {{inflect postcodes "Postcode" "Postcodes"}}: {{#each postcodes}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+        </p>
+        {{/compare ~}}
+        {{#compare where "Across one or more local authority areas" ~}}
+        <h4>Support provided in {{inflect areas "this area" "these areas"}}</h4>
+        <p class="mdc-typography--body1">
+          {{inflect areas "Area" "Areas"}}: {{#each areas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+        </p>
+        {{/compare ~}}
+        {{#ifAny name website telephone email facebook twitter ~}}
+        <h4>More information</h4>
+        <div class="columns">
+          {{#if name ~}}
+          <div class="column col-3 col-md-4 col-sm-12">
+            <strong>Contact name</strong>
           </div>
-          {{/compare ~}}
-          {{else}}
-          <div class="container-content detailed-info">
-            <p class="mdc-typography--body1">
-              {{#compare advertised_areas.length ">" 0 ~}}
-              This submission is not listed at a specific location but is advertised across
-              {{#compare (getType advertised_areas) "string" ~}}
-              {{{advertised_areas}}}.
-              {{else}}
-              {{#each advertised_areas ~}}
-              {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../advertised_areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
-              {{/each ~}}
-              {{/compare ~}}
-              {{else}}
-              This submission is not listed at a specific location.
-              {{/compare ~}}
-            </p>
+          <div class="column col-9 col-md-8 col-sm-12">
+            {{name}}
           </div>
-          {{/compare ~}}
+          {{/if ~}}
+          {{#if website ~}}
+          <div class="column col-3 col-md-4 col-sm-12">
+            <strong>Website</strong>
+          </div>
+          <div class="column col-9 col-md-8 col-sm-12">
+            <a href="{{fixUrl website}}">{{website}}</a>
+          </div>
+          {{/if ~}}
+          {{#if telephone ~}}
+          <div class="column col-3 col-md-4 col-sm-12">
+            <strong>Telephone</strong>
+          </div>
+          <div class="column col-9 col-md-8 col-sm-12">
+            {{telephone}}
+          </div>
+          {{/if ~}}
+          {{#if email ~}}
+          <div class="column col-3 col-md-4 col-sm-12">
+            <strong>Email</strong>
+          </div>
+          <div class="column col-9 col-md-8 col-sm-12">
+            <a href="mailto:{{email}}">{{email}}</a>
+          </div>
+          {{/if ~}}
+          {{#if facebook ~}}
+          <div class="column col-3 col-md-4 col-sm-12">
+            <strong>Facebook</strong>
+          </div>
+          <div class="column col-9 col-md-8 col-sm-12">
+            <a href="{{fixUrl facebook}}">{{facebook}}</a>
+          </div>
+          {{/if ~}}
+          {{#if twitter ~}}
+          <div class="column col-3 col-md-4 col-sm-12">
+            <strong>Twitter</strong>
+          </div>
+          <div class="column col-9 col-md-8 col-sm-12">
+            <a href="{{fixUrl twitter}}">{{twitter}}</a>
+          </div>
+          {{/if ~}}
         </div>
+        {{/ifAny}}
       </div>
     </div>
 
-    {{#unless (compare view 'widget') ~}}
-    {{> content_submission_actions slug=slug Id=Id action="organisation"}}
-    {{/unless ~}}
+    <div class="column col-4 col-md-12">
+      <div class="location-info">
+        {{#compare (length (arrayify geo_coords)) ">" 0 ~}}
+        <div class="container-content container-map">
+          <div id="map-content-primary" style="height: 40vh; width: 100%;" data-component="LeafletMap,TasksTrigger" data-LeafletMap='{
+              mapOptions: {
+                fullscreenControl: true,
+                scrollWheelZoom: false,
+                trackResize: false,
+                zoom: 11
+              },
+              initialLatLng: { lat: 55.94528820000001, lng: -3.200755699999945 },
+              featureGroups: [
+                {
+                  boundToThis: true,
+                  features: [
+                    {{#each (arrayify geo_coords) ~}}
+                    {
+                      type: "Marker",
+                      popupContent: `
+                        <strong>{{../organisation_name}}</strong>
+                        {{#if (itemAt ../postcodes @index) ~}}
+                        <div class="v-margin">
+                          Postcode: {{itemAt ../postcodes @index}}
+                        </div>
+                        {{/if ~}}
+                        <p class="">{{../title}}</p>
+                      `,
+                      latLng: { lat: {{lat}}, lng: {{lon}} }
+                    },
+                    {{/each}}
+                  ]
+                }
+              ]
+            }' data-TasksTrigger='{
+              visibilityChange: {
+                visible: [
+                  {
+                    type: "run",
+                    config: {
+                      code: { __template: `ComponentManager.componentRegistry["\{{jquery rootElement "data" (split "LeafletMapUid")}}"].map.invalidateSize()` }
+                    }
+                  }
+                ]
+              }
+            }'>
+          </div>
+        </div>
+        {{#compare advertised_areas.length ">" 0 ~}}
+        <div class="detailed-info">
+          <p>
+            This opportunity is also advertised across
+            {{#compare (getType advertised_areas) "string" ~}}
+            {{{advertised_areas}}}.
+            {{else}}
+            {{#each advertised_areas ~}}
+            {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../advertised_areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
+            {{/each ~}}
+            {{/compare ~}}
+          </p>
+        </div>
+        {{/compare ~}}
+        {{else}}
+        <div class="container-content detailed-info">
+          <p>
+            {{#compare advertised_areas.length ">" 0 ~}}
+            This opportunity is not listed at a specific location but is advertised across
+            {{#compare (getType advertised_areas) "string" ~}}
+            {{{advertised_areas}}}.
+            {{else}}
+            {{#each advertised_areas ~}}
+            {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../advertised_areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
+            {{/each ~}}
+            {{/compare ~}}
+            {{else}}
+            This opportunity is not listed at a specific location.
+            {{/compare ~}}
+          </p>
+        </div>
+        {{/compare ~}}
+      </div>
+    </div>
+  </div>
+  <div class="mdc-typography--body1 report pull-right">
+    <span class="fas fa-flag fa-fw text-error" title="Report this submission"></span>
+    <a href="mailto:digital@scvo.org.uk?subject=Report%20submission:%20{{urlencode title}}%20({{urlencode milo_ref}})%20via%20COVID-19%20help%20search&body=I%20would%20like%20to%20report%20this%20submission%20for%20the%20following%20reasons:" class="no-underline">Report this submission</a>
+  </div>
+  <div class="mdc-typography--body2 last-modified">
+    <span class="far fa-calendar-alt" aria-hidden="true"></span>
+    <span title="Added on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Added {{momentFromNow date_last_modified}}</span>
   </div>
 </div>
-<script>
-function clearNotes(data) {
-  $('#notes-' + this.request.data.id)[0].mde.value('');
-  this.$button.prop('disabled', true);
-}
-function notesSaved(evt, data) {
-  // console.log('notesSaved Arguments:', arguments);
-  $('#delete-notes-' + data.id).prop('disabled', false);
-}
-window.submissionId = '{{Id}}';
-</script>
