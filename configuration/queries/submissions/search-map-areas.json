@@ -25,9 +25,9 @@
     }
   },
   "aggs": {
-    "all_advertised_areas": {
+    "all_areas": {
       "terms": {
-        "field": "advertised_areas",
+        "field": "areas",
         "size" : 10000
       }
     }

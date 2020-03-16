@@ -1253,6 +1253,7 @@ a.author:hover,
 .text-secondary {
   color: $secondary-color !important;
 }
+.label,
 .bg-primary,
 .bg-secondary {
   p,
@@ -1261,18 +1262,22 @@ a.author:hover,
   td,
   a {
     color: white;
+    background: none;
   }
 }
-a.bg-yellow {
+.bg-yellow {
   background: $yellow-color !important;
-  border: none;
-  display: block;
   color: $secondary-color;
   // .container {
   //   background-image: url('https://scvo.scot/rouleaux.svg?color=FFDD02&style=stripes');
   //   background-size: cover;
   //   background-position-y: 54%;
   // }
+  a {
+    border: none;
+    display: block;
+    background: none;
+  }
   .columns {
     margin-left: -($padding/2);
     margin-right: -($padding/2);
@@ -1282,10 +1287,8 @@ a.bg-yellow {
     }
   }
 }
-a.bg-yellow:hover {
-  h2,
-  .fa-fw,
-  .link-hover {
+.bg-yellow:hover {
+  a {
     color: $primary-color-dark;
   }
 }
@@ -2499,6 +2502,32 @@ footer {
 .sponsors.gathering .sponsor.socialenterprisescotland { flex: .3; }
 .sponsors.gathering .sponsor.glasgowconventionbureau { flex: .7; }
 .sponsors.gathering .sponsor.thirdforcenews { flex: .55; }
+
+.faded-overflow {
+  overflow: hidden;
+  position: relative;
+  min-height: 2rem;
+  &:before {
+    display: block;
+    margin-top: -$unit*1.5;
+    height: $unit*1.5;
+    width: 100%;
+    content: "";
+    position: absolute;
+    top: 100%;
+    background: linear-gradient(rgba(245, 245, 245, 0), rgba(245, 245, 245, 1));
+  }
+}
+.map-content .faded-overflow {
+  &:before {
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  }
+}
+.search-result-article__notes .faded-overflow {
+  &:before {
+    background: linear-gradient(rgba(245, 245, 245, 0), rgba(245, 245, 245, 1));
+  }
+}
 
 .alignright {
   float: right;

@@ -1,11 +1,11 @@
 <div class="container">
   {{#compare @root.request.params.type "assistance" ~}}
-  <h1>Help or resources needed</h1>
+  <h2>Help or resources needed</h2>
   <p>
     If you are an organisation needing assistance, please describe this below.
   </p>
   {{else}}
-  <h1>Share what help you can offer</h1>
+  <h2>Share what help you can offer</h2>
   {{/compare ~}}
 
   {{#unless @root.request.params.type ~}}
@@ -25,10 +25,10 @@
     <input type="hidden" name="type" value="{{@root.request.params.type}}" />
     {{#switch @root.request.params.type ~}}
     {{#case "people" ~}}
-    <h2>Help available to people</h2>
+    <h3>Help available to people</h3>
     {{/case ~}}
     {{#case "organisations" ~}}
-    <h2>Help available to organisations</h2>
+    <h3>Help available to organisations</h3>
     {{/case ~}}
     {{/switch ~}}
 

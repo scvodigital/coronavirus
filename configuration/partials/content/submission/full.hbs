@@ -3,37 +3,37 @@
   <div class="columns b-margin-full">
     <div class="column col-8 col-md-12">
       <div class="detailed-info">
-        {{#if support ~}}
+        {{#if support_category ~}}
         <h4>Type of support for {{type}}</h4>
-        <p class="mdc-typography--body1">
-          {{#compare support "Other (please describe)" ~}}
-          {{support-other-description}}
+        <p>
+          {{#compare support_category "Other (please describe)" ~}}
+          {{support_other_description}}
           {{else}}
-          {{support}}
+          {{support_category}}
           {{/compare ~}}
         </p>
         {{/if ~}}
-        {{#if help-offered ~}}
+        {{#if help_offered ~}}
         <h4>Help offered</h4>
-        <p class="mdc-typography--body1">
+        <p>
           {{help-offered}}
         </p>
         {{/if ~}}
-        {{#if access-support ~}}
+        {{#if access_support ~}}
         <h4>How to access this support</h4>
-        <p class="mdc-typography--body1">
-          {{access-support}}
+        <p>
+          {{access_support}}
         </p>
         {{/if ~}}
         {{#compare where "In a local community" ~}}
         <h4>Support provided locally</h4>
-        <p class="mdc-typography--body1">
+        <p>
           {{inflect postcodes "Postcode" "Postcodes"}}: {{#each postcodes}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
         </p>
         {{/compare ~}}
         {{#compare where "Across one or more local authority areas" ~}}
         <h4>Support provided in {{inflect areas "this area" "these areas"}}</h4>
-        <p class="mdc-typography--body1">
+        <p>
           {{inflect areas "Area" "Areas"}}: {{#each areas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
         </p>
         {{/compare ~}}
@@ -144,15 +144,15 @@
             }'>
           </div>
         </div>
-        {{#compare advertised_areas.length ">" 0 ~}}
+        {{#compare areas.length ">" 0 ~}}
         <div class="detailed-info">
           <p>
-            This opportunity is also advertised across
-            {{#compare (getType advertised_areas) "string" ~}}
-            {{{advertised_areas}}}.
+            This submission is also advertised across
+            {{#compare (getType areas) "string" ~}}
+            {{{areas}}}.
             {{else}}
-            {{#each advertised_areas ~}}
-            {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../advertised_areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
+            {{#each areas ~}}
+            {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
             {{/each ~}}
             {{/compare ~}}
           </p>
@@ -161,17 +161,17 @@
         {{else}}
         <div class="container-content detailed-info">
           <p>
-            {{#compare advertised_areas.length ">" 0 ~}}
-            This opportunity is not listed at a specific location but is advertised across
-            {{#compare (getType advertised_areas) "string" ~}}
-            {{{advertised_areas}}}.
+            {{#compare areas.length ">" 0 ~}}
+            This submission is not listed at a specific location but is available across
+            {{#compare (getType areas) "string" ~}}
+            {{{areas}}}.
             {{else}}
-            {{#each advertised_areas ~}}
-            {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../advertised_areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
+            {{#each areas ~}}
+            {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
             {{/each ~}}
             {{/compare ~}}
             {{else}}
-            This opportunity is not listed at a specific location.
+            This submission is not listed at a specific location.
             {{/compare ~}}
           </p>
         </div>

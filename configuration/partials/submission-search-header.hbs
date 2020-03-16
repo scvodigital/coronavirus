@@ -1,17 +1,14 @@
-{{#switch @root.request.params.type ~}}
-{{#case "for-people" ~}}
-<h1>Find help near you</h1>
+{{#compare @root.request.params.type "for-organisations" ~}}
+<h2>Find help for your organisation</h2>
 <p class="b-margin-full">
-  If you need medical help, please follow the guidance on the <a href="https://www.nhsinform.scot/coronavirus#overview">NHS Inform website</a>. Do not go directly to your GP, hospital or other healthcare environment.
+  You can find organisations that are able to offer non-medical help to organisations or professionals (e.g. the NHS) below.
+</p>
+{{else}}
+<h2>Find help near you</h2>
+<p class="label label-warning b-margin-full">
+  If you need medical help, please follow the guidance on the <a href="https://www.nhsinform.scot/coronavirus#overview" class="no-ext">NHS Inform website</a>. Do not go directly to your GP, hospital or other healthcare environment.
 </p>
 <p>
-  You can find organisations that are able to offer non-medical help below.
+  You can find organisations that are able to offer non-medical help below. <a href="/help/for-organisations">Help for organisations or professionals</a>.
 </p>
-{{/case ~}}
-{{#case "for-organisations" ~}}
-<h1>Find help for your organisation</h1>
-<p class="b-margin-full">
-  You can find organisations that are able to offer non-medical help below.
-</p>
-{{/case ~}}
-{{/switch ~}}
+{{/compare ~}}

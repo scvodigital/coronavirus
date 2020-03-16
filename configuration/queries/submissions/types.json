@@ -11,7 +11,7 @@
   "aggs": {
     "support": {
       "terms": {
-        "field": "support",
+        "field": "support_category",
         "order": {
           "_term": "asc"
         },
@@ -20,7 +20,7 @@
     },
     "support_slug": {
       "terms": {
-        "field": "support_slug",
+        "field": "support_category_slug",
         "order": {
           "_term": "asc"
         },
