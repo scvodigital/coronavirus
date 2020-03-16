@@ -6,7 +6,6 @@
     "context": "results"
   },
   "tasks": [
-    "context.metaData.commonTasks.authNotRequired",
     {
       "name": "location_data",
       "taskModule": "elasticsearch",
@@ -20,19 +19,19 @@
             "name": "locations_results",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "coronavirus-submission",
-            "template": ">context.metaData.handlebars.queries.opportunities_search-map-locations"
+            "template": ">context.metaData.handlebars.queries.submissions_search-map-locations"
           },
           {
             "name": "home_results",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "coronavirus-submission",
-            "template": ">context.metaData.handlebars.queries.opportunities_search-map-home"
+            "template": ">context.metaData.handlebars.queries.submissions_search-map-home"
           },
           {
             "name": "la_results",
             "index": "geo_lookup",
             "type": "es_district",
-            "template": ">context.metaData.handlebars.queries.opportunities_local-authority-areas"
+            "template": ">context.metaData.handlebars.queries.submissions_local-authority-areas"
           }
         ]
       },
@@ -51,13 +50,13 @@
             "name": "map_results",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "coronavirus-submission",
-            "template": ">context.metaData.handlebars.queries.opportunities_search-map"
+            "template": ">context.metaData.handlebars.queries.submissions_search-map"
           },
           {
             "name": "areas_results",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "coronavirus-submission",
-            "template": ">context.metaData.handlebars.queries.opportunities_search-map-areas"
+            "template": ">context.metaData.handlebars.queries.submissions_search-map-areas"
           }
         ]
       },
@@ -70,15 +69,6 @@
       "config": {
         "logic": {
           "if": [
-            {
-              "in": [
-                "view=widget",
-                {
-                  "var": "request.fullUrl"
-                }
-              ]
-            },
-            "widget",
             {
               "in": [
                 "view=json",
@@ -96,26 +86,18 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.opportunities_search-head-tags",
-              "body": ">context.metaData.handlebars.templates.opportunities_map",
-              "foot": ">context.metaData.handlebars.templates.opportunities_map-foot",
-              "sidebar": ">context.metaData.handlebars.templates.opportunities_search-form"
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "body": ">context.metaData.handlebars.templates.submissions_map",
+              "foot": ">context.metaData.handlebars.templates.submissions_map-foot"
             },
             "contentType": "text/html"
           },
           "data": {
             "layout": ">context.metaData.handlebars.layouts.data",
             "parts": {
-              "content": ">context.metaData.handlebars.templates.opportunities_search-json"
+              "content": ">context.metaData.handlebars.templates.submissions_search-json"
             },
             "contentType": "application/json"
-          },
-          "widget": {
-            "layout": ">context.metaData.handlebars.layouts.data",
-            "parts": {
-              "content": ">context.metaData.handlebars.templates.opportunities_widget_results-map"
-            },
-            "contentType": "text/html"
           }
         }
       }

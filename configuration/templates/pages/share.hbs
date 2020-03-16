@@ -1,5 +1,13 @@
 <div class="container">
+  {{#compare @root.request.params.type "assistance" ~}}
+  <h1>Help or resources needed</h1>
+  <p>
+    If you are an organisation needing assistance, please describe this below.
+  </p>
+  {{else}}
   <h1>Share what help you can offer</h1>
+  {{/compare ~}}
+
   {{#unless @root.request.params.type ~}}
   <p>
     Lots of organisations want to help in the response the many challenges facing people, communities and our health and care services. Please use this form to share what help you can offer.
@@ -12,8 +20,7 @@
     <li><a href="/share/organisations">To other organisations who are responding to the impact of the pandemic</a></li>
   </ul>
   {{else}}
-  {{#ifAny (compare @root.request.params.type "people") (compare @root.request.params.type "organisations") ~}}
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  {{#ifAny (compare @root.request.params.type "people") (compare @root.request.params.type "organisations") (compare @root.request.params.type "assistance") ~}}
   <form action="/share/submit" method="post">
     <input type="hidden" name="type" value="{{@root.request.params.type}}" />
     {{#switch @root.request.params.type ~}}
@@ -25,6 +32,7 @@
     {{/case ~}}
     {{/switch ~}}
 
+    {{#ifAny (compare @root.request.params.type "people") (compare @root.request.params.type "organisations") ~}}
     <div class="form-group">
       <label class="form-label">What is the main type of support you can offer?</label>
       {{#switch @root.request.params.type ~}}
@@ -86,9 +94,23 @@
       $('#support-other-field').removeClass('hidden');
     });
     </script>
+    {{/ifAny ~}}
+
+    {{#compare @root.request.params.type "assistance" ~}}
+    <div class="form-group">
+      <label class="form-label" for="help-needed">What help do you need?</label>
+      <textarea class="form-input" name="help-needed" id="help-needed" placeholder="" rows="3"></textarea>
+    </div>
+    {{/compare ~}}
 
     <div class="form-group">
-      <label class="form-label">Where can you provide support?</label>
+      <label class="form-label">
+        {{#compare @root.request.params.type "assistance" ~}}
+        Where do you need it?
+        {{else}}
+        Where can you provide support?
+        {{/compare ~}}
+      </label>
       <label class="form-radio">
         <input type="radio" name="where" id="where-local" value="In a local community" required>
         <i class="form-icon"></i> In a local community
@@ -254,6 +276,7 @@
     });
     </script>
 
+    {{#ifAny (compare @root.request.params.type "people") (compare @root.request.params.type "organisations") ~}}
     <div class="form-group">
       <label class="form-label" for="title">Please enter a brief summary of what you can offer</label>
       <input class="form-input" type="text" name="title" id="title" maxlength="70" placeholder="e.g. Transportation services for carers">
@@ -273,6 +296,7 @@
       <label class="form-label" for="organisation_name">Your organisation name</label>
       <input class="form-input" type="text" name="organisation_name" id="organisation_name" maxlength="70" placeholder="e.g. SCVO">
     </div>
+    {{/ifAny ~}}
 
     {{#switch @root.request.params.type ~}}
     {{#case "people" ~}}
@@ -325,6 +349,45 @@
     {{#case "organisations" ~}}
     <p>
       <strong>How should organisations / professionals get in touch? Please complete the contact details with specific contact details to access your support.</strong>
+    </p>
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="name">Contact name</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="name" id="name" placeholder="e.g. Your Name">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="email">Email address</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="email" id="email" placeholder="e.g. info@example.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="telephone">Telephone number</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="telephone" id="telephone" placeholder="e.g. 0131 474 8000">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="website">Website</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="website" id="website" placeholder="e.g. https://example.com">
+        </div>
+      </div>
+    </div>
+    {{/case ~}}
+    {{#case "assistance" ~}}
+    <p>
+      <strong>How can people get in touch to offer help? Please complete the contact details with specific contact details to offer help.</strong>
     </p>
     <div class="form-horizontal">
       <div class="form-group">

@@ -1,23 +1,9 @@
 <div id="detailed-results-container" class="container" instance_id="perm">
-  {{#switch @root.request.params.type ~}}
-  {{#case "for-people" ~}}
-  <h1>Find help near you</h1>
-  <p class="b-margin-full">
-    If you need medical help, please follow the guidance on the <a href="https://www.nhsinform.scot/coronavirus#overview">NHS Inform website</a>. Do not go directly to your GP, hospital or other healthcare environment.
-  </p>
-  <p>
-    You can find organisations that are able to offer non-medical help below.
-  </p>
-  {{/case ~}}
-  {{#case "for-organisations" ~}}
-  <h1>Find help for your organisation</h1>
-  <p class="b-margin-full">
-    You can find organisations that are able to offer non-medical help below.
-  </p>
-  {{/case ~}}
-  {{/switch ~}}
+  {{> submission_search_header}}
 
   {{> submission_search_form}}
+
+  {{> submission_search_tabs}}
 
   {{> submission_search_results this}}
 </div>

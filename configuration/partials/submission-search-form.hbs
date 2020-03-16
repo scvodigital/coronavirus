@@ -19,7 +19,23 @@
     <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="default-sort" />
     <div class="">
       <div class="columns">
-        <div class="column col-4 col-xl-7 col-sm-12 filter-location b-padding" id="location-fields">
+        <div class="column col-3 col-xl-6 filter-support b-padding">
+          <select class="form-select select-lg" id="support" name="support">
+            <option value="">Main type of support</option>
+            {{#compare @root.request.params.type 'for-people' ~}}
+            {{#each (split "Emotional or psychosocial support (e.g. befriending),Food / grocery delivery,Transportation,Information and advice" ",") ~}}
+            <option{{#compare @root.request.params.query.support this}} selected{{/compare}}>{{this}}</option>
+            {{/each ~}}
+            {{/compare ~}}
+            {{#compare @root.request.params.type 'for-organisations' ~}}
+            {{#each (split "Care staff or trained volunteers,Transportation / vehicles,Discharge support,Premises,Counselling / bereavement support" ",") ~}}
+            <option{{#compare @root.request.params.query.support this}} selected{{/compare}}>{{this}}</option>
+            {{/each ~}}
+            {{/compare ~}}
+            <option value="Other (please describe)"{{#compare @root.request.params.query.support "Other (please describe)"}} selected{{/compare}}>Other</option>
+          </select>
+        </div>
+        <div class="column col-4 col-xl-6 col-sm-12 filter-location b-padding" id="location-fields">
           <div class="input-group has-icon-left">
             <span data-component="Typeahead" data-Typeahead="typeahead-location">
               <span class="form-icon far fa-location geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="geolocation"></span>
@@ -32,7 +48,7 @@
             </select>
           </div>
         </div>
-        <div class="column col-6 col-xl-12 keywords b-padding">
+        <div class="column col-5 col-xl-12 keywords b-padding">
           <div class="form-group full-width">
             <input type="text" id="what-submissions" name="keywords" class="form-input input-lg" value="{{@root.request.params.query.keywords}}" placeholder="Search for help" autocomplete="off" data-lpignore="true">
           </div>
@@ -65,7 +81,7 @@
           {{/each}}
         </div>
         <div class="column col-2 col-lg-3 col-md-4 col-sm-12 search-button b-padding">
-          <button type="submit" id="search-submissions" class="btn btn-primary btn-lg">
+          <button type="submit" id="search-submissions" class="btn btn-primary btn-lg pull-right">
             Search
             <!-- <span class="far fa-search" aria-hidden="true"></span> -->
           </button>
@@ -74,6 +90,8 @@
     </div>
   </form>
 </div>
+
+<script src="{{~>asset_url url='libraries/typeahead/typeahead.bundle.min.js'~}}"></script>
 
 {{{{raw}}}}
 <script data-component-config="geolocation" type="javascript/blocked">

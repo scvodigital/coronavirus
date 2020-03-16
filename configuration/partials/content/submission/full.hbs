@@ -37,6 +37,9 @@
           {{inflect areas "Area" "Areas"}}: {{#each areas}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
         </p>
         {{/compare ~}}
+        {{#compare where "Across the whole of Scotland" ~}}
+        <h4>Support provided across the whole of Scotland</h4>
+        {{/compare ~}}
         {{#ifAny name website telephone email facebook twitter ~}}
         <h4>More information</h4>
         <div class="columns">
