@@ -1,6 +1,6 @@
 {
   "terms": {
-    "advertised_areas": [
+    "areas": [
       {{#each @root.data.location_data.la_results.aggregations.local_authority_areas.buckets ~}}
         {{{stringify (replace (replace (replace key " and " " & ") "City of " "") " City" "")}}}
         {{#unless @last}},{{/unless}}

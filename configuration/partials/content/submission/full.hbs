@@ -28,7 +28,7 @@
         {{#compare where "In a local community" ~}}
         <h4>Support provided locally</h4>
         <p>
-          {{inflect postcodes "Postcode" "Postcodes"}}: {{#each postcodes}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+          {{inflect (arrayify postcodes) "Postcode" "Postcodes"}}: {{#each (arrayify postcodes)}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
         </p>
         {{/compare ~}}
         {{#compare where "Across one or more local authority areas" ~}}

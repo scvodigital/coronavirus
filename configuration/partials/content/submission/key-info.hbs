@@ -17,8 +17,8 @@
       {{#if (contains volunteersearch_type "Home-based volunteering") ~}}
       {{> content_submission_location_home}}
       {{else}}
-      {{#ifAny (compare (getType advertised_areas) "string") (compare advertised_areas.length ">" 0) ~}}
-      {{> content_submission_location_areas advertised_areas=advertised_areas}}
+      {{#ifAny (compare (getType areas) "string") (compare areas.length ">" 0) ~}}
+      {{> content_submission_location_areas areas=areas}}
       {{/ifAny ~}}
       {{/if ~}}
       {{/ifAll ~}}
