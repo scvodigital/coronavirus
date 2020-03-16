@@ -255,6 +255,11 @@
     </script>
 
     <div class="form-group">
+      <label class="form-label" for="title">Please enter a brief summary of what you can offer</label>
+      <input class="form-input" type="text" name="title" id="title" maxlength="70" placeholder="e.g. Transportation services for carers">
+    </div>
+
+    <div class="form-group">
       <label class="form-label" for="help-offered">What help can you offer? Please be very specific and realistic, rather than a description of your general services.</label>
       <textarea class="form-input" name="help-offered" id="help-offered" placeholder="" rows="3"></textarea>
     </div>
@@ -262,6 +267,11 @@
     <div class="form-group">
       <label class="form-label" for="access-support">How can {{@root.request.params.type}} access your support?</label>
       <textarea class="form-input" name="access-support" id="access-support" placeholder="" rows="3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="organisation_name">Your organisation name</label>
+      <input class="form-input" type="text" name="organisation_name" id="organisation_name" maxlength="70" placeholder="e.g. SCVO">
     </div>
 
     {{#switch @root.request.params.type ~}}
