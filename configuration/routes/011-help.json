@@ -1,0 +1,15 @@
+{
+  "name": "help",
+  "pattern": "/help",
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/help/people",
+        "statusCode": 302
+      }
+    }
+  ]
+}
+

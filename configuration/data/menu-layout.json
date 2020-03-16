@@ -1,41 +1,27 @@
 {
-  "main-not-signed-in": [
-    {
-      "label": "About",
-      "icon": "info-circle",
-      "path": "/about",
-      "route": "^/about"
-    },
-    {
-      "label": "Contact",
-      "icon": "envelope",
-      "path": "/contact",
-      "route": "^/contact"
-    }
-  ],
   "footer-help": [
     {
       "label": "Accessibility",
       "icon": "cog",
-      "path": "/accessibility",
+      "path": "https://scvo.org/accessibility",
       "route": "^/accessibility"
     },
     {
       "label": "Privacy notice",
       "icon": "cog",
-      "path": "/privacy",
+      "path": "https://scvo.org/privacy",
       "route": "^/privacy"
     },
     {
       "label": "Cookie policy",
       "icon": "cog",
-      "path": "/cookies",
+      "path": "https://scvo.org/cookies",
       "route": "^/cookies"
     },
     {
       "label": "Terms & conditions",
       "icon": "cog",
-      "path": "/terms",
+      "path": "https://scvo.org/terms",
       "route": "^/terms"
     }
   ]

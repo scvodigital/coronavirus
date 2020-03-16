@@ -1,6 +1,6 @@
 {
-  "name": "contact",
-  "pattern": "/contact",
+  "name": "help_people",
+  "pattern": "/help/people",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
@@ -20,7 +20,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_contact"
+              "body": ">context.metaData.handlebars.templates.pages_help-people"
             },
             "contentType": "text/html"
           }

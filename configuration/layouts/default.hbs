@@ -100,7 +100,7 @@
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}" />
 </head>
 <body>
-  <div class="text-white bg-warning text-centre v-padding">
+  <div class="text-white bg-error text-centre v-padding">
     This website is currently in development and is not yet functional.
   </div>
   <div class="page">
@@ -126,9 +126,29 @@
     {{/if}}
   {{/ifAny}}
 
+    <header class="bg-primary">
+      <div class="container v-padding-full">
+        <div class="columns">
+          <div class="column col-10 col-lg-9 col-md-8 col-sm-7">
+            <a href="/" class="v-margin site-title">
+              <h1 class="no-margin">Coronavirus/COVID-19</h1>
+              <h2 class="no-margin">Help in your community</h2>
+            </a>
+          </div>
+          <div class="column col-2 col-lg-3 col-md-4 col-sm-5 align-centre">
+            <a href="https://scvo.org" class="brand-logo scvo-logo" title="Scottish Council for Voluntary Organisations">
+              <img src="{{~>asset_url url='images/logos/scvo-white.svg'~}}" alt="Scottish Council for Voluntary Organisations" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    {{!--
     <header class="container">
       <section class="brand">
-        <a href="/" class="logo">{{@root.context.metaData.title}}</a>
+        <a href="/" class="logo">
+          Coronavirus/COVID-19
+        </a>
       </section>
       <div class="mobile-menu-button show-lg">
         <a href="javascript:void()" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
@@ -152,77 +172,13 @@
       </div>
       <section class="nav hide-lg">
         <div class="main-menu">
-          {{#if @root.data.auth ~}}
-            {{#ifAll @root.data.accountInfo.user_type (compare @root.data.accountInfo.approval_needed false) ~}}
-              {{#each @root.context.metaData.menus.main-signed-in ~}}
-                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
-              {{/each}}
-              <div class="dropdown my-account signed-in">
-                <div class="btn-group">
-                  <a href="#" class="btn dropdown-toggle">
-                    {{#if @root.data.auth.photoURL ~}}
-                      <img src="{{@root.data.auth.photoURL}}" class="avatar avatar-sm" />
-                    {{else}}
-                      <span class="far fa-fw fa-user-circle"></span>
-                    {{/if ~}}
-                    {{default @root.data.auth.email @root.data.auth.displayName}}
-                    <span class="far fa-fw fa-angle-down"></span>
-                  </a>
-                  <ul class="menu">
-                    <li class="menu-item">
-                      <a href="/" class="l-padding-full {{#compare @root.request.url.pathname '/'}} active{{/compare}}{{#if @root.data.accountInfo.approval_needed}} disabled{{/if}}">
-                        <span class="far fa-fw fa-home" aria-hidden="true"></span>
-                        Home
-                      </a>
-                    </li>
-                    {{#each @root.context.metaData.menus.user-signed-in ~}}
-                      {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
-                        <li class="menu-item">
-                          <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
-                            {{#if icon ~}}
-                            <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                            {{/if ~}}
-                            {{{label}}}
-                          </a>
-                          {{!-- {{#if public_checkbox ~}}
-                          <div class="menu-badge">
-                            <label class="form-switch">
-                              <input type="checkbox">
-                              <i class="form-icon"></i> Public
-                            </label>
-                          </div>
-                          {{/if ~}} --}}
-                        </li>
-                      {{/if ~}}
-                    {{/each ~}}
-                    <li class="menu-item">
-                      <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
-                        <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
-                        Sign out
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            {{else}}
-              <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
-              {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
-              {{/each}}
-              <a href="/sign-out" class="btn btn-link" data-component="TasksTrigger" data-TasksTrigger="sign-out">Sign out</a>
-            {{/ifAll ~}}
-          {{else}}
-            <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
-            {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-              <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
-            {{/each}}
-            {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-              <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-account not-signed-in">{{label}}</a>
-            {{/each}}
-          {{/if ~}}
+          <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
+          {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+            <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+          {{/each}}
         </div>
       </section>
-    </header>
+    </header> --}}
 
     <div class="mobile-menu mobile-menu_closed">
       <div class="mobile-menu_background" data-component="TasksTrigger" data-TasksTrigger='{
@@ -299,72 +255,23 @@
                 Home
               </a>
             </li>
-            {{#if @root.data.auth ~}}
-              {{#each @root.context.metaData.menus.user-signed-in ~}}
-              {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
-                <li class="menu-item">
-                  <a href="{{stripTrailingSlash path}}" class="l-padding-full{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
-                    {{#if icon ~}}
-                    <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                    {{/if ~}}
-                    {{label}}
-                  </a>
-                  {{!-- {{#if public_checkbox ~}}
-                  <div class="menu-badge">
-                    <label class="form-checkbox">
-                      <input type="checkbox">
-                      <i class="form-icon"></i> Public
-                    </label>
-                  </div>
-                  {{/if ~}} --}}
-                </li>
-              {{/if ~}}
-              {{/each ~}}
-              {{#each @root.context.metaData.menus.main-signed-in ~}}
-                <li class="menu-item">
-                  <a href="{{stripTrailingSlash path}}" class="l-padding-full{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
-                    {{#if icon ~}}
-                    <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                    {{/if ~}}
-                    {{label}}
-                  </a>
-                </li>
-              {{/each ~}}
+            {{#each @root.context.metaData.menus.main-not-signed-in ~}}
               <li class="menu-item">
-                <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
-                  <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
-                  Sign out
+                <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
+                  {{#if icon ~}}
+                  <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                  {{/if ~}}
+                  {{label}}
                 </a>
               </li>
-            {{else}}
-              {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-                <li class="menu-item">
-                  <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
-                    {{#if icon ~}}
-                    <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                    {{/if ~}}
-                    {{label}}
-                  </a>
-                </li>
-              {{/each ~}}
-              {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-                <li class="menu-item">
-                  <a href="{{stripTrailingSlash path}}" class="l-padding-full{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
-                    {{#if icon ~}}
-                    <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                    {{/if ~}}
-                    {{label}}
-                  </a>
-                </li>
-              {{/each ~}}
-            {{/if ~}}
+            {{/each ~}}
           </ul>
         </div>
       </aside>
     </div>
 
     {{#ifAll layoutParts.sidebar @root.data.accountInfo.user_type (compare @root.data.accountInfo.approval_needed false) ~}}
-    <div class="sidebar-present">
+    <div class="sidebar-present v-margin-full b-padding-full">
       <div class="columns col-gapless">
         <aside class="sidebar column col-2 col-lg-3 col-xl-3 hide-lg">
           {{{layoutParts.sidebar}}}
@@ -375,7 +282,7 @@
       </div>
     </div>
     {{else}}
-    <div class="sidebar-not-present">
+    <div class="sidebar-not-present v-margin-full b-padding-full">
       <main class="body">
         {{{layoutParts.body}}}
       </main>
@@ -384,8 +291,10 @@
 
     <div id="toaster"></div>
 
+    <div class="bg-header" style="min-height:40vh; background-image: url('{{~>asset_url url='images/crop_coronavirus.jpg'~}}'); background-position-y:69%;"></div>
+
     <footer class="footer">
-      <div class="footer-main">
+      <div class="footer-main t-padding-full">
         <div class="container">
           <div class="columns">
             <div class="column col-3 col-xl-6 col-md-12 info">

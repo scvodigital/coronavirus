@@ -1,0 +1,17 @@
+<div class="container">
+  <h1>Share what help you can offer</h1>
+  {{#unless @root.request.params.type ~}}
+  <p>
+    Lots of organisations want to help in the response the many challenges facing people, communities and our health and care services. Please use this form to share what help you can offer.
+  </p>
+  <p>
+    Can you offer help:
+  </p>
+  <ul>
+    <li><a href="/share/people">Directly to people</a></li>
+    <li><a href="/share/organisations">To other organisations who are responding to the impact of the pandemic</a></li>
+  </ul>
+  {{else}}
+
+  {{/unless ~}}
+</div>
