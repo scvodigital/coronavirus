@@ -1,5 +1,4 @@
-
-<div class="container-content">
+<div class="container">
   {{#compare @root.data.primaryResponse.hits.total ">" 0 ~}}
   <div class="content-primary">
     {{#each @root.data.primaryResponse.hits.hits ~}}
@@ -7,16 +6,16 @@
     {{/each ~}}
   </div>
 
-  {{#compare @root.data.opportunitySupplimentary.related.hits.total ">" 0 ~}}
+  {{#compare @root.data.submissionSupplimentary.related.hits.total ">" 0 ~}}
   <div class="content-related">
     <div class="mdc-typography--headline5 v-margin-full">
-      Similar {{inflect @root.data.opportunitySupplimentary.related.hits.total "opportunity" "opportunities"}}
+      Similar {{inflect @root.data.submissionSupplimentary.related.hits.total "submission" "submissions"}}
     </div>
     <div class="mdc-layout-grid equal-height">
       <div class="mdc-layout-grid__inner">
-        {{#each @root.data.opportunitySupplimentary.related.hits.hits ~}}
+        {{#each @root.data.submissionSupplimentary.related.hits.hits ~}}
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-          {{> content_submission_list _source hitContext="related-opportunity" parentDocument=_source.Id viewContext="Related"}}
+          {{> content_submission_list _source hitContext="related-submission" parentDocument=_source.Id viewContext="Related"}}
         </div>
         {{/each ~}}
       </div>
@@ -26,7 +25,7 @@
 
   {{else}}
   <p>
-    We could not find the opportunity you were looking for. It may have been removed or expired.
+    We could not find the submission you were looking for. It may have been removed or expired.
   </p>
   {{/compare ~}}
 </div>

@@ -2,9 +2,6 @@
   <div class="{{#compare view 'widget'}}mdl-card__subtitle-text h-padding-full{{/compare}}">
     {{> content_submission_key_info type="search_result"}}
   </div>
-  {{#unless (compare view 'widget') ~}}
-  <hr class="mdc-list-divider" />
-  {{/unless ~}}
   {{#compare (trim (getProperty @root.data.profileInfo.notes Id)) "!==" "" ~}}
     {{> content_submission_description limit="3rem" description=description}}
     {{> content_submission_notes limit="5rem"}}

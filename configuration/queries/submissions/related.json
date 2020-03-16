@@ -1,0 +1,37 @@
+{
+  "size": 4,
+  "_source": [
+    "*"
+  ],
+  "query": {
+    "function_score": {
+      "query": {
+        "bool": {
+          "filter": [
+            {{>queries_submission_common_filters @root.request.params.query}}
+          ],
+          {{#if @root.data.primaryResponse.hits.hits.[0] ~}}
+          "should": [
+            {
+              "match": {
+                "title" : {
+                  "query" : "{{@root.data.primaryResponse.hits.hits.[0]._source.support}}",
+                  "operator" : "and",
+                  "zero_terms_query": "all"
+                }
+              }
+            }
+          ],
+          {{/if ~}}
+          "must_not": [
+            {
+              "term": {
+                "Id": "{{@root.data.primaryResponse.hits.hits.[0]._source.Id}}"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

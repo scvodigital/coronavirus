@@ -18,7 +18,11 @@
 {{else}}
 {{#ifAny @root.request.params.query.keywords @root.request.params.query.location @root.request.params.query.activities @root.request.params.query.themes @root.request.params.query.age ~}}
 <div class="search-info">
-  No results could be found, please try a different search query
+  No submissions could be found, please try a different search query
+</div>
+{{else}}
+<div class="search-info">
+  No submissions could be found
 </div>
 {{/ifAny ~}}
 {{/if ~}}

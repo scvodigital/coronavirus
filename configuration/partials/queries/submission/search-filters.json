@@ -1,3 +1,4 @@
+{{>queries_term field="type" term=(replace @root.request.params.type 'for-' '')}},
 {{#if location ~}}
 {
   "bool": {

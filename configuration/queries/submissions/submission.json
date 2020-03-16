@@ -1,0 +1,26 @@
+{
+  "size": 1,
+  "_source": [
+    "*"
+  ],
+  "query": {
+    "bool": {
+      "filter": [
+        {{>queries_submission_common_filters @root.request.params.query}}
+      ],
+      "should": [
+        {
+          "term": {
+            "Id": "{{@root.request.params.id}}"
+          }
+        },
+        {
+          "term": {
+            "slug": "{{@root.request.params.id}}"
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  }
+}

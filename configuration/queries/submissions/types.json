@@ -1,0 +1,49 @@
+{
+  "size": 0,
+  "_source": false,
+  "query": {
+    "bool": {
+      "filter": [
+        {{>queries_submission_common_filters @root.request.params.query}}
+      ]
+    }
+  },
+  "aggs": {
+    "support": {
+      "terms": {
+        "field": "support",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "support_slug": {
+      "terms": {
+        "field": "support_slug",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "where": {
+      "terms": {
+        "field": "where",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "where_slug": {
+      "terms": {
+        "field": "where_slug",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    }
+  }
+}
