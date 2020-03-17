@@ -19,6 +19,7 @@
     <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="default-sort" />
     <div class="">
       <div class="columns">
+        {{#unless (compare @root.request.params.type 'required') ~}}
         <div class="column col-3 col-xl-6 filter-support b-padding">
           <select class="form-select select-lg" id="support" name="support">
             <option value="">Main type of support</option>
@@ -35,6 +36,7 @@
             {{/ifAny ~}}
           </select>
         </div>
+        {{/unless ~}}
         <div class="column col-4 col-xl-6 col-sm-12 filter-location b-padding" id="location-fields">
           <div class="input-group has-icon-left">
             <span data-component="Typeahead" data-Typeahead="typeahead-location">
@@ -48,14 +50,14 @@
             </select>
           </div>
         </div>
-        <div class="column col-5 col-xl-12 keywords b-padding">
+        <div class="column col-3 col-xl-12 keywords b-padding">
           <div class="form-group full-width">
-            <input type="text" id="what-submissions" name="keywords" class="form-input input-lg" value="{{@root.request.params.query.keywords}}" placeholder="Search for help" autocomplete="off" data-lpignore="true">
+            <input type="text" id="what-submissions" name="keywords" class="form-input input-lg" value="{{@root.request.params.query.keywords}}" placeholder="Keywords" autocomplete="off" data-lpignore="true">
           </div>
         </div>
-      </div>
-      <div class="columns">
-        <div class="column col-10 col-lg-9 col-md-8 col-sm-12 chips b-padding">
+      {{!-- </div>
+      <div class="columns"> --}}
+        {{!-- <div class="column col-10 col-lg-9 col-md-8 col-sm-12 chips b-padding">
           {{#each @root.context.metaData.volunteeringTerms}}
             <div class="chip-set chip-filters" id="{{key}}-filters">
               {{~#each (arrayify (getProperty @root.request.params.query key))~}}
@@ -79,9 +81,9 @@
               {{~/each~}}
             </div>
           {{/each}}
-        </div>
+        </div> --}}
         <div class="column col-2 col-lg-3 col-md-4 col-sm-12 search-button b-padding">
-          <button type="submit" id="search-submissions" class="btn btn-primary btn-lg pull-right">
+          <button type="submit" id="search-submissions" class="btn btn-block btn-primary btn-lg pull-right">
             Search
             <!-- <span class="far fa-search" aria-hidden="true"></span> -->
           </button>

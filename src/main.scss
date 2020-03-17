@@ -1556,6 +1556,10 @@ aside {
   }
 }
 
+.leaflet-popup-content {
+  font-size: 0.7rem !important;
+}
+
 .leaflet-marker-icon {
   width: $unit;
 }

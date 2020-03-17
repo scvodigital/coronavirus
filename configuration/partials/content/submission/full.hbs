@@ -1,5 +1,5 @@
-<div class="{{#compare view 'widget'}}x-padding-full{{else}}mdc-card{{/compare}} content-primary full" data-submission-id="{{Id}}" data-submission-layout="Full" data-submission-context="{{default viewContext "Vacancy Page"}}">
-  {{> content_submission_key_info type="full"}}
+<div class="content-primary full">
+  {{> content_submission_key_info view="full"}}
   <div class="columns b-margin-full">
     <div class="column col-8 col-md-12">
       <div class="detailed-info">
@@ -119,12 +119,12 @@
                   type: "Marker",
                   popupContent: `
                     <strong>{{../organisation_name}}</strong>
-                    {{#if (itemAt ../postcodes @index) ~}}
+                    <p class="">{{../title}}</p>
+                    {{#if (itemAt (arrayify (split ../postcodes ",")) @index) ~}}
                     <div class="v-margin">
-                      Postcode: {{itemAt ../postcodes @index}}
+                      Postcode: {{itemAt (arrayify (split ../postcodes ",")) @index}}
                     </div>
                     {{/if ~}}
-                    <p class="">{{../title}}</p>
                   `,
                   latLng: { lat: {{lat}}, lng: {{lon}} }
                 },
@@ -150,7 +150,7 @@
   </div>
   <div class="mdc-typography--body1 report pull-right">
     <span class="fas fa-flag fa-fw text-error" title="Report this submission"></span>
-    <a href="mailto:digital@scvo.org.uk?subject=Report%20submission:%20{{urlencode title}}%20({{urlencode milo_ref}})%20via%20COVID-19%20help%20search&body=I%20would%20like%20to%20report%20this%20submission%20for%20the%20following%20reasons:" class="no-underline">Report this submission</a>
+    <a href="mailto:digital@scvo.org.uk?subject=Report%20submission:%20{{urlencode title}}%20via%20COVID-19%20help%20search&body=I%20would%20like%20to%20report%20this%20submission%20for%20the%20following%20reasons:" class="no-underline">Report this submission</a>
   </div>
   <div class="mdc-typography--body2 last-modified">
     <span class="far fa-calendar-alt" aria-hidden="true"></span>

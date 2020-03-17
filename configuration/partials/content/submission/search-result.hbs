@@ -1,7 +1,5 @@
 <div class="search-result b-margin-full b-padding-full">
-  <div class="{{#compare view 'widget'}}mdl-card__subtitle-text h-padding-full{{/compare}}">
-    {{> content_submission_key_info type="search_result"}}
-  </div>
+  {{> content_submission_key_info view="search_result"}}
   {{> content_submission_description limit="6rem" description=(default help_offered help_needed)}}
   {{> content_submission_actions slug=slug Id=Id home_based=home_based distance=distance action=action}}
 </div>
