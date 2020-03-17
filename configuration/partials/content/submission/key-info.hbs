@@ -17,7 +17,7 @@
       {{#if (contains where_slug "across-the-whole-of-scotland") ~}}
       {{> content_submission_location_home}}
       {{else}}
-      {{#ifAny (compare (getType areas) "string") (compare areas.length ">" 0) ~}}
+      {{#ifAny (compare (getType (arrayify areas)) "string") (compare (length (arrayify areas)) ">" 0) ~}}
       {{> content_submission_location_areas areas=areas}}
       {{/ifAny ~}}
       {{/if ~}}
@@ -28,6 +28,10 @@
       {{else}}
       {{#if (contains where_slug "across-the-whole-of-scotland") ~}}
       {{> content_submission_location_home}}
+      {{else}}
+      {{#ifAny (compare (getType (arrayify areas)) "string") (compare (length (arrayify areas)) ">" 0) ~}}
+      {{> content_submission_location_areas areas=areas}}
+      {{/ifAny ~}}
       {{/if ~}}
       {{/compare ~}}
       {{/if ~}}
