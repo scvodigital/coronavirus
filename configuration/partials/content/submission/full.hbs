@@ -6,7 +6,7 @@
         {{#if support_category ~}}
         <h4>Type of support for {{type}}</h4>
         <p>
-          {{#compare support_category "Other (please describe)" ~}}
+          {{#compare support_category "Other" ~}}
           {{support_other_description}}
           {{else}}
           {{support_category}}
