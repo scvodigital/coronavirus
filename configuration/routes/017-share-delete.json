@@ -5,14 +5,35 @@
   "errorRoute": "five_hundred",
   "tasks": [
     {
+      "name": "primaryResponse",
+      "taskModule": "firebaseRtbGet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "coronavirus",
+        "pathTemplate": "/submissions/{{default @root.request.params.id 'null'}}/",
+        "defaultData": {}
+      }
+    },
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "!=": [{"var": "data.primaryResponse.secret_key"}, {"var": "request.params.secret_key"}] },
+          "_default",
+          false
+        ]
+      }
+    },
+    {
       "name": "save_data",
       "taskModule": "firebaseRtbSet",
       "renderer": "handlebars",
       "config": {
-        "dataTemplate": ">context.metaData.handlebars.templates.database_firebase",
+        "dataTemplate": ">context.metaData.handlebars.templates.database_firebase-delete",
         "setOrUpdate": "update",
         "appName": "coronavirus",
-        "pathTemplate": "/submissions/{{@root.request.body.id}}/"
+        "pathTemplate": "/submissions/{{@root.request.params.id}}/"
       }
     },
     {
@@ -31,7 +52,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.submissions_share-thanks"
+              "body": ">context.metaData.handlebars.templates.submissions_share-deleted"
             },
             "contentType": "text/html"
           }

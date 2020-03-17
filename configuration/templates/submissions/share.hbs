@@ -309,12 +309,16 @@
     <div class="text-centre v-padding-full">
       {{#compare @root.route.name "submission_edit" ~}}
       <input type="submit" value="Update" class="btn btn-lg" />
-      <input type="button" value="Delete" class="btn bg-error btn-lg" disabled />
       {{else}}
       <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
       {{/compare ~}}
     </div>
   </form>
+  {{#compare @root.route.name "submission_edit" ~}}
+  <form action="/share/delete/{{@root.request.params.id}}/{{@root.request.params.secret_key}}" method="post" class="text-centre">
+    <input type="submit" value="Delete" class="btn bg-error" />
+  </form>
+  {{/compare ~}}
   {{/ifAny ~}}
   {{/unless ~}}
   {{else}}
