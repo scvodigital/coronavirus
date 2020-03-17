@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container b-padding-full">
   {{#ifAny (compare @root.route.name "share") (compare (concat '' @root.data.primaryResponse.secret_key) @root.request.params.secret_key) ~}}
   {{#compare (default @root.request.params.type @root.data.primaryResponse.type) "assistance" ~}}
   <h2>Help or resources needed</h2>
