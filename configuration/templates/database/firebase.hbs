@@ -1,6 +1,6 @@
 {
   "status": "published",
-  "secret_key": "{{@root.data.secret_key}}",
+  {{#if @root.data.secret_key}}"secret_key": "{{@root.data.secret_key}}",{{/if}}
   {{#each (keyValue @root.request.body)}}"{{key}}": {{{safeStringify value}}},{{/each}}
   "date_last_modified": {{{safeStringify (moment null "X")}}}
 }

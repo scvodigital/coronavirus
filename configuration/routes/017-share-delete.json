@@ -1,9 +1,20 @@
 {
-  "name": "share",
-  "pattern": "/share(/:type)",
+  "name": "share_delete",
+  "pattern": "/share/delete/:id/:secret_key",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
+    {
+      "name": "save_data",
+      "taskModule": "firebaseRtbSet",
+      "renderer": "handlebars",
+      "config": {
+        "dataTemplate": ">context.metaData.handlebars.templates.database_firebase",
+        "setOrUpdate": "update",
+        "appName": "coronavirus",
+        "pathTemplate": "/submissions/{{@root.request.body.id}}/"
+      }
+    },
     {
       "name": "destination",
       "taskModule": "renderLayout",
@@ -20,7 +31,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.submissions_share"
+              "body": ">context.metaData.handlebars.templates.submissions_share-thanks"
             },
             "contentType": "text/html"
           }

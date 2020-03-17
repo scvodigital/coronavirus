@@ -1,25 +1,28 @@
 {
-  "name": "share_submit",
-  "pattern": "/share/submit",
+  "name": "share_update",
+  "pattern": "/share/update/:id/:secret_key",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
     {
-      "name": "id",
-      "taskModule": "render",
+      "name": "primaryResponse",
+      "taskModule": "firebaseRtbGet",
       "renderer": "handlebars",
       "config": {
-        "template": "{{hash (concat (moment null 'X') '-' (hash @root.request.body.title))}}",
-        "output": "data"
+        "appName": "coronavirus",
+        "pathTemplate": "/submissions/{{default @root.request.params.id 'null'}}/",
+        "defaultData": {}
       }
     },
     {
-      "name": "secret_key",
-      "taskModule": "render",
-      "renderer": "handlebars",
+      "name": "reroute",
+      "taskModule": "reroute",
       "config": {
-        "template": "{{hash (concat (hash @root.request.body.title) '-' (moment null 'X'))}}",
-        "output": "data"
+        "if": [
+          { "!=": [{"var": "data.primaryResponse.secret_key"}, {"var": "request.params.secret_key"}] },
+          "_default",
+          false
+        ]
       }
     },
     {
@@ -28,9 +31,9 @@
       "renderer": "handlebars",
       "config": {
         "dataTemplate": ">context.metaData.handlebars.templates.database_firebase",
-        "setOrUpdate": "set",
+        "setOrUpdate": "update",
         "appName": "coronavirus",
-        "pathTemplate": "/submissions/{{@root.data.id}}/"
+        "pathTemplate": "/submissions/{{@root.request.params.id}}/"
       }
     },
     {

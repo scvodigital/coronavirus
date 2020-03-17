@@ -1,5 +1,6 @@
 <div class="container">
-  {{#compare @root.request.params.type "assistance" ~}}
+  {{#ifAny (compare @root.route.name "share") (compare (concat '' @root.data.primaryResponse.secret_key) @root.request.params.secret_key) ~}}
+  {{#compare (default @root.request.params.type @root.data.primaryResponse.type) "assistance" ~}}
   <h2>Help or resources needed</h2>
   <p>
     If you are an organisation needing assistance, please describe this below.
@@ -8,7 +9,7 @@
   <h2>Share what help you can offer</h2>
   {{/compare ~}}
 
-  {{#unless @root.request.params.type ~}}
+  {{#unless (default @root.request.params.type @root.data.primaryResponse.type) ~}}
   <p>
     Lots of organisations want to help in the response the many challenges facing people, communities and our health and care services. Please use this form to share what help you can offer.
   </p>
@@ -20,10 +21,10 @@
     <li><a href="/share/organisations">To other organisations who are responding to the impact of the pandemic</a></li>
   </ul>
   {{else}}
-  {{#ifAny (compare @root.request.params.type "people") (compare @root.request.params.type "organisations") (compare @root.request.params.type "assistance") ~}}
-  <form action="/share/submit" method="post">
-    <input type="hidden" name="type" value="{{@root.request.params.type}}" />
-    {{#switch @root.request.params.type ~}}
+  {{#ifAny (compare (default @root.request.params.type @root.data.primaryResponse.type) "people") (compare (default @root.request.params.type @root.data.primaryResponse.type) "organisations") (compare (default @root.request.params.type @root.data.primaryResponse.type) "assistance") ~}}
+  <form action="/share/{{#compare @root.route.name 'submission_edit'}}update/{{@root.request.params.id}}/{{@root.request.params.secret_key}}{{else}}submit{{/compare}}" method="post">
+    <input type="hidden" name="type" value="{{default @root.request.params.type @root.data.primaryResponse.type}}" />
+    {{#switch (default @root.request.params.type @root.data.primaryResponse.type) ~}}
     {{#case "people" ~}}
     <h3>Help available to people</h3>
     {{/case ~}}
@@ -32,10 +33,10 @@
     {{/case ~}}
     {{/switch ~}}
 
-    {{#ifAny (compare @root.request.params.type "people") (compare @root.request.params.type "organisations") ~}}
+    {{#ifAny (compare (default @root.request.params.type @root.data.primaryResponse.type) "people") (compare (default @root.request.params.type @root.data.primaryResponse.type) "organisations") ~}}
     <div class="form-group">
       <label class="form-label">What is the main type of support you can offer?</label>
-      {{#switch @root.request.params.type ~}}
+      {{#switch (default @root.request.params.type @root.data.primaryResponse.type) ~}}
       {{#case "people" ~}}
       <label class="form-radio">
         <input type="radio" name="support" class="support-not-other-option" value="Emotional or psychosocial support">
@@ -87,7 +88,7 @@
       {{/switch ~}}
     </div>
     <div class="form-group hidden" id="support-other-field">
-      <textarea class="form-input" name="support-other-description" id="support-other-description" placeholder="" rows="3"></textarea>
+      <textarea class="form-input" name="support-other-description" id="support-other-description" placeholder="" rows="3">{{@root.data.primaryResponse.support-other-description}}</textarea>
     </div>
     <script>
     $('#support-other-option').click(function() {
@@ -99,7 +100,7 @@
     </script>
     {{/ifAny ~}}
 
-    {{#compare @root.request.params.type "assistance" ~}}
+    {{#compare (default @root.request.params.type @root.data.primaryResponse.type) "assistance" ~}}
     <div class="form-group">
       <label class="form-label" for="help-needed">What help do you need?</label>
       <textarea class="form-input" name="help-needed" id="help-needed" placeholder="" rows="3"></textarea>
@@ -108,174 +109,46 @@
 
     <div class="form-group">
       <label class="form-label">
-        {{#compare @root.request.params.type "assistance" ~}}
+        {{#compare (default @root.request.params.type @root.data.primaryResponse.type) "assistance" ~}}
         Where do you need it?
         {{else}}
         Where can you provide support?
         {{/compare ~}}
       </label>
+      {{#each (split "In a local community,Across one or more local authority areas,Across the whole of Scotland" ",") ~}}
       <label class="form-radio">
-        <input type="radio" name="where" id="where-local" value="In a local community" required>
-        <i class="form-icon"></i> In a local community
+        <input type="radio" name="where" id="where-{{slugify this}}" value="{{this}}" required{{#compare @root.data.primaryResponse.where this}} checked{{/compare}}>
+        <i class="form-icon"></i> {{this}}
       </label>
-      <label class="form-radio">
-        <input type="radio" name="where" id="where-areas" value="Across one or more local authority areas" required>
-        <i class="form-icon"></i> Across one or more local authority areas
-      </label>
-      <label class="form-radio">
-        <input type="radio" name="where" id="where-national" value="Across the whole of Scotland" required>
-        <i class="form-icon"></i> Across the whole of Scotland
-      </label>
+      {{/each ~}}
     </div>
-    <div class="form-group hidden" id="where-local-options">
+    <div class="form-group{{#unless (compare @root.data.primaryResponse.where 'In a local community')}} hidden{{/unless}}" id="where-local-options">
       <label class="form-label" for="postcodes">Please enter a postcode in the community you serve (e.g. your office location). Organisations will be able to search for support by how close it is to them. If you serve communities more than 5 miles apart, you can enter multiple postcodes, separated by commas.</label>
-      <input class="form-input" type="text" name="postcodes" id="postcodes" placeholder="e.g. EH3 6BB">
+      <input class="form-input" type="text" name="postcodes" id="postcodes" placeholder="e.g. EH3 6BB" value="{{@root.data.primaryResponse.postcodes}}" />
     </div>
-    <div class="form-group hidden" id="where-areas-options">
+    <div class="form-group{{#unless (compare @root.data.primaryResponse.where 'Across one or more local authority areas')}} hidden{{/unless}}" id="where-areas-options">
       <p>
         <strong>Please tick which area(s) you operate across.</strong>
       </p>
+      {{#each (split "Aberdeen,Aberdeenshire,Angus,Argyll & Bute,Clackmannanshire,Dumfries & Galloway,Dundee,East Ayrshire,East Dunbartonshire,East Lothian,East Renfrewshire,Edinburgh,Falkirk,Fife,Glasgow,Highland,Inverclyde,Midlothian,Moray,Na h-Eileanan Siar,North Ayrshire,North Lanarkshire,Orkney,Perth & Kinross,Renfrewshire,Scottish Borders,Shetland,South Ayrshire,South Lanarkshire,Stirling,West Dunbartonshire,West Lothian" ",") ~}}
       <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Aberdeen">
-        <i class="form-icon"></i> Aberdeen
+        <input type="checkbox" name="areas" class="areas" value="{{this}}"{{#if (contains this @root.data.primaryResponse.areas)}} checked{{/if}} />
+        <i class="form-icon"></i> {{this}}
       </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Aberdeenshire">
-        <i class="form-icon"></i> Aberdeenshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Angus">
-        <i class="form-icon"></i> Angus
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Argyll & Bute">
-        <i class="form-icon"></i> Argyll & Bute
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Clackmannanshire">
-        <i class="form-icon"></i> Clackmannanshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Dumfries & Galloway">
-        <i class="form-icon"></i> Dumfries & Galloway
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Dundee">
-        <i class="form-icon"></i> Dundee
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="East Ayrshire">
-        <i class="form-icon"></i> East Ayrshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="East Dunbartonshire">
-        <i class="form-icon"></i> East Dunbartonshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="East Lothian">
-        <i class="form-icon"></i> East Lothian
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="East Renfrewshire">
-        <i class="form-icon"></i> East Renfrewshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Edinburgh">
-        <i class="form-icon"></i> Edinburgh
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Falkirk">
-        <i class="form-icon"></i> Falkirk
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Fife">
-        <i class="form-icon"></i> Fife
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Glasgow">
-        <i class="form-icon"></i> Glasgow
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Highland">
-        <i class="form-icon"></i> Highland
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Inverclyde">
-        <i class="form-icon"></i> Inverclyde
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Midlothian">
-        <i class="form-icon"></i> Midlothian
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Moray">
-        <i class="form-icon"></i> Moray
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Na h-Eileanan Siar">
-        <i class="form-icon"></i> Na h-Eileanan Siar
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="North Ayrshire">
-        <i class="form-icon"></i> North Ayrshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="North Lanarkshire">
-        <i class="form-icon"></i> North Lanarkshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Orkney">
-        <i class="form-icon"></i> Orkney
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Perth & Kinross">
-        <i class="form-icon"></i> Perth & Kinross
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Renfrewshire">
-        <i class="form-icon"></i> Renfrewshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Scottish Borders">
-        <i class="form-icon"></i> Scottish Borders
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Shetland">
-        <i class="form-icon"></i> Shetland
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="South Ayrshire">
-        <i class="form-icon"></i> South Ayrshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="South Lanarkshire">
-        <i class="form-icon"></i> South Lanarkshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="Stirling">
-        <i class="form-icon"></i> Stirling
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="West Dunbartonshire">
-        <i class="form-icon"></i> West Dunbartonshire
-      </label>
-      <label class="form-checkbox">
-        <input type="checkbox" name="areas" class="areas" value="West Lothian">
-        <i class="form-icon"></i> West Lothian
-      </label>
+      {{/each ~}}
     </div>
     <script>
-    $('#where-local').click(function() {
+    $('#where-in-a-local-community').click(function() {
       $('#where-local-options').removeClass('hidden');
       $('#where-areas-options').addClass('hidden');
       $('.areas').prop('checked', false);
     });
-    $('#where-areas').click(function() {
+    $('#where-across-one-or-more-local-authority-areas').click(function() {
       $('#where-local-options').addClass('hidden');
       $('#where-areas-options').removeClass('hidden');
       $('#postcodes').val('');
     });
-    $('#where-national').click(function() {
+    $('#where-across-the-whole-of-scotland').click(function() {
       $('#where-local-options').addClass('hidden');
       $('#where-areas-options').addClass('hidden');
       $('#postcodes').val('');
@@ -283,29 +156,29 @@
     });
     </script>
 
-    {{#ifAny (compare @root.request.params.type "people") (compare @root.request.params.type "organisations") ~}}
+    {{#ifAny (compare (default @root.request.params.type @root.data.primaryResponse.type) "people") (compare (default @root.request.params.type @root.data.primaryResponse.type) "organisations") ~}}
     <div class="form-group">
       <label class="form-label" for="title">Please enter a brief summary of what you can offer</label>
-      <input class="form-input" type="text" name="title" id="title" maxlength="70" placeholder="e.g. Transportation services for carers">
+      <input class="form-input" type="text" name="title" id="title" maxlength="70" placeholder="e.g. Transportation services for carers" value="{{@root.data.primaryResponse.title}}" />
     </div>
 
     <div class="form-group">
       <label class="form-label" for="help-offered">What help can you offer? Please be very specific and realistic, rather than a description of your general services.</label>
-      <textarea class="form-input" name="help-offered" id="help-offered" placeholder="" rows="3"></textarea>
+      <textarea class="form-input" name="help-offered" id="help-offered" placeholder="" rows="3">{{@root.data.primaryResponse.help-offered}}</textarea>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="access-support">How can {{@root.request.params.type}} access your support?</label>
-      <textarea class="form-input" name="access-support" id="access-support" placeholder="" rows="3"></textarea>
+      <label class="form-label" for="access-support">How can {{default @root.request.params.type @root.data.primaryResponse.type}} access your support?</label>
+      <textarea class="form-input" name="access-support" id="access-support" placeholder="" rows="3">{{@root.data.primaryResponse.access-support}}</textarea>
     </div>
 
     <div class="form-group">
       <label class="form-label" for="organisation_name">Your organisation name</label>
-      <input class="form-input" type="text" name="organisation_name" id="organisation_name" maxlength="70" placeholder="e.g. SCVO">
+      <input class="form-input" type="text" name="organisation_name" id="organisation_name" maxlength="70" placeholder="e.g. SCVO" value="{{@root.data.primaryResponse.organisation_name}}">
     </div>
     {{/ifAny ~}}
 
-    {{#switch @root.request.params.type ~}}
+    {{#switch (default @root.request.params.type @root.data.primaryResponse.type) ~}}
     {{#case "people" ~}}
     <p>
       <strong>Where can people find out more? Please complete the contact details with specific links / contact details where people can access your support.</strong>
@@ -316,7 +189,7 @@
           <label class="form-label" for="website">Website</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="website" id="website" placeholder="e.g. https://example.com">
+          <input class="form-input" type="text" name="website" id="website" placeholder="e.g. https://example.com" value="{{@root.data.primaryResponse.organisation_name}}" />
         </div>
       </div>
       <div class="form-group">
@@ -324,7 +197,7 @@
           <label class="form-label" for="telephone">Telephone</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="telephone" id="telephone" placeholder="e.g. 0131 474 8000">
+          <input class="form-input" type="text" name="telephone" id="telephone" placeholder="e.g. 0131 474 8000" value="{{@root.data.primaryResponse.telephone}}" />
         </div>
       </div>
       <div class="form-group">
@@ -332,7 +205,7 @@
           <label class="form-label" for="email">Email</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="email" id="email" placeholder="e.g. info@example.com">
+          <input class="form-input" type="text" name="email" id="email" placeholder="e.g. info@example.com" value="{{@root.data.primaryResponse.email}}" />
         </div>
       </div>
       <div class="form-group">
@@ -340,7 +213,7 @@
           <label class="form-label" for="facebook">Facebook</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="facebook" id="facebook" placeholder="e.g. https://facebook.com/page">
+          <input class="form-input" type="text" name="facebook" id="facebook" placeholder="e.g. https://facebook.com/page" value="{{@root.data.primaryResponse.facebook}}" />
         </div>
       </div>
       <div class="form-group">
@@ -348,7 +221,7 @@
           <label class="form-label" for="twitter">Twitter</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="twitter" id="twitter" placeholder="e.g. https://twitter.com/account">
+          <input class="form-input" type="text" name="twitter" id="twitter" placeholder="e.g. https://twitter.com/account" value="{{@root.data.primaryResponse.twitter}}" />
         </div>
       </div>
     </div>
@@ -363,7 +236,7 @@
           <label class="form-label" for="name">Contact name</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="name" id="name" placeholder="e.g. Your Name">
+          <input class="form-input" type="text" name="name" id="name" placeholder="e.g. Your Name" value="{{@root.data.primaryResponse.name}}" />
         </div>
       </div>
       <div class="form-group">
@@ -371,7 +244,7 @@
           <label class="form-label" for="email">Email address</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="email" id="email" placeholder="e.g. info@example.com">
+          <input class="form-input" type="text" name="email" id="email" placeholder="e.g. info@example.com" value="{{@root.data.primaryResponse.email}}" />
         </div>
       </div>
       <div class="form-group">
@@ -379,7 +252,7 @@
           <label class="form-label" for="telephone">Telephone number</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="telephone" id="telephone" placeholder="e.g. 0131 474 8000">
+          <input class="form-input" type="text" name="telephone" id="telephone" placeholder="e.g. 0131 474 8000" value="{{@root.data.primaryResponse.telephone}}" />
         </div>
       </div>
       <div class="form-group">
@@ -387,7 +260,7 @@
           <label class="form-label" for="website">Website</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="website" id="website" placeholder="e.g. https://example.com">
+          <input class="form-input" type="text" name="website" id="website" placeholder="e.g. https://example.com" value="{{@root.data.primaryResponse.website}}" />
         </div>
       </div>
     </div>
@@ -402,7 +275,7 @@
           <label class="form-label" for="name">Contact name</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="name" id="name" placeholder="e.g. Your Name">
+          <input class="form-input" type="text" name="name" id="name" placeholder="e.g. Your Name" value="{{@root.data.primaryResponse.name}}" />
         </div>
       </div>
       <div class="form-group">
@@ -410,7 +283,7 @@
           <label class="form-label" for="email">Email address</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="email" id="email" placeholder="e.g. info@example.com">
+          <input class="form-input" type="text" name="email" id="email" placeholder="e.g. info@example.com" value="{{@root.data.primaryResponse.name}}" />
         </div>
       </div>
       <div class="form-group">
@@ -418,7 +291,7 @@
           <label class="form-label" for="telephone">Telephone number</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="telephone" id="telephone" placeholder="e.g. 0131 474 8000">
+          <input class="form-input" type="text" name="telephone" id="telephone" placeholder="e.g. 0131 474 8000" value="{{@root.data.primaryResponse.telephone}}" />
         </div>
       </div>
       <div class="form-group">
@@ -426,7 +299,7 @@
           <label class="form-label" for="website">Website</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="website" id="website" placeholder="e.g. https://example.com">
+          <input class="form-input" type="text" name="website" id="website" placeholder="e.g. https://example.com" value="{{@root.data.primaryResponse.website}}" />
         </div>
       </div>
     </div>
@@ -434,9 +307,19 @@
     {{/switch ~}}
 
     <div class="text-centre v-padding-full">
+      {{#compare @root.route.name "submission_edit" ~}}
+      <input type="submit" value="Update" class="btn btn-lg" />
+      <input type="button" value="Delete" class="btn bg-error btn-lg" disabled />
+      {{else}}
       <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
+      {{/compare ~}}
     </div>
   </form>
   {{/ifAny ~}}
   {{/unless ~}}
+  {{else}}
+  <p>
+    An error occurred, please try again.
+  </p>
+  {{/ifAny ~}}
 </div>
