@@ -6,7 +6,7 @@
     If you are an organisation needing assistance, please describe this below.
   </p>
   {{else}}
-  <h2>Share what help you can offer</h2>
+  <h2>{{#compare @root.route.name "share"}}Share{{else}}Update{{/compare}} what help you can offer</h2>
   {{/compare ~}}
 
   {{#unless (default @root.request.params.type @root.data.primaryResponse.type) ~}}
@@ -39,49 +39,49 @@
       {{#switch (default @root.request.params.type @root.data.primaryResponse.type) ~}}
       {{#case "people" ~}}
       <label class="form-radio">
-        <input type="radio" name="support" class="support-not-other-option" value="Emotional or psychosocial support">
+        <input type="radio" name="support" class="support-not-other-option" value="Emotional or psychosocial support"{{#compare @root.data.primaryResponse.support 'Emotional or psychosocial support'}} checked{{/compare}} />
         <i class="form-icon"></i> Emotional or psychosocial support (e.g. befriending)
       </label>
       <label class="form-radio">
-        <input type="radio" name="support" class="support-not-other-option" value="Food / grocery delivery">
+        <input type="radio" name="support" class="support-not-other-option" value="Food / grocery delivery"{{#compare @root.data.primaryResponse.support 'Food / grocery delivery'}} checked{{/compare}} />
         <i class="form-icon"></i> Food / grocery delivery
       </label>
       <label class="form-radio">
-        <input type="radio" name="support" class="support-not-other-option" value="Transportation">
+        <input type="radio" name="support" class="support-not-other-option" value="Transportation"{{#compare @root.data.primaryResponse.support 'Transportation'}} checked{{/compare}} />
         <i class="form-icon"></i> Transportation
       </label>
       <label class="form-radio">
-        <input type="radio" name="support" class="support-not-other-option" value="Information and advice">
+        <input type="radio" name="support" class="support-not-other-option" value="Information and advice"{{#compare @root.data.primaryResponse.support 'Information and advice'}} checked{{/compare}} />
         <i class="form-icon"></i> Information and advice
       </label>
       <label class="form-radio">
-        <input type="radio" name="support" value="Other" id="support-other-option">
+        <input type="radio" name="support" value="Other" id="support-other-option"{{#compare @root.data.primaryResponse.support 'Other'}} checked{{/compare}} />
         <i class="form-icon"></i> Other (please describe)
       </label>
       {{/case ~}}
       {{#case "organisations" ~}}
       <label class="form-radio">
-        <input type="radio" name="support" class="support-not-other-option" value="Care staff or trained volunteers">
+        <input type="radio" name="support" class="support-not-other-option" value="Care staff or trained volunteers"{{#compare @root.data.primaryResponse.support 'Care staff or trained volunteers'}} checked{{/compare}} />
         <i class="form-icon"></i> Care staff or trained volunteers
       </label>
       <label class="form-radio">
-        <input type="radio" name="support" class="support-not-other-option" value="Transportation / vehicles">
+        <input type="radio" name="support" class="support-not-other-option" value="Transportation / vehicles"{{#compare @root.data.primaryResponse.support 'Transportation / vehicles'}} checked{{/compare}} />
         <i class="form-icon"></i> Transportation / vehicles
       </label>
       <label class="form-radio">
-        <input type="radio" name="support" class="support-not-other-option" value="Discharge support">
+        <input type="radio" name="support" class="support-not-other-option" value="Discharge support"{{#compare @root.data.primaryResponse.support 'Discharge support support'}} checked{{/compare}} />
         <i class="form-icon"></i> Discharge support
       </label>
       <label class="form-radio">
-        <input type="radio" name="support" class="support-not-other-option" value="Premises">
+        <input type="radio" name="support" class="support-not-other-option" value="Premises"{{#compare @root.data.primaryResponse.support 'Premises'}} checked{{/compare}} />
         <i class="form-icon"></i> Premises
       </label>
       <label class="form-radio">
-        <input type="radio" name="support" class="support-not-other-option" value="Counselling / bereavement support">
+        <input type="radio" name="support" class="support-not-other-option" value="Counselling / bereavement support"{{#compare @root.data.primaryResponse.support 'Counselling / bereavement support'}} checked{{/compare}} />
         <i class="form-icon"></i> Counselling / bereavement support
       </label>
       <label class="form-radio">
-        <input type="radio" name="support" value="Other" id="support-other-option">
+        <input type="radio" name="support" value="Other" id="support-other-option"{{#compare @root.data.primaryResponse.support 'Other'}} checked{{/compare}} />
         <i class="form-icon"></i> Other (please describe)
       </label>
       {{/case ~}}
