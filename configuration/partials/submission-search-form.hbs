@@ -39,7 +39,7 @@
           <div class="input-group has-icon-left">
             <span data-component="Typeahead" data-Typeahead="typeahead-location">
               <span class="form-icon far fa-location geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="geolocation"></span>
-              <input type="text" id="where-submissions" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
+              <input type="text" id="where-submissions" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Postcode or town" data-lpignore="true">
             </span>
             <select class="form-select select-lg" id="distance" name="distance">
               {{#each (split "1,2,5,10,15,20,30,50" ",")}}

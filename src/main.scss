@@ -1268,8 +1268,8 @@ a.author:hover,
     background: none;
   }
 }
-.bg-yellow {
-  background: $yellow-color !important;
+.bg-blue {
+  background: $blue-color !important;
   color: $secondary-color;
   // .container {
   //   background-image: url('https://scvo.scot/rouleaux.svg?color=FFDD02&style=stripes');
@@ -1290,9 +1290,9 @@ a.author:hover,
     }
   }
 }
-.bg-yellow:hover {
+.bg-blue:hover {
   a {
-    color: $primary-color-dark;
+    color: $secondary-color-dark;
   }
 }
 
@@ -1413,6 +1413,13 @@ a.author:hover,
 }
 a.rss {
   color: $warning-color;
+}
+.label.label-warning {
+  background: $green-color;
+  color: $secondary-color;
+  a {
+    color: $secondary-color;
+  }
 }
 .btn-link:hover {
   background-color: transparent;
