@@ -273,7 +273,7 @@
     </div>
 
     {{#ifAll layoutParts.sidebar @root.data.accountInfo.user_type (compare @root.data.accountInfo.approval_needed false) ~}}
-    <div class="sidebar-present v-margin-full b-padding-full">
+    <div class="sidebar-present t-padding-full">
       <div class="columns col-gapless">
         <aside class="sidebar column col-2 col-lg-3 col-xl-3 hide-lg">
           {{{layoutParts.sidebar}}}
@@ -284,7 +284,7 @@
       </div>
     </div>
     {{else}}
-    <div class="sidebar-not-present v-margin-full b-padding-full">
+    <div class="sidebar-not-present t-padding-full">
       <main class="body">
         {{{layoutParts.body}}}
       </main>
