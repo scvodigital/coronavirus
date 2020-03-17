@@ -306,6 +306,30 @@
     {{/case ~}}
     {{/switch ~}}
 
+    {{#compare @root.route.name "submission" ~}}
+    <p>
+      <strong>Please enter your details so we can send you a unique link allowing you to edit or delete your submission.</strong>
+    </p>
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="author-name">Your name (not published)</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="author-name" id="author-name" placeholder="e.g. Your Name" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-3 col-sm-12">
+          <label class="form-label" for="author-email">Email address</label>
+        </div>
+        <div class="col-9 col-sm-12">
+          <input class="form-input" type="text" name="author-email" id="author-email" placeholder="e.g. yourname@example.com" />
+        </div>
+      </div>
+    </div>
+    {{/compare ~}}
+
     <div class="text-centre v-padding-full">
       {{#compare @root.route.name "submission_edit" ~}}
       <input type="submit" value="Update" class="btn btn-lg" />
