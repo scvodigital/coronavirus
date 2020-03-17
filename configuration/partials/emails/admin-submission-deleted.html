@@ -178,7 +178,8 @@
                                           <p> Hello, </p>
                                           <p> A submission has been deleted from {{@root.context.metaData.title}} {{@root.context.metaData.tagline}}. </p>
                                           <p> Title: {{@root.request.body.title}}. </p>
-                                          <p> You can see the deleted submission via the following link: <a href="{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{slugify @root.request.body.title}}/edit/{{@root.data.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{slugify @root.request.body.title}}/edit/{{@root.data.secret_key}}</a>. </p>
+                                          <p> You can see the deleted submission via the following link:<br />
+                                            <a href="{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{slugify @root.request.body.title}}/edit/{{@root.request.params.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{slugify @root.request.body.title}}/edit/{{@root.request.params.secret_key}}</a>. </p>
                                           <p> Thank you<br />
                                             {{@root.context.metaData.title}} {{@root.context.metaData.tagline}}
                                           </p>
