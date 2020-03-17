@@ -9,7 +9,16 @@
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
-        "template": "{{hash (concat (moment null 'X') '-' (hash @root.request.body.help-offered))}}",
+        "template": "{{hash (concat (moment null 'X') '-' (hash @root.request.body.title))}}",
+        "output": "data"
+      }
+    },
+    {
+      "name": "secret_key",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": "{{hash (concat (hash @root.request.body.title) '-' (moment null 'X'))}}",
         "output": "data"
       }
     },

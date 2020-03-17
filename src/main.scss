@@ -534,6 +534,9 @@ footer a {
   background: none;
   border: none;
 }
+#map-content-primary a {
+  background: white;
+}
 .bg-goodmoves a:hover {
   color: $secondary-color-dark;
 }
