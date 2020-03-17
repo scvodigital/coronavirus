@@ -23,7 +23,7 @@
             </p>
 
             <p>
-              You can see the deleted submission via the following link:
+              You can see the deleted submission via the following link:<br />
               <a href="{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{slugify @root.request.body.title}}/edit/{{@root.request.params.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{slugify @root.request.body.title}}/edit/{{@root.request.params.secret_key}}</a>.
             </p>
 
