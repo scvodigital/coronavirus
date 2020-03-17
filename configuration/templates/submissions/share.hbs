@@ -34,7 +34,7 @@
     {{/switch ~}}
 
     {{#ifAny (compare (default @root.request.params.type @root.data.primaryResponse.type) "people") (compare (default @root.request.params.type @root.data.primaryResponse.type) "organisations") ~}}
-    <div class="form-group">
+    <div class="form-group t-margin-full">
       <label class="form-label">What is the main type of support you can offer?</label>
       {{#switch (default @root.request.params.type @root.data.primaryResponse.type) ~}}
       {{#case "people" ~}}
@@ -96,18 +96,24 @@
     });
     $('.support-not-other-option').click(function() {
       $('#support-other-field').addClass('hidden');
+      $('#support-other-description').val('');
     });
     </script>
     {{/ifAny ~}}
 
     {{#compare (default @root.request.params.type @root.data.primaryResponse.type) "assistance" ~}}
-    <div class="form-group">
-      <label class="form-label" for="help-needed">What help do you need?</label>
+    <div class="form-group t-margin-full">
+      <label class="form-label" for="title">Please enter a brief summary of what you need</label>
+      <input class="form-input" type="text" name="title" id="title" maxlength="70" placeholder="" value="{{@root.data.primaryResponse.title}}" required />
+    </div>
+
+    <div class="form-group t-margin-full">
+      <label class="form-label" for="help-needed">What help do you need in greater detail?</label>
       <textarea class="form-input" name="help-needed" id="help-needed" placeholder="" rows="3"></textarea>
     </div>
     {{/compare ~}}
 
-    <div class="form-group">
+    <div class="form-group t-margin-full">
       <label class="form-label">
         {{#compare (default @root.request.params.type @root.data.primaryResponse.type) "assistance" ~}}
         Where do you need it?
@@ -157,22 +163,22 @@
     </script>
 
     {{#ifAny (compare (default @root.request.params.type @root.data.primaryResponse.type) "people") (compare (default @root.request.params.type @root.data.primaryResponse.type) "organisations") ~}}
-    <div class="form-group">
+    <div class="form-group t-margin-full">
       <label class="form-label" for="title">Please enter a brief summary of what you can offer</label>
-      <input class="form-input" type="text" name="title" id="title" maxlength="70" placeholder="e.g. Transportation services for carers" value="{{@root.data.primaryResponse.title}}" />
+      <input class="form-input" type="text" name="title" id="title" maxlength="70" placeholder="e.g. Transportation services for carers" value="{{@root.data.primaryResponse.title}}" required />
     </div>
 
-    <div class="form-group">
+    <div class="form-group t-margin-full">
       <label class="form-label" for="help-offered">What help can you offer? Please be very specific and realistic, rather than a description of your general services.</label>
       <textarea class="form-input" name="help-offered" id="help-offered" placeholder="" rows="3">{{@root.data.primaryResponse.help-offered}}</textarea>
     </div>
 
-    <div class="form-group">
+    <div class="form-group t-margin-full">
       <label class="form-label" for="access-support">How can {{default @root.request.params.type @root.data.primaryResponse.type}} access your support?</label>
       <textarea class="form-input" name="access-support" id="access-support" placeholder="" rows="3">{{@root.data.primaryResponse.access-support}}</textarea>
     </div>
 
-    <div class="form-group">
+    <div class="form-group t-margin-full">
       <label class="form-label" for="organisation_name">Your organisation name</label>
       <input class="form-input" type="text" name="organisation_name" id="organisation_name" maxlength="70" placeholder="e.g. SCVO" value="{{@root.data.primaryResponse.organisation_name}}">
     </div>
@@ -180,7 +186,7 @@
 
     {{#switch (default @root.request.params.type @root.data.primaryResponse.type) ~}}
     {{#case "people" ~}}
-    <p>
+    <p class="t-margin-full">
       <strong>Where can people find out more? Please complete the contact details with specific links / contact details where people can access your support.</strong>
     </p>
     <div class="form-horizontal">
@@ -227,7 +233,7 @@
     </div>
     {{/case ~}}
     {{#case "organisations" ~}}
-    <p>
+    <p class="t-margin-full">
       <strong>How should organisations / professionals get in touch? Please complete the contact details with specific contact details to access your support.</strong>
     </p>
     <div class="form-horizontal">
@@ -266,7 +272,7 @@
     </div>
     {{/case ~}}
     {{#case "assistance" ~}}
-    <p>
+    <p class="t-margin-full">
       <strong>How can people get in touch to offer help? Please complete the contact details with specific contact details to offer help.</strong>
     </p>
     <div class="form-horizontal">
@@ -306,8 +312,8 @@
     {{/case ~}}
     {{/switch ~}}
 
-    {{#compare @root.route.name "submission" ~}}
-    <p>
+    {{#compare @root.route.name "share" ~}}
+    <p class="t-margin-full">
       <strong>Please enter your details so we can send you a unique link allowing you to edit or delete your submission.</strong>
     </p>
     <div class="form-horizontal">
@@ -316,7 +322,7 @@
           <label class="form-label" for="author-name">Your name (not published)</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="author-name" id="author-name" placeholder="e.g. Your Name" />
+          <input class="form-input" type="text" name="author-name" id="author-name" placeholder="e.g. Your Name" required />
         </div>
       </div>
       <div class="form-group">
@@ -324,7 +330,7 @@
           <label class="form-label" for="author-email">Email address</label>
         </div>
         <div class="col-9 col-sm-12">
-          <input class="form-input" type="text" name="author-email" id="author-email" placeholder="e.g. yourname@example.com" />
+          <input class="form-input" type="text" name="author-email" id="author-email" placeholder="e.g. yourname@example.com" required />
         </div>
       </div>
     </div>
