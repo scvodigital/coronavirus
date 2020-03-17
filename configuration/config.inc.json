@@ -12,6 +12,11 @@
     "assetsBase": "https://storage.googleapis.com/scvo-assets/test/coronavirus/",
     "title": "COVID-19",
     "tagline": "Help in your community",
+    "contacts": {
+      "admin": "calum.macuisdean@scvo.org.uk",
+      "noreply": "no-reply@scvo.org.uk",
+      "technical": "webhelpdesk@scvo.org.uk"
+    },
     "url": "https://covid-19.scvo.org",
     "searchKnobs": "{:./data/search-knobs.json}",
     "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",
