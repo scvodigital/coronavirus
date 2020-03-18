@@ -19,6 +19,12 @@
       "route": "^/help/needed|^/share/assistance"
     },
     {
+      "label": "Organisations",
+      "icon": "",
+      "path": "/organisations",
+      "route": "^/organisations$"
+    },
+    {
       "label": "Volunteer",
       "icon": "",
       "path": "/volunteer",

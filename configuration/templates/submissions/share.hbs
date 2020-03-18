@@ -7,6 +7,9 @@
   </p>
   {{else}}
   <h2>{{#compare @root.route.name "share"}}Share{{else}}Update{{/compare}} what help you can offer</h2>
+  <p>
+    Please only log help if you are an organisation. Individuals should see how they can support people in their community through <a href="/volunteering">volunteering</a>.
+  </p>
   {{/compare ~}}
 
   {{#unless (default @root.request.params.type @root.data.primaryResponse.type) ~}}
