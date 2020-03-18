@@ -1277,6 +1277,7 @@ a.author:hover,
   //   background-position-y: 54%;
   // }
   a {
+    color: $secondary-color;
     border: none;
     display: block;
     background: none;
@@ -1295,6 +1296,44 @@ a.author:hover,
     color: $secondary-color-dark;
   }
 }
+
+.main-menu {
+  padding-top: $unit;
+  .btn-link {
+    display: inline-block;
+    color: $secondary-color;
+    padding-left: 0;
+    padding-right: $padding;
+  }
+  .btn-link:hover,
+  .btn-link.active {
+    color: $secondary-color-dark;
+  }
+}
+
+a.bg-yellow {
+  background: $yellow-color !important;
+  border: none;
+  display: block;
+  color: $secondary-color;
+  .columns {
+    margin-left: -($padding/2);
+    margin-right: -($padding/2);
+    .column {
+      padding-left: $padding/2;
+      padding-right: $padding/2;
+    }
+  }
+}
+a.bg-yellow:hover {
+  h2,
+  h3,
+  .fa-fw,
+  .link-hover {
+    color: $primary-color-dark;
+  }
+}
+
 
 .bg-gradient {
   background-image: linear-gradient(100deg, $secondary-color 10%, $primary-color 85%) !important;
@@ -2931,6 +2970,7 @@ figure,
   h1, h2, h3, h4, div, p, li, div, td, th {
     color: white !important;
   }
+  a.bg-blue:hover,
   a.bg-yellow:hover {
     color: $secondary-color !important;
   }

@@ -1,4 +1,30 @@
 {
+  "nav": [
+    {
+      "label": "Help for you",
+      "icon": "heart",
+      "path": "/help/for-people",
+      "route": "^/help/for-people"
+    },
+    {
+      "label": "Help for your organisation",
+      "icon": "heart",
+      "path": "/help/for-organisations",
+      "route": "^/help/for-organisations"
+    },
+    {
+      "label": "Organisations needing help",
+      "icon": "heart",
+      "path": "/help/needed",
+      "route": "^/help/needed"
+    },
+    {
+      "label": "Volunteer",
+      "icon": "heart",
+      "path": "/volunteer",
+      "route": "^/volunteer$"
+    }
+  ],
   "footer-help": [
     {
       "label": "Accessibility",

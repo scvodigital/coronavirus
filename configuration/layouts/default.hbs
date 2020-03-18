@@ -134,53 +134,36 @@
           <h1 class="no-margin t-padding">Coronavirus/COVID-19</h1>
           <h2 class="no-margin b-padding-full">{{@root.context.metaData.tagline}}</h2>
         </a>
-      </div>
-    </header>
-        {{!-- <div class="columns">
-          <div class="column col-10 col-lg-9 col-md-8 col-sm-7"> --}}
-          {{!-- </div> --}}
-          {{!-- <div class="column col-2 col-lg-3 col-md-4 col-sm-5 align-centre">
-            <a href="https://scvo.org" class="brand-logo scvo-logo" title="Scottish Council for Voluntary Organisations">
-              <img src="{{~>asset_url url='images/logos/scvo-secondary.svg'~}}" alt="Scottish Council for Voluntary Organisations" />
-            </a>
-          </div> --}}
-        {{!-- </div> --}}
-    {{!--
-    <header class="container">
-      <section class="brand">
-        <a href="/" class="logo">
-          Coronavirus/COVID-19
-        </a>
-      </section>
-      <div class="mobile-menu-button show-lg">
-        <a href="javascript:void()" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
-          data-TasksTrigger='{
-            click: {
-              tasks: [
-              {
-                type: "elementManipulator",
-                config: {
-                  ".mobile-menu": {
-                    "removeClass": "mobile-menu_closed mobile-menu_closing",
-                    "addClass": "mobile-menu_open"
+        <div class="mobile-menu-button show-lg">
+          <a href="javascript:void()" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
+            data-TasksTrigger='{
+              click: {
+                tasks: [
+                {
+                  type: "elementManipulator",
+                  config: {
+                    ".mobile-menu": {
+                      "removeClass": "mobile-menu_closed mobile-menu_closing",
+                      "addClass": "mobile-menu_open"
+                    }
                   }
                 }
+                ]
               }
-              ]
-            }
-          }'>
-          <span class="far fa-bars fa-2x" aria-hidden="true"></span>
-        </a>
-      </div>
-      <section class="nav hide-lg">
-        <div class="main-menu">
-          <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
-          {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-            <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
-          {{/each}}
+            }'>
+            <span class="far fa-bars fa-2x" aria-hidden="true"></span>
+          </a>
         </div>
-      </section>
-    </header> --}}
+        <section class="nav hide-lg">
+          <div class="main-menu">
+            <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} active{{/if}}">Home</a>
+            {{#each @root.context.metaData.menus.nav ~}}
+              <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">{{label}}</a>
+            {{/each}}
+          </div>
+        </section>
+      </div>
+    </header>
 
     <div class="mobile-menu mobile-menu_closed">
       <div class="mobile-menu_background" data-component="TasksTrigger" data-TasksTrigger='{
@@ -257,7 +240,7 @@
                 Home
               </a>
             </li>
-            {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+            {{#each @root.context.metaData.menus.nav ~}}
               <li class="menu-item">
                 <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
                   {{#if icon ~}}
@@ -293,6 +276,8 @@
 
     <div id="toaster"></div>
 
+    {{> layout_covid_19}}
+
     <div class="bg-header" style="min-height:40vh; background-image: url('{{~>asset_url url='images/crop_coronavirus.jpg'~}}'); background-position-y:69%;"></div>
 
     <footer class="footer">
@@ -312,7 +297,8 @@
             <div class="column col-9 col-xl-6 col-md-12 about">
               <h4>About</h4>
               <p class="b-margin">
-                This site is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a>.
+                This site is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a>. <a href="https://scvo.org/support/covid-19">Find out more</a>
+                 {{!-- and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> --}}
               </p>
             </div>
           </div>
@@ -328,9 +314,9 @@
               </p>
             </div>
             <div class="logos column col-4 col-xl-12">
-              <a href="https://www.gov.scot/policies/third-sector" class="brand-logo sg-logo" title="Scottish Government">
+              {{!-- <a href="https://www.gov.scot/policies/third-sector" class="brand-logo sg-logo" title="Scottish Government">
                 <img src="{{~>asset_url url='images/logos/sg_reversed.png'~}}" alt="Scottish Government" />
-              </a>
+              </a> --}}
               <a href="https://scvo.org" class="brand-logo scvo-logo" title="Scottish Council for Voluntary Organisations">
                 <img src="{{~>asset_url url='images/logos/scvo-white.svg'~}}" alt="Scottish Council for Voluntary Organisations" />
               </a>
