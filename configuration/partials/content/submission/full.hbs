@@ -32,7 +32,7 @@
         </p>
         {{/compare ~}}
         {{#compare where "Across one or more local authority areas" ~}}
-        <h4>Support provided in {{inflect (length (arrayify (split areas ','))) "this area" "these areas"}}</h4>
+        <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} in {{inflect (length (arrayify (split areas ','))) "this area" "these areas"}}</h4>
         {{#compare (length (arrayify (split areas ','))) ">" 0 ~}}
         <p>
           {{#each (arrayify (split areas ',')) ~}}
@@ -42,7 +42,7 @@
         {{/compare ~}}
         {{/compare ~}}
         {{#compare where "Across the whole of Scotland" ~}}
-        <h4>Support provided across the whole of Scotland</h4>
+        <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} across the whole of Scotland</h4>
         {{/compare ~}}
         {{#ifAny name website telephone email facebook twitter ~}}
         <h4>More information</h4>
