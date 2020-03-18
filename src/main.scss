@@ -283,6 +283,7 @@ h2 {
   }
   .caption {
     font-size: 1rem;
+    letter-spacing: -0.05rem;
   }
 }
 .card-title.h3,
@@ -1276,11 +1277,15 @@ a.author:hover,
   //   background-size: cover;
   //   background-position-y: 54%;
   // }
+  .fa-bars,
   a {
     color: $secondary-color;
     border: none;
     display: block;
     background: none;
+  }
+  a:hover {
+    color: $secondary-color-dark;
   }
   .columns {
     margin-left: -($padding/2);
@@ -1291,23 +1296,31 @@ a.author:hover,
     }
   }
 }
-.bg-blue:hover {
-  a {
-    color: $secondary-color-dark;
-  }
-}
 
-.main-menu {
-  padding-top: $unit;
-  .btn-link {
-    display: inline-block;
-    color: $secondary-color;
-    padding-left: 0;
-    padding-right: $padding;
-  }
-  .btn-link:hover,
-  .btn-link.active {
-    color: $secondary-color-dark;
+.nav {
+  margin: 0;
+  .main-menu {
+    height: 40px;
+    // padding-top: $unit;
+    a {
+      display: inline-block;
+      color: white;
+      padding: 0;
+      background: none;
+      border-radius: 0;
+      border-top: $thick-line solid transparent;
+      border-right: 0;
+      border-left: 0;
+      border-bottom: $thick-line solid transparent;
+      margin: 0 $padding 0 0;
+      line-height: 30px;
+      height: 40px;
+    }
+    a:hover,
+    a.active {
+      color: $primary-color-light;
+      border-bottom-color: $primary-color-light;
+    }
   }
 }
 
@@ -1785,6 +1798,15 @@ aside {
   .mobile-search,
   .mobile-menu {
     display: block;
+    .mobile-menu_contents {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: $primary-color;
+      z-index: 10;
+    }
     .mobile-contents {
       position: fixed;
       height: 100vh;
@@ -2505,9 +2527,9 @@ footer {
   .container {
     padding: 0 $unit/2;
   }
-  .page {
-    padding-top: $unit/2;
-  }
+  // .page {
+  //   padding-top: $unit/2;
+  // }
   .mobile-search .mobile-contents,
   .mobile-menu .mobile-contents {
     padding: $unit $unit/2;

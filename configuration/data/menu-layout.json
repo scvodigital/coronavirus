@@ -2,25 +2,25 @@
   "nav": [
     {
       "label": "Help for you",
-      "icon": "heart",
+      "icon": "",
       "path": "/help/for-people",
-      "route": "^/help/for-people"
+      "route": "^/help/for-people|^/share/people"
     },
     {
       "label": "Help for your organisation",
-      "icon": "heart",
+      "icon": "",
       "path": "/help/for-organisations",
-      "route": "^/help/for-organisations"
+      "route": "^/help/for-organisations|^/share/organisations"
     },
     {
       "label": "Organisations needing help",
-      "icon": "heart",
+      "icon": "",
       "path": "/help/needed",
-      "route": "^/help/needed"
+      "route": "^/help/needed|^/share/assistance"
     },
     {
       "label": "Volunteer",
-      "icon": "heart",
+      "icon": "",
       "path": "/volunteer",
       "route": "^/volunteer$"
     }

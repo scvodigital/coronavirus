@@ -130,11 +130,7 @@
 
     <header class="bg-blue">
       <div class="container v-padding-full">
-        <a href="/" class="site-title v-margin">
-          <h1 class="no-margin t-padding">Coronavirus/COVID-19</h1>
-          <h2 class="no-margin b-padding-full">{{@root.context.metaData.tagline}}</h2>
-        </a>
-        <div class="mobile-menu-button show-lg">
+        <div class="mobile-menu-button show-lg pull-right">
           <a href="javascript:void()" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
             data-TasksTrigger='{
               click: {
@@ -154,11 +150,19 @@
             <span class="far fa-bars fa-2x" aria-hidden="true"></span>
           </a>
         </div>
+        <a href="/" class="site-title v-margin">
+          <h1 class="no-margin t-padding">Coronavirus/COVID-19</h1>
+          <h2 class="no-margin b-padding-full">{{@root.context.metaData.tagline}}</h2>
+        </a>
+      </div>
+    </header>
+    <header class="bg-secondary">
+      <div class="container">
         <section class="nav hide-lg">
           <div class="main-menu">
-            <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} active{{/if}}">Home</a>
+            <a href="/" class="{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">Home</a>
             {{#each @root.context.metaData.menus.nav ~}}
-              <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">{{label}}</a>
+              <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
             {{/each}}
           </div>
         </section>
@@ -198,8 +202,8 @@
         }
       }'></div>
       <aside class="mobile-menu_contents sidebar">
-        <div class="b-margin-full b-padding-full v-padding">
-          <h2 class="l-padding-full">
+        <div class="b-margin-full h-padding-full b-padding-full v-padding">
+          <h2 class="l-padding">
             Menu
             <span class="far fa-angle-left fa-fw pull-right" data-component="TasksTrigger" data-TasksTrigger='{
               click: {
@@ -235,14 +239,14 @@
           </h2>
           <ul class="menu">
             <li class="menu-item">
-              <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">
+              <a href="/" class="{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">
                 <span class="far fa-fw fa-home" aria-hidden="true"></span>
                 Home
               </a>
             </li>
             {{#each @root.context.metaData.menus.nav ~}}
               <li class="menu-item">
-                <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
+                <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
                   {{#if icon ~}}
                   <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
                   {{/if ~}}
@@ -297,7 +301,7 @@
             <div class="column col-9 col-xl-6 col-md-12 about">
               <h4>About</h4>
               <p class="b-margin">
-                This site is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a>. <a href="https://scvo.org/support/covid-19">Find out more</a>
+                This site is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a>. <a href="https://scvo.org/about">Find out more</a>
                  {{!-- and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> --}}
               </p>
             </div>
