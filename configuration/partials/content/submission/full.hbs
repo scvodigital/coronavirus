@@ -26,7 +26,7 @@
         </p>
         {{/if ~}}
         {{#compare where "In a local community" ~}}
-        <h4>Support provided locally</h4>
+        <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} locally</h4>
         <p>
           {{inflect (arrayify postcodes) "Postcode" "Postcodes"}}: {{#each (arrayify postcodes)}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
         </p>
