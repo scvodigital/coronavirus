@@ -3,7 +3,9 @@
     <mj-wrapper background-color="#ffffff" padding="0px" margin="0px" width="100%">
       <mj-section background-color="#244B5A" padding="0px" margin="0px" width="100%">
         <mj-column padding="10px" margin="0px" width="100%">
-          <h1 font-family="Helvetica, Arial, sans-serif" color="#ffffff">{{@root.context.metaData.title}}</h1>
+          <mj-text font-size="30px" padding="0px" line-height="40px" color="#ffffff" font-family="Helvetica, Arial, sans-serif">
+            {{@root.context.metaData.title}}
+          </mj-text>
         </mj-column>
       </mj-section>
 
