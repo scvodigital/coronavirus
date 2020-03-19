@@ -102,9 +102,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-  {{!-- <div class="text-white bg-error text-centre v-padding">
-    This website is currently in development
-  </div> --}}
+  <div class="text-white bg-primary text-centre v-padding">
+    This site just launched so there is limited content at the moment, please add your offers and asks for assistance
+  </div>
   <div class="page">
   {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
     {{#if errors.[0]}}
