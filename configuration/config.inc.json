@@ -2,7 +2,8 @@
   "domains": [
     "covid-19.local",
     "coronavirus.local",
-    "covid-19.scvo.org"
+    "covid-19.scvo.org",
+    "covid-19.scvo.org.uk"
   ],
   "routes": [
     "{:./routes/*.json}"
