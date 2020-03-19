@@ -108,7 +108,7 @@
       {{/case ~}}
       {{/switch ~}}
     </div>
-    <div class="form-group hidden" id="support-other-field">
+    <div class="form-group{{#unless (compare @root.data.primaryResponse.support 'Other')}} hidden{{/unless}}" id="support-other-field">
       <textarea class="form-input" name="support-other-description" id="support-other-description" placeholder="" rows="3">{{@root.data.primaryResponse.support-other-description}}</textarea>
     </div>
     <script>
