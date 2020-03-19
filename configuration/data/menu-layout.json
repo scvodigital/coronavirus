@@ -1,22 +1,22 @@
 {
   "nav": [
     {
-      "label": "Help for you",
+      "label": "Help near you",
       "icon": "",
       "path": "/help/for-people",
       "route": "^/help/for-people|^/share/people"
-    },
-    {
-      "label": "Help for your organisation",
-      "icon": "",
-      "path": "/help/for-organisations",
-      "route": "^/help/for-organisations|^/share/organisations"
     },
     {
       "label": "Organisations needing help",
       "icon": "",
       "path": "/help/needed",
       "route": "^/help/needed|^/share/assistance"
+    },
+    {
+      "label": "Help for your organisation",
+      "icon": "",
+      "path": "/help/for-organisations",
+      "route": "^/help/for-organisations|^/share/organisations"
     },
     {
       "label": "For organisations",
