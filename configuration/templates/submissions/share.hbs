@@ -94,6 +94,10 @@
         <i class="form-icon"></i> Premises
       </label>
       <label class="form-radio">
+        <input type="radio" name="support" class="support-not-other-option" value="Information and advice"{{#compare @root.data.primaryResponse.support 'Information and advice'}} checked{{/compare}} />
+        <i class="form-icon"></i> Information and advice
+      </label>
+      <label class="form-radio">
         <input type="radio" name="support" class="support-not-other-option" value="Counselling / bereavement support"{{#compare @root.data.primaryResponse.support 'Counselling / bereavement support'}} checked{{/compare}} />
         <i class="form-icon"></i> Counselling / bereavement support
       </label>
