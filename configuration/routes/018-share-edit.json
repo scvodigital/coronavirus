@@ -20,7 +20,7 @@
       "config": {
         "if": [
           { "!=": [{"var": "data.primaryResponse.secret_key"}, {"var": "request.params.secret_key"}] },
-          "_default",
+          "five_hundred",
           false
         ]
       }

@@ -37,7 +37,9 @@
   </ul>
   {{else}}
   {{#ifAny (compare (default @root.request.params.type @root.data.primaryResponse.type) "people") (compare (default @root.request.params.type @root.data.primaryResponse.type) "organisations") (compare (default @root.request.params.type @root.data.primaryResponse.type) "assistance") ~}}
-  <form action="/share/{{#compare @root.route.name 'submission_edit'}}update/{{@root.request.params.id}}/{{@root.request.params.secret_key}}{{else}}submit{{/compare}}" method="post">
+  <form action="/share/{{#compare @root.route.name 'submission_edit'}}update/{{@root.request.params.id}}/{{@root.request.params.secret_key}}{{else}}submit{{/compare}}" method="post" id="share">
+    {{!-- <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response" /> --}}
+    <input type="hidden" name="action" value="validate_captcha" />
     <input type="hidden" name="type" value="{{default @root.request.params.type @root.data.primaryResponse.type}}" />
     {{#switch (default @root.request.params.type @root.data.primaryResponse.type) ~}}
     {{#case "people" ~}}
@@ -203,7 +205,7 @@
 
     <div class="form-group t-margin-full">
       <label class="form-label" for="organisation_name">Your organisation name</label>
-      <input class="form-input" type="text" name="organisation_name" id="organisation_name" maxlength="70" placeholder="e.g. SCVO" value="{{@root.data.primaryResponse.organisation_name}}">
+      <input class="form-input" type="text" name="organisation_name" id="organisation_name" maxlength="70" placeholder="e.g. SCVO" value="{{@root.data.primaryResponse.organisation_name}}" required />
     </div>
     {{/ifAny ~}}
 
@@ -363,7 +365,7 @@
       {{#compare @root.route.name "submission_edit" ~}}
       <input type="submit" value="Update" class="btn btn-lg" />
       {{else}}
-      <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
+      <input type="button" value="Submit" id="validate" class="btn btn-primary btn-lg" />
       {{/compare ~}}
     </div>
   </form>
@@ -380,3 +382,17 @@
   </p>
   {{/ifAny ~}}
 </div>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LdlceIUAAAAAEB_DGTWR7hfR0EfHtl8Rz52pH6l"></script>
+<script>
+$('#validate').click(function() {
+  grecaptcha.ready(function() {
+    grecaptcha.execute('6LdlceIUAAAAAEB_DGTWR7hfR0EfHtl8Rz52pH6l', {action:'validate_captcha'})
+        .then(function(token) {
+      $('<input />').attr("type", "hidden").attr("name", "recaptcha_response").attr("value", token).appendTo('#share');
+      $('#share')[0].submit();
+    });
+  });
+  return true;
+});
+</script>
