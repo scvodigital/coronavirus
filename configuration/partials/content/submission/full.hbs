@@ -60,7 +60,7 @@
             <strong>Website</strong>
           </div>
           <div class="column col-9 col-md-8 col-sm-12">
-            <a href="{{fixUrl website}}">{{website}}</a>
+            <a href="{{#if (contains website 'http')}}{{fixUrl website}}{{else}}http://{{website}}{{/if}}">{{website}}</a>
           </div>
           {{/if ~}}
           {{#if telephone ~}}
@@ -92,7 +92,7 @@
             <strong>Twitter</strong>
           </div>
           <div class="column col-9 col-md-8 col-sm-12">
-            <a href="{{fixUrl twitter}}">{{twitter}}</a>
+            <a href="{{#if (contains twitter 'twitter.com')}}{{fixUrl twitter}}{{else}}https://twitter.com/{{replace twitter '@' ''}}{{/if}}">{{twitter}}</a>
           </div>
           {{/if ~}}
         </div>
