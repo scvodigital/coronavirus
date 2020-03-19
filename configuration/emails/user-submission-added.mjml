@@ -15,7 +15,7 @@
             </p>
 
             <p>
-              Thank you for your submission of what your organisation can do to help, it will shortly be published on {{@root.context.metaData.title}} {{@root.context.metaData.tagline}}.
+              Thank you for your submission of what your organisation {{#compare @root.request.body.type "needed"}}needs{{else}}can do to help{{/compare}}, it will shortly be published on {{@root.context.metaData.title}} {{@root.context.metaData.tagline}}.
             </p>
 
             <p>

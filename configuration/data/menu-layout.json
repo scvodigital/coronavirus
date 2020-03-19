@@ -19,7 +19,7 @@
       "route": "^/help/needed|^/share/assistance"
     },
     {
-      "label": "Organisations",
+      "label": "For organisations",
       "icon": "",
       "path": "/organisations",
       "route": "^/organisations$"
