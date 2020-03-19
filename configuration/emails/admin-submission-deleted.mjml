@@ -21,12 +21,8 @@
             </p>
 
             <p>
-              Title: {{@root.request.body.title}}.
-            </p>
-
-            <p>
               You can see the deleted submission via the following link:<br />
-              <a href="{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{slugify @root.request.body.title}}/edit/{{@root.request.params.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{slugify @root.request.body.title}}/edit/{{@root.request.params.secret_key}}</a>.
+              <a href="{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{#if @root.request.body.title}}/{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.request.params.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{#if @root.request.body.title}}/{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.request.params.secret_key}}</a>.
             </p>
 
             <p>

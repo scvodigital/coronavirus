@@ -22,7 +22,7 @@
 
             <p>
               You can edit or delete this submission via the following link:<br />
-              <a href="{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{slugify @root.request.body.title}}/edit/{{@root.data.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{slugify @root.request.body.title}}/edit/{{@root.data.secret_key}}</a>.<br />
+              <a href="{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}{{#if @root.request.body.title}}/{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{#if @root.request.body.title}}/{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}</a>.<br />
               Note: Please do not share this link with others unless you're happy for them to make changes to the page.
             </p>
 
