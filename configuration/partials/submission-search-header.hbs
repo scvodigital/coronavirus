@@ -1,10 +1,10 @@
-<div class="">
+<div class="b-margin-full">
   {{#compare @root.request.params.type "for-organisations" ~}}
   <h2>
     Find help for your organisation
     &ensp;<a href="/share/organisations" class="caption no-underline">Add new</a>
   </h2>
-  <p class="b-margin-full">
+  <p>
     You can find organisations that are able to offer non-medical help to organisations or professionals (e.g. the NHS) below.
   </p>
   {{else}}
@@ -13,7 +13,7 @@
     Find out what assistance is required by organisations near you
     &ensp;<a href="/share/assistance" class="caption no-underline">Add new</a>
   </h2>
-  <p class="b-margin-full">
+  <p>
     You can find out what assistance is required by organisations in your area below.
   </p>
   {{else}}
@@ -24,10 +24,13 @@
   <p class="label label-warning b-margin-full x-padding">
     If you need medical help, please follow the guidance on the <a href="https://www.nhsinform.scot/coronavirus#overview" class="no-ext">NHS Inform website</a>. Do not go directly to your GP, hospital or other healthcare environment.
   </p>
-  <p class="b-margin-full">
+  <p>
     Use the search to find organisations that are able to offer non-medical help directly to people below.<br />
     If you are an organisation or professional looking for help, <a href="/help/for-organisations">use this search instead</a>.
   </p>
   {{/compare ~}}
   {{/compare ~}}
+  <p>
+    Information on the website is provided by users and is not verified, so please report any incorrect or inappropriate listings, and never give personal or financial details online to someone you don't know.
+  </p>
 </div>
