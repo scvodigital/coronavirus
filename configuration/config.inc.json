@@ -10,7 +10,7 @@
   "metaData": {
     "assetsVersion": "{:../package.json@version}",
     "assetsBase": "https://storage.googleapis.com/scvo-assets/test/coronavirus/",
-    "title": "COVID-19",
+    "title": "Coronavirus Community Assistance Directory",
     "tagline": "Find and offer help in your community",
     "contacts": {
       "admin": "calum.macuisdean@gmail.com",
