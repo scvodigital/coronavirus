@@ -184,7 +184,7 @@
                                           <p> Thank you for your submission of what your organisation {{#compare @root.request.body.type "assistance"}}needs
                                               {{else}}can do to help{{/compare}}, it will shortly be published on the {{@root.context.metaData.title}}. </p>
                                           <p> You can edit or delete this submission via the following link:<br />
-                                            <a href="{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}{{#if @root.request.body.title}}/{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{#if @root.request.body.title}}/{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}</a>.<br /> Note: Please do not share this link with others unless you're happy for them to make changes to the page. </p>
+                                            <a href="{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}{{#if @root.request.body.title}}/{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{#if @root.request.body.title}}{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}</a>.<br /> Note: Please do not share this link with others unless you're happy for them to make changes to the page. </p>
                                           <p> Thank you<br />
                                             {{@root.context.metaData.title}}
                                           </p>

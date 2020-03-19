@@ -184,7 +184,7 @@
                                           <p> A new submission has been added to the {{@root.context.metaData.title}}. </p>
                                           <p> Title: {{@root.request.body.title}}. </p>
                                           <p> You can edit or delete this submission via the following link:<br />
-                                            <a href="{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{#if @root.request.body.title}}/{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{#if @root.request.body.title}}/{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}</a>. </p>
+                                            <a href="{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{#if @root.request.body.title}}{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{#if @root.request.body.title}}{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}</a>. </p>
                                           <p> Thank you<br />
                                             {{@root.context.metaData.title}}
                                           </p>
