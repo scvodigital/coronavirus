@@ -13,16 +13,20 @@
         <mj-column padding="10px" margin="0px" width="100%">
           <mj-text font-size="16px" padding="0px" line-height="20px" color="#244B5A" font-family="Helvetica, Arial, sans-serif">
             <p>
-              Hello,
+              Hello admin,
             </p>
 
             <p>
               A new submission has been added to the {{@root.context.metaData.title}}.
             </p>
 
-            <p>
-              Title: {{@root.request.body.title}}.
-            </p>
+            <ul>
+              {{#if @root.request.body.title}}<li>Title: {{@root.request.body.title}}</li>{{/if}}
+              {{#if @root.request.body.help-offered}}<li>Help offered: {{@root.request.body.help-offered}}</li>{{/if}}
+              {{#if @root.request.body.help-needed}}<li>Help needed: {{@root.request.body.help-needed}}</li>{{/if}}
+              {{#if @root.request.body.access-support}}<li>How to access: {{@root.request.body.access-support}}</li>{{/if}}
+              {{#ifAll @root.request.body.author-name @root.request.body.author-email}}Author: <a href="mailto:@root.request.body.author-email">{{@root.request.body.author-name}}</a>{{/ifAll}}
+            </ul>
 
             <p>
               You can edit or delete this submission via the following link:<br />

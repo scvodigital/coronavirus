@@ -180,9 +180,22 @@
                                     <tr>
                                       <td align="left" style="font-size:0px;padding:0px;word-break:break-word;">
                                         <div style="font-family:Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:left;color:#244B5A;">
-                                          <p> Hello, </p>
+                                          <p> Hello admin, </p>
                                           <p> A submission has been updated on the {{@root.context.metaData.title}}. </p>
-                                          <p> Title: {{@root.request.body.title}}. </p>
+                                          <ul>
+                                            {{#if @root.request.body.title}}
+                                              <li>Title: {{@root.request.body.title}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.help-offered}}
+                                              <li>Help offered: {{@root.request.body.help-offered}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.help-needed}}
+                                              <li>Help needed: {{@root.request.body.help-needed}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.access-support}}
+                                              <li>How to access: {{@root.request.body.access-support}}</li>
+                                            {{/if}}
+                                          </ul>
                                           <p> You can edit or delete this submission via the following link:<br />
                                             <a href="{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{#if @root.request.body.title}}{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.request.params.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{#if @root.request.body.title}}{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.request.params.secret_key}}</a>. </p>
                                           <p> Thank you<br />

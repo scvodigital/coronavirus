@@ -15,7 +15,9 @@
     "title": "Coronavirus Community Assistance Directory",
     "tagline": "Find and offer help in your community",
     "contacts": {
-      "admin": "calum.macuisdean@gmail.com",
+      "admin": "calum.macuisdean@scvo.org.uk",
+      "calum": "Calum MacUisdean <calum.macuisdean@scvo.org.uk>",
+      "david": "David McNeill <david.mcneill@scvo.org.uk>",
       "noreply": "no-reply@scvo.org.uk",
       "technical": "webhelpdesk@scvo.org.uk"
     },
