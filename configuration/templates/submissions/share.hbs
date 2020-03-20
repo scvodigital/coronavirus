@@ -144,7 +144,7 @@
       </label>
       {{#each (split "In a local community,Across one or more local authority areas,Across the whole of Scotland" ",") ~}}
       <label class="form-radio">
-        <input type="radio" name="where" id="where-{{slugify this}}" value="{{this}}" required{{#compare @root.data.primaryResponse.where this}} checked{{/compare}}>
+        <input type="radio" name="where" id="where-{{slugify this}}" value="{{this}}" required{{#compare @root.data.primaryResponse.where this}} checked{{/compare}} required>
         <i class="form-icon"></i> {{this}}
       </label>
       {{#compare this "In a local community" ~}}
