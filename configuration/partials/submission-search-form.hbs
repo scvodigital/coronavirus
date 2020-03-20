@@ -20,7 +20,7 @@
     <div class="">
       <div class="columns">
         {{#unless (compare @root.request.params.type 'required') ~}}
-        <div class="column col-3 col-xl-6 filter-support b-padding">
+        <div class="column col-3 col-xl-6 col-sm-12 filter-support b-padding">
           <select class="form-select select-lg" id="support" name="support">
             <option value="">Main type of support</option>
             {{#ifAny path (compare @root.request.params.type 'for-people') ~}}
