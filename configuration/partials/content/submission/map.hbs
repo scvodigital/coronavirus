@@ -15,7 +15,12 @@
   <div class="">
     {{#if help_offered ~}}
     <div style="max-height: 2.8rem;" class="post-info-description faded-overflow">
-      {{{help_offered}}}
+      {{help_offered}}
+    </div>
+    {{/if ~}}
+    {{#if help_needed ~}}
+    <div style="max-height: 2.8rem;" class="post-info-description faded-overflow">
+      {{help_needed}}
     </div>
     {{/if ~}}
   </div>
