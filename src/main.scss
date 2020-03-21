@@ -389,6 +389,9 @@ h1.font-default,
   color: $secondary-color-dark;
   padding: $unit/3 $unit/2;
   box-sizing: border-box;
+  a {
+    color: $secondary-color !important;
+  }
   .rss {
     color: #f26522;
     font-size: 145%;
@@ -2189,8 +2192,8 @@ ul li,
 ol li {
   margin-bottom: $unit/2;
 }
-ul li:last-child,
-ol li:last-child {
+ul li:not(.tab-item):last-child,
+ol li:not(.tab-item):last-child {
   margin-bottom: 0;
 }
 ul {
@@ -2359,6 +2362,29 @@ form {
 }
 .fa-ul {
   margin-left: 1.3333rem;
+}
+
+.areas {
+  .area {
+    display: inline;
+  }
+  .area::after {
+    content: ", ";
+  }
+  .area:last-child::after {
+    content: "";
+  }
+}
+.areas-fulltext {
+  .area:first-child::before {
+    content: " across ";
+  }
+  .area:last-child::after {
+    content: ", and ";
+  }
+  .area:only-child::after {
+    content: " and ";
+  }
 }
 
 @keyframes spin {

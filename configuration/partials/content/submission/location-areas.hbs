@@ -1,18 +1,12 @@
 <ul class="fa-ul areas">
   <li class="mdc-typography--body2">
     <span class="fa-li"><span class="far fa-location-arrow fa-fw" title="Location"></span></span>
-    {{#compare (getType areas) "string" ~}}
-    {{{areas}}}
+    {{#compare (length (arrayify (split areas ','))) ">" 2 ~}}
+    {{inflect (length (arrayify (split areas ','))) "area" "areas" true}}
     {{else}}
-    {{#compare areas.length ">" 3 ~}}
-    {{areas.length}} areas
-    {{else}}
-    {{#each areas ~}}
-    {{#if (contains (map @root.data.location_data.la_results.aggregations.local_authority_areas.buckets (getProp "key")) this) ~}}
-    <span class="area">{{{this}}}</span>
-    {{/if ~}}
+    {{#each (arrayify (split areas ',')) ~}}
+    {{{this}}}{{#unless @last}} and {{/unless}}
     {{/each ~}}
-    {{/compare ~}}
     {{/compare ~}}
   </li>
 </ul>
