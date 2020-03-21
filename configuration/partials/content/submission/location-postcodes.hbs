@@ -1,6 +1,8 @@
+{{#compare (length (arrayify (split postcodes ','))) ">" 0 ~}}
 <ul class="fa-ul postcodes">
   <li class="mdc-typography--body2">
     <span class="fa-li"><span class="far fa-location-arrow fa-fw" title="Location"></span></span>
     {{inflect (length (arrayify (split postcodes ','))) "location" "locations" true}}
   </li>
 </ul>
+{{/compare ~}}

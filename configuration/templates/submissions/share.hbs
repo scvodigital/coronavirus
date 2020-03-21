@@ -150,7 +150,7 @@
       {{#compare this "In a local community" ~}}
       <div class="form-group{{#unless (compare @root.data.primaryResponse.where 'In a local community')}} hidden{{/unless}}" id="where-local-options">
         <label class="form-label" for="postcodes">Please enter a postcode in the community you serve (e.g. your office location). Organisations will be able to search for support by how close it is to them. If you serve communities more than 5 miles apart, you can enter multiple postcodes, separated by commas.</label>
-        <input class="form-input" type="text" name="postcodes" id="postcodes" placeholder="e.g. EH3 6BB" value="{{@root.data.primaryResponse.postcodes}}" />
+        <input class="form-input" type="text" name="postcodes" id="postcodes" placeholder="e.g. EH3 6BB" value="{{@root.data.primaryResponse.postcodes}}" required />
       </div>
       {{/compare ~}}
       {{#compare this "Across one or more local authority areas" ~}}
@@ -162,7 +162,7 @@
           {{#each (split "Aberdeen,Aberdeenshire,Angus,Argyll & Bute,Clackmannanshire,Dumfries & Galloway,Dundee,East Ayrshire,East Dunbartonshire,East Lothian,East Renfrewshire,Edinburgh,Falkirk,Fife,Glasgow,Highland,Inverclyde,Midlothian,Moray,Na h-Eileanan Siar,North Ayrshire,North Lanarkshire,Orkney,Perth & Kinross,Renfrewshire,Scottish Borders,Shetland,South Ayrshire,South Lanarkshire,Stirling,West Dunbartonshire,West Lothian" ",") ~}}
           <div class="column col-3 col-lg-4 col-md-6">
             <label class="form-checkbox">
-              <input type="checkbox" name="areas" class="areas" value="{{this}}"{{#if (contains this @root.data.primaryResponse.areas)}} checked{{/if}} />
+              <input type="checkbox" name="areas" class="areas" value="{{this}}"{{#if (contains this @root.data.primaryResponse.areas)}} checked{{/if}} required />
               <i class="form-icon"></i> {{this}}
             </label>
           </div>
