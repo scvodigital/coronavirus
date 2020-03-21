@@ -42,7 +42,7 @@
         {{#compare (length (arrayify (split areas ','))) ">" 0 ~}}
         <p>
           {{#each (arrayify (split areas ',')) ~}}
-          {{#if @last}}{{#compare (length (arrayify (split areas ','))) ">" 1 ~}} and {{/compare ~}}{{/if}}{{{this}}}{{#unless @last}}{{#compare ../areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
+          {{#if @last}}{{#compare (length (arrayify (split ../areas ','))) ">" 1 ~}} and {{/compare ~}}{{/if}}{{{this}}}{{#unless @last}}{{#compare (length (arrayify (split ../areas ','))) ">" 2}},{{/compare}} {{else}}.{{/unless}}
           {{/each ~}}
         </p>
         {{/compare ~}}
