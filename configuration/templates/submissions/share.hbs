@@ -149,7 +149,7 @@
       </label>
       {{#compare this "In a local community" ~}}
       <div class="form-group{{#unless (compare @root.data.primaryResponse.where 'In a local community')}} hidden{{/unless}}" id="where-local-options">
-        <label class="form-label" for="postcodes">Please enter a postcode in the community you serve (e.g. your office location). Organisations will be able to search for support by how close it is to them. If you serve communities more than 5 miles apart, you can enter multiple postcodes, separated by commas.</label>
+        <label class="form-label" for="postcodes">Please enter a full postcode of a location in the community you serve (e.g. your office location). Organisations will be able to search for support by how close it is to them. If you serve communities more than 5 miles apart, you can enter multiple full postcodes, separated by commas.</label>
         <input class="form-input" type="text" name="postcodes" id="postcodes" placeholder="e.g. EH3 6BB" value="{{@root.data.primaryResponse.postcodes}}" required pattern="^([A-PR-UWYZ][A-HK-Y0-9](?:[A-HJKS-UW0-9][ABEHMNPRV-Y0-9]?)?\s*[0-9][ABD-HJLNP-UW-Z]{2}|GIR\s*0AA)+(?:,\s*([A-PR-UWYZ][A-HK-Y0-9](?:[A-HJKS-UW0-9][ABEHMNPRV-Y0-9]?)?\s*[0-9][ABD-HJLNP-UW-Z]{2}|GIR\s*0AA))*$" />
       </div>
       {{/compare ~}}
