@@ -1,7 +1,6 @@
 {
   "size": 0,
   "_source": false,
-  {{#ifAll @root.request.params.query.location @root.request.params.query.lat @root.request.params.query.lng @root.request.params.query.distance ~}}
   "query": {
     "bool": {
       "filter": [
@@ -10,23 +9,16 @@
       ],
       "must": [
         {{>queries_submission_search_must @root.request.params.query}}
-        {{#if location ~}},
         {
           "bool": {
             "should": [
-              {{>queries_submission_search_filters_home @root.request.params.query}}
+              {{>queries_submission_search_filters_national @root.request.params.query}}
               {{>queries_do_nothing}}
             ],
-            "minimum_should_match": {{#if distance}}2{{else}}1{{/if}}
+            "minimum_should_match": 2
           }
         }
-        {{/if ~}}
       ]
     }
   }
-  {{else}}
-  "query": {
-    "match_none": {}
-  }
-  {{/ifAll ~}}
 }

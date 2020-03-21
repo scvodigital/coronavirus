@@ -538,6 +538,10 @@ footer a {
   background: none;
   border: none;
 }
+#map-full,
+#map-content-primary {
+  z-index: 10;
+}
 #map-full a,
 #map-content-primary a {
   background: white;

@@ -37,19 +37,15 @@
           "should": [
             {{>queries_submission_search_should @root.request.params.query}}
           ]
-          {{#ifAll @root.request.params.query.exclude @root.request.params.query.lat @root.request.params.query.lng ~}},
-            "must_not": [
-              {
-                "geo_distance": {
-                  "distance": "{{default @root.request.params.query.distance "10"}}mi",
-                  "geo_coords": {
-                    "lat": {{@root.request.params.query.lat}},
-                    "lon": {{@root.request.params.query.lng}}
-                  }
-                }
+          {{#if @root.request.params.query.exclude ~}},
+          "must_not": [
+            {
+              "term": {
+                "where_slug": "in-a-local-community"
               }
-            ]
-          {{/ifAll ~}}
+            }
+          ]
+          {{/if ~}}
         }
       },
       "boost_mode": "multiply",

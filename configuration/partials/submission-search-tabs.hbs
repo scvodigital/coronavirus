@@ -16,7 +16,7 @@
       {{#compare @root.data.search_data.areas_results.hits.total ">" 0 ~}}
     </span>
     {{/compare ~}}
-    from nationally.{{/compare}}{{/if}}
+    nationally.{{/compare}}{{/if}}
     {{/each ~}}
     {{/with ~}}
     {{else}}
@@ -24,16 +24,25 @@
     {{/compare ~}}
   </div>
 </div>
+{{else}}
+{{#if @root.data.location_data.national_results.hits.total ~}}
+<div class="pull-right">
+  <div class="t-margin">
+    <a href="{{replace @root.request.url.pathname '/map' ''}}{{> query_search}}{{#if (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}&{{else}}?{{/if}}exclude=locations">List {{inflect @root.data.location_data.national_results.hits.total "submission" "submissions" true}}</a>
+    available nationally.
+  </div>
+</div>
+{{/if ~}}
 {{/compare ~}}
 <ul class="tab">
-  <li class="tab-item{{#ifAny (compare @root.request.url.pathname '/help/for-people') (compare @root.request.url.pathname '/help/needed') (compare @root.request.url.pathname '/help/for-organisations')}} active{{/ifAny}}">
-    <a href="{{concat '/help/' @root.request.params.type (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) '') '' else='?') (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
+  <li class="tab-item{{#ifNone (contains @root.request.url.pathname '/map')}} active{{/ifNone}}">
+    <a href="{{concat '/help/' (itemAt (split @root.request.params.type '&') 0) (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) '') '' else='?') (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
       <span class="far fa-fw fa-list"></span>
       List
     </a>
   </li>
-  <li class="tab-item{{#ifAny (compare @root.request.url.pathname '/help/for-people/map') (compare @root.request.url.pathname '/help/needed/map') (compare @root.request.url.pathname '/help/for-organisations/map')}} active{{/ifAny}}">
-    <a href="{{concat '/help/' @root.request.params.type '/map' (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) '') '' else='?') (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
+  <li class="tab-item{{#ifAny (contains @root.request.url.pathname '/help/for-people/map') (contains @root.request.url.pathname '/help/needed/map') (contains @root.request.url.pathname '/help/for-organisations/map')}} active{{/ifAny}}">
+    <a href="{{concat '/help/' (itemAt (split @root.request.params.type '&') 0) '/map' (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) '') '' else='?') (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
       <span class="far fa-fw fa-map-marker-alt"></span>
       Map
     </a>

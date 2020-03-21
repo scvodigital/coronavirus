@@ -22,10 +22,10 @@
             "template": ">context.metaData.handlebars.queries.submissions_search-map-locations"
           },
           {
-            "name": "home_results",
+            "name": "national_results",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "coronavirus-submission",
-            "template": ">context.metaData.handlebars.queries.submissions_search-map-home"
+            "template": ">context.metaData.handlebars.queries.submissions_search-map-national"
           },
           {
             "name": "la_results",

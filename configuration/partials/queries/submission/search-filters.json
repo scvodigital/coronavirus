@@ -1,5 +1,5 @@
 {{#if @root.request.params.type ~}}
-{{>queries_term field="type" term=(replace (replace @root.request.params.type 'needed' 'assistance') 'for-' '')}},
+{{>queries_term field="type" term=(replace (replace (itemAt (split @root.request.params.type '&') 0) 'needed' 'assistance') 'for-' '')}},
 {{/if ~}}
 {{#if @root.request.params.query.support ~}}
 {{>queries_term field="support_category_slug" term=@root.request.params.query.support}},
