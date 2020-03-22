@@ -32,10 +32,12 @@
         </p>
         {{/if ~}}
         {{#compare where "In a local community" ~}}
+        {{#compare (length (arrayify (split postcodes ','))) ">" 0 ~}}
         <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} locally</h4>
         <p>
-          {{inflect (arrayify postcodes) "Postcode" "Postcodes"}}: {{#each (arrayify postcodes)}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+          {{inflect (arrayify postcodes) "Postcode" "Postcodes"}}: {{#each (arrayify (split postcodes ','))}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
         </p>
+        {{/compare ~}}
         {{/compare ~}}
         {{#compare where "Across one or more local authority areas" ~}}
         <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} in {{inflect (length (arrayify (split areas ','))) "this area" "these areas"}}</h4>
