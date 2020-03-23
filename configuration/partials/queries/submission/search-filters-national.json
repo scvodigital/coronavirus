@@ -1,5 +1,10 @@
 {
-  "term": {
-    "where_slug": "across-the-whole-of-scotland"
+  "bool": {
+    "should": [
+      {{>queries_term field="where_slug" term="across-the-whole-of-scotland"}},
+      {{>queries_term field="where_slug" term="across-one-or-more-local-authority-areas"}},
+      {{>queries_do_nothing}}
+    ],
+    "minimum_should_match": 1
   }
 },

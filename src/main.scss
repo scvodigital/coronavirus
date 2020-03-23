@@ -2376,7 +2376,7 @@ form {
     content: ", ";
   }
   .area:last-child::after {
-    content: "";
+    content: "" !important;
   }
 }
 .areas-fulltext {
