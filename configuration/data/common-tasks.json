@@ -29,8 +29,8 @@
 			"notAuthenticatedRoute": "sign_in"
 		}
 	},
-	"tfn_latest": {
-		"name": "tfn_latest_posts",
+	"tfn_related": {
+		"name": "tfn_related_posts",
 		"taskModule": "elasticsearch",
 		"config": {
 			"connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
@@ -40,7 +40,7 @@
 			"queryTemplates": {
 				"index": "{$../data/elasticsearch-index.txt}",
 				"type": "tfn-legacy-post-news,tfn-legacy-post-blog,tfn-legacy-feature",
-				"template": ">context.metaData.handlebars.queries.posts_tfn-latest-coronavirus"
+				"template": ">context.metaData.handlebars.queries.posts_tfn-related-coronavirus"
 			}
 		},
 		"renderer": "handlebars"

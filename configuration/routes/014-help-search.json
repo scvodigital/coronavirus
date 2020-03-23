@@ -4,7 +4,7 @@
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
-    "context.metaData.commonTasks.tfn_latest",
+    "context.metaData.commonTasks.tfn_related",
     {
       "name": "location_data",
       "taskModule": "elasticsearch",

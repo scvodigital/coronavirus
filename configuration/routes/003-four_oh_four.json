@@ -5,7 +5,7 @@
   "errorRoute": "five_hundred",
   "defaultStatusCode": 404,
   "tasks": [
-    "context.metaData.commonTasks.tfn_latest",
+    "context.metaData.commonTasks.tfn_related",
     {
       "name": "not_found",
       "taskModule": "elasticsearch",

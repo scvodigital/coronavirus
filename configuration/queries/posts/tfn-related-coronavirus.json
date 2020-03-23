@@ -38,7 +38,7 @@
         {
           "gauss": {
             "date_published": {
-              "scale": "7d",
+              "scale": "3d",
               "decay": 0.1
             }
           }
