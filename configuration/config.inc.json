@@ -22,7 +22,7 @@
       "noreply": "no-reply@scvo.org.uk",
       "technical": "webhelpdesk@scvo.org.uk"
     },
-    "url": "https://covid-19.scvo.org",
+    "url": "https://coronavirus.scvo.org",
     "searchKnobs": "{:./data/search-knobs.json}",
     "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",
     "menus": "{:./data/menu-layout.json}",
