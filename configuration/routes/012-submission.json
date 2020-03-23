@@ -3,6 +3,7 @@
   "debug": true,
   "pattern": "/help/submission/:id(/:junk)",
   "tasks": [
+    "context.metaData.commonTasks.tfn_latest",
     {
       "name": "primaryResponse",
       "taskModule": "elasticsearch",

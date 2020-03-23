@@ -6,6 +6,7 @@
     "context": "results"
   },
   "tasks": [
+    "context.metaData.commonTasks.tfn_latest",
     {
       "name": "location_data",
       "taskModule": "elasticsearch",
