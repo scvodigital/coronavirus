@@ -195,7 +195,7 @@
                                             {{#if @root.request.body.access-support}}
                                               <li>How to access: {{@root.request.body.access-support}}</li>
                                             {{/if}}
-                                            {{#ifAll @root.request.body.author-name @root.request.body.author-email}}Author: <a href="mailto:@root.request.body.author-email">{{@root.request.body.author-name}}</a>{{/ifAll}}
+                                            {{#ifAll @root.request.body.author-name @root.request.body.author-email}}Author: <a href="mailto:{{@root.request.body.author-email}}">{{@root.request.body.author-name}}</a>{{/ifAll}}
                                           </ul>
                                           <p> You can edit or delete this submission via the following link:<br />
                                             <a href="{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{#if @root.request.body.title}}{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.data.id}}/{{#if @root.request.body.title}}{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.data.secret_key}}</a>. </p>

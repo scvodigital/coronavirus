@@ -25,7 +25,7 @@
               {{#if @root.request.body.help-offered}}<li>Help offered: {{@root.request.body.help-offered}}</li>{{/if}}
               {{#if @root.request.body.help-needed}}<li>Help needed: {{@root.request.body.help-needed}}</li>{{/if}}
               {{#if @root.request.body.access-support}}<li>How to access: {{@root.request.body.access-support}}</li>{{/if}}
-              {{#ifAll @root.request.body.author-name @root.request.body.author-email}}Author: <a href="mailto:@root.request.body.author-email">{{@root.request.body.author-name}}</a>{{/ifAll}}
+              {{#ifAll @root.request.body.author-name @root.request.body.author-email}}Author: <a href="mailto:{{@root.request.body.author-email}}">{{@root.request.body.author-name}}</a>{{/ifAll}}
             </ul>
 
             <p>
