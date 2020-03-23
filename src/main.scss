@@ -2638,6 +2638,13 @@ footer {
   }
 }
 
+.error {
+  margin-top: .5rem;
+  color: $error-color;
+  display: inline-block;
+  font-size: 90%;
+}
+
 .alignright {
   float: right;
   margin-left: $padding !important;

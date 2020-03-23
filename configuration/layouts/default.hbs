@@ -99,7 +99,10 @@
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/fontawesome-pro/css/all.min.css'~}}" />
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}" />
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{~>asset_url url='component-manager.js'~}}"></script>
+  <script type="text/javascript">
+  var jQuery = $;
+  </script>
 </head>
 <body>
   <div class="text-white bg-primary text-centre x-padding">
@@ -352,9 +355,7 @@
   </script>
   {{/each ~}}
 
-  <script type="text/javascript" src="{{~>asset_url url='component-manager.js'~}}"></script>
   <script type="text/javascript">
-  var jQuery = $;
   window.firebaseTaskConfig = {
     upgradeTokenUrl: '/upgrade-token?token={idToken}',
     cookieName: 'co_cookie'
