@@ -5,6 +5,9 @@
     "covid-19.scvo.scot",
     "covid-19.scvo.org",
     "covid-19.scvo.org.uk"
+    "coronavirus.scvo.scot",
+    "coronavirus.scvo.org",
+    "coronavirus.scvo.org.uk"
   ],
   "routes": [
     "{:./routes/*.json}"
