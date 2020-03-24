@@ -35,7 +35,7 @@
         {{#compare (length (arrayify (split postcodes ','))) ">" 0 ~}}
         <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} locally</h4>
         <p>
-          {{inflect (arrayify postcodes) "Postcode" "Postcodes"}}: {{#each (arrayify (split postcodes ','))}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+          Around {{inflect (length (arrayify (split postcodes ','))) "postcode" "postcodes"}}: {{#each (arrayify (split postcodes ','))}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
         </p>
         {{/compare ~}}
         {{/compare ~}}
@@ -43,6 +43,7 @@
         <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} in {{inflect (length (arrayify (split areas ','))) "this area" "these areas"}}</h4>
         {{#compare (length (arrayify (split areas ','))) ">" 0 ~}}
         <p>
+          In 
           {{#each (arrayify (split areas ',')) ~}}
           {{#if @last}}{{#compare (length (arrayify (split ../areas ','))) ">" 1 ~}} and {{/compare ~}}{{/if}}{{{this}}}{{#unless @last}}{{#compare (length (arrayify (split ../areas ','))) ">" 2}},{{/compare}} {{else}}.{{/unless}}
           {{/each ~}}
