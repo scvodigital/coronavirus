@@ -5,6 +5,6 @@
       {{>queries_term field="where_slug" term="across-one-or-more-local-authority-areas"}},
       {{>queries_do_nothing}}
     ],
-    "minimum_should_match": 1
+    "minimum_should_match": 2
   }
 },
