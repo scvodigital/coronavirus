@@ -186,6 +186,13 @@
                                             {{#if @root.request.body.title}}
                                               <li>Title: {{@root.request.body.title}}</li>
                                             {{/if}}
+                                            {{#if @root.request.body.organisation_name}}
+                                              <li>Organisation: {{@root.request.body.organisation_name}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.support}}
+                                              <li>Support: {{#compare @root.request.body.help-offered "Other"}}{{@root.request.body.support-other-description}}
+                                            {{else}}{{@root.request.body.help-offered}}{{/compare}}</li>
+                                            {{/if}}
                                             {{#if @root.request.body.help-offered}}
                                               <li>Help offered: {{@root.request.body.help-offered}}</li>
                                             {{/if}}
@@ -195,6 +202,34 @@
                                             {{#if @root.request.body.access-support}}
                                               <li>How to access: {{@root.request.body.access-support}}</li>
                                             {{/if}}
+                                            {{#if @root.request.body.where}}
+                                              <li>Where: {{@root.request.body.where}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.postcodes}}
+                                              <li>Postcodes: {{@root.request.body.postcodes}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.areas}}
+                                              <li>Areas: {{@root.request.body.areas}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.website}}
+                                              <li>Website: {{@root.request.body.website}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.telephone}}
+                                              <li>Telephone: {{@root.request.body.telephone}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.email}}
+                                              <li>Email: {{@root.request.body.email}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.facebook}}
+                                              <li>Facebook: {{@root.request.body.facebook}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.twitter}}
+                                              <li>Twitter: {{@root.request.body.twitter}}</li>
+                                            {{/if}}
+                                            {{#if @root.request.body.website}}
+                                              <li>Website: {{@root.request.body.website}}</li>
+                                            {{/if}}
+                                            {{#ifAll @root.request.body.author-name @root.request.body.author-email}}Author: <a href="mailto:{{@root.request.body.author-email}}">{{@root.request.body.author-name}}</a>{{/ifAll}}
                                           </ul>
                                           <p> You can edit or delete this submission via the following link:<br />
                                             <a href="{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{#if @root.request.body.title}}{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.request.params.secret_key}}">{{@root.context.metaData.url}}/help/submission/{{@root.request.params.id}}/{{#if @root.request.body.title}}{{slugify @root.request.body.title}}{{else}}_{{/if}}/edit/{{@root.request.params.secret_key}}</a>. </p>
