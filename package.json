@@ -1,6 +1,6 @@
 {
   "name": "@scvo/coronavirus",
-  "version": "0.0.98",
+  "version": "0.0.99",
   "description": "Site configuration and assets for covid-19.scvo.org",
   "main": "index.js",
   "scripts": {
