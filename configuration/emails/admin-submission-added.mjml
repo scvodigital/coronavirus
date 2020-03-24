@@ -36,7 +36,7 @@
               {{#if @root.request.body.facebook}}<li>Facebook: {{@root.request.body.facebook}}</li>{{/if}}
               {{#if @root.request.body.twitter}}<li>Twitter: {{@root.request.body.twitter}}</li>{{/if}}
               {{#if @root.request.body.website}}<li>Website: {{@root.request.body.website}}</li>{{/if}}
-              {{#ifAll @root.request.body.author-name @root.request.body.author-email}}Author: <a href="mailto:{{@root.request.body.author-email}}">{{@root.request.body.author-name}}</a>{{/ifAll}}
+              {{#ifAll @root.request.body.author-name @root.request.body.author-email}}<li>Author: <a href="mailto:{{@root.request.body.author-email}}">{{@root.request.body.author-name}}</a></li>{{/ifAll}}
             </ul>
 
             <p>
