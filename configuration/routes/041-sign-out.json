@@ -2,11 +2,8 @@
   "name": "sign_out",
   "debug": false,
   "pattern": "/sign-out",
-  "metaData": {
-    "hideSearch": true
-  },
+  "errorRoute": "five_hundred",
   "tasks": [
-    "context.metaData.commonTasks.currentSite",
     "context.metaData.commonTasks.authRequired",
     {
       "name": "destination",
@@ -23,7 +20,7 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.head-tags",
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
               "body": ">context.metaData.handlebars.templates.account_sign-out"
             },
             "contentType": "text/html"
