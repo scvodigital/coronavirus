@@ -1,12 +1,20 @@
 {
-  "name": "home",
-  "pattern": "/",
+  "name": "submission_admin",
   "debug": true,
-  "errorRoute": "five_hundred",
+  "pattern": "/admin",
   "tasks": [
     "context.metaData.commonTasks.currentSite",
-    "context.metaData.commonTasks.authNotRequired",
-    "context.metaData.commonTasks.tfn_related",
+    "context.metaData.commonTasks.authRequired",
+    {
+      "name": "allResponses",
+      "taskModule": "firebaseRtbGet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "coronavirus",
+        "pathTemplate": "/submissions/",
+        "defaultData": {}
+      }
+    },
     {
       "name": "destination",
       "taskModule": "renderLayout",
@@ -23,7 +31,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_home"
+              "body": ">context.metaData.handlebars.templates.submissions_share"
             },
             "contentType": "text/html"
           }

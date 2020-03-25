@@ -4,6 +4,7 @@
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
     {
       "name": "destination",
       "taskModule": "renderLayout",

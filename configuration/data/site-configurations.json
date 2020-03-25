@@ -1,0 +1,26 @@
+{
+  "default": {
+    "name": "default",
+    "title": "Coronavirus Community Assistance Directory",
+    "tagline": "Find and offer help in your community",
+    "contacts": {
+      "support": "digital@scvo.org.uk",
+      "admin": "calum.macuisdean@scvo.org.uk",
+      "noreply": "no-reply@scvo.org.uk",
+      "technical": "webhelpdesk@scvo.org.uk"
+    },
+    "url": "https://coronavirus.scvo.org"
+  },
+  "ruk": {
+    "name": "ruk",
+    "title": "Coronavirus Community Assistance Directory",
+    "tagline": "Find and offer help in your community",
+    "contacts": {
+      "support": "digital@scvo.org.uk",
+      "admin": "calum.macuisdean@scvo.org.uk",
+      "noreply": "no-reply@scvo.org.uk",
+      "technical": "webhelpdesk@scvo.org.uk"
+    },
+    "url": "https://coronavirus.org.uk"
+  }
+}

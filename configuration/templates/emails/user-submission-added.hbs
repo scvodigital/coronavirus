@@ -1,14 +1,14 @@
 [
   {
-    "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
-    "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+    "from": "{{@root.data.currentSite.title}} <{{@root.data.currentSite.contacts.noreply}}>",
+    "h:sender": "{{@root.data.currentSite.title}} <{{@root.data.currentSite.contacts.noreply}}>",
     "to": "{{@root.request.body.author-name}} <{{@root.request.body.author-email}}>",
     "o:tag": "submission-added",
     "o:tracking": true,
     "tag":  "submission-added",
     "id":  "submission-added",
     "connectionName": "mg_scvo",
-    "subject": "{{@root.context.metaData.title}} - submission added",
+    "subject": "{{@root.data.currentSite.title}} - submission added",
     "html":
     {{~#blockStringify this ~}}
       {{~> emails_user_submission_added ~}}

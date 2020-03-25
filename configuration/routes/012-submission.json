@@ -3,6 +3,7 @@
   "debug": true,
   "pattern": "/help/submission/:id(/:junk)",
   "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.tfn_related",
     {
       "name": "primaryResponse",

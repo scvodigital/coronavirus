@@ -1,14 +1,14 @@
 [
   {
-    "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
-    "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+    "from": "{{@root.data.currentSite.title}} <{{@root.data.currentSite.contacts.noreply}}>",
+    "h:sender": "{{@root.data.currentSite.title}} <{{@root.data.currentSite.contacts.noreply}}>",
     "to": "Calum MacUisdean <calum.macuisdean@scvo.org.uk>,David McNeill <david.mcneill@scvo.org.uk>,Alex Nuttgens <alex.nuttgens@scvo.org.uk>,Matthew Wilkes <matthew.wilkes@scvo.org.uk>",
     "o:tag": "submission-added",
     "o:tracking": true,
     "tag":  "submission-added",
     "id":  "submission-added",
     "connectionName": "mg_scvo",
-    "subject": "{{@root.context.metaData.title}} - submission added",
+    "subject": "{{@root.data.currentSite.title}} - submission added",
     "html":
     {{~#blockStringify this ~}}
       {{~> emails_admin_submission_added ~}}

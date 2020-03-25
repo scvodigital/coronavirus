@@ -4,6 +4,7 @@
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.tfn_related",
     {
       "name": "destination",

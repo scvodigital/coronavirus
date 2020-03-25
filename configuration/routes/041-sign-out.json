@@ -1,12 +1,13 @@
 {
-  "name": "home",
-  "pattern": "/",
-  "debug": true,
-  "errorRoute": "five_hundred",
+  "name": "sign_out",
+  "debug": false,
+  "pattern": "/sign-out",
+  "metaData": {
+    "hideSearch": true
+  },
   "tasks": [
     "context.metaData.commonTasks.currentSite",
-    "context.metaData.commonTasks.authNotRequired",
-    "context.metaData.commonTasks.tfn_related",
+    "context.metaData.commonTasks.authRequired",
     {
       "name": "destination",
       "taskModule": "renderLayout",
@@ -22,8 +23,8 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_home"
+              "head": ">context.metaData.handlebars.templates.head-tags",
+              "body": ">context.metaData.handlebars.templates.account_sign-out"
             },
             "contentType": "text/html"
           }

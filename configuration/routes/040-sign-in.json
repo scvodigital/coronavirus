@@ -1,12 +1,13 @@
 {
-  "name": "home",
-  "pattern": "/",
+  "name": "sign_in",
   "debug": true,
-  "errorRoute": "five_hundred",
+  "pattern": "/sign-in",
+  "metaData": {
+    "hideSearch": true
+  },
   "tasks": [
     "context.metaData.commonTasks.currentSite",
     "context.metaData.commonTasks.authNotRequired",
-    "context.metaData.commonTasks.tfn_related",
     {
       "name": "destination",
       "taskModule": "renderLayout",
@@ -22,8 +23,8 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_home"
+              "head": ">context.metaData.handlebars.templates.head-tags",
+              "body": ">context.metaData.handlebars.templates.account_sign-in"
             },
             "contentType": "text/html"
           }
