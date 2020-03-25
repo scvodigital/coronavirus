@@ -1,4 +1,11 @@
 <div class="container b-padding-full">
+  {{#compare @root.data.primaryResponse.status "!==" "published" ~}}
+  <div class="label label-error x-padding">
+    <span class="fal fa-exclamation-triangle r-margin-full"></span>
+    This submission has been {{@root.data.primaryResponse.status}}
+  </div>
+  {{/compare ~}}
+
   {{#ifAny (compare @root.route.name "share") (compare (concat '' @root.data.primaryResponse.secret_key) @root.request.params.secret_key) ~}}
   {{#compare (default @root.request.params.type @root.data.primaryResponse.type) "assistance" ~}}
   <h2>Help or resources needed</h2>
@@ -367,7 +374,9 @@
 
     <div class="text-centre v-padding-full">
       {{#compare @root.route.name "submission_edit" ~}}
+      {{#compare @root.data.primaryResponse.status "published" ~}}
       <input type="submit" value="Update" class="btn btn-lg" />
+      {{/compare ~}}
       {{else}}
       <input type="submit" value="Submit" class="btn btn-primary btn-lg" />
       <p class="caption t-margin-full">
@@ -378,11 +387,11 @@
       {{/compare ~}}
     </div>
   </form>
-  {{#compare @root.route.name "submission_edit" ~}}
+  {{#ifAll (compare @root.route.name "submission_edit") (compare @root.data.primaryResponse.status "published") ~}}
   <form action="/share/delete/{{@root.request.params.id}}/{{@root.request.params.secret_key}}" method="post" class="text-centre">
     <input type="submit" value="Delete" class="btn bg-error" />
   </form>
-  {{/compare ~}}
+  {{/ifAll ~}}
   {{/ifAny ~}}
   {{/unless ~}}
   {{else}}
