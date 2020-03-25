@@ -167,6 +167,12 @@
             {{#each @root.context.metaData.menus.nav ~}}
               <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
             {{/each}}
+            {{#if @root.data.auth.uid ~}}
+            {{#each @root.context.metaData.menus.admin ~}}
+            <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
+            {{/each ~}}
+            <a href="/sign-out" data-component="TasksTrigger" data-TasksTrigger="sign-out">Sign out</a>
+            {{/if ~}}
           </div>
         </section>
       </div>

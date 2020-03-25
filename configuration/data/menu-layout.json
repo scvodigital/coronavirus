@@ -31,6 +31,14 @@
       "route": "^/volunteer$"
     }
   ],
+  "admin": [
+    {
+      "label": "Admin",
+      "icon": "",
+      "path": "/admin",
+      "route": "^/admin|^/share"
+    }
+  ],
   "footer-help": [
     {
       "label": "Accessibility",

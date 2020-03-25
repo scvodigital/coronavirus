@@ -3,6 +3,8 @@
   "pattern": "/500",
   "debug": false,
   "tasks": [
+    "context.metaData.commonTasks.currentSite",
+    "context.metaData.commonTasks.authNotRequired",
     {
       "name": "destination",
       "taskModule": "renderLayout",

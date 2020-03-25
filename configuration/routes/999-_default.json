@@ -4,6 +4,7 @@
   "debug": false,
   "errorRoute": "five_hundred",
   "tasks": [
+    "context.metaData.commonTasks.currentSite",
     "context.metaData.commonTasks.authNotRequired",
     {
       "name": "primaryResponse",

@@ -4,6 +4,7 @@
   "pattern": "/sign-out",
   "errorRoute": "five_hundred",
   "tasks": [
+    "context.metaData.commonTasks.currentSite",
     "context.metaData.commonTasks.authRequired",
     {
       "name": "destination",

@@ -3,6 +3,7 @@
   "debug": true,
   "pattern": "/help/submission/:id/:junk/edit/:secret_key",
   "tasks": [
+    "context.metaData.commonTasks.currentSite",
     "context.metaData.commonTasks.authNotRequired",
     {
       "name": "primaryResponse",
