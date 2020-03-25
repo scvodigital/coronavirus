@@ -6,16 +6,6 @@
     "context.metaData.commonTasks.currentSite",
     "context.metaData.commonTasks.authRequired",
     {
-      "name": "allResponses",
-      "taskModule": "firebaseRtbGet",
-      "renderer": "handlebars",
-      "config": {
-        "appName": "coronavirus",
-        "pathTemplate": "/submissions/",
-        "defaultData": {}
-      }
-    },
-    {
       "name": "destination",
       "taskModule": "renderLayout",
       "renderer": "handlebars",

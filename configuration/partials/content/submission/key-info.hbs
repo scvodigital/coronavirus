@@ -67,6 +67,11 @@
       <a href="/help/submission/{{Id}}{{#if title}}/{{slugify title}}{{/if}}{{> query_search}}">
         <span class="hover-underline">{{{title}}}</span>
       </a>
+      {{#if @root.data.auth.uid ~}}
+      <a href="/help/submission/{{Id}}/{{#if title}}{{slugify title}}{{/if}}/edit/admin" class="btn btn-link">
+        Edit
+      </a>
+      {{/if ~}}
     </div>
     {{/compare ~}}
     {{#if organisation_name ~}}
