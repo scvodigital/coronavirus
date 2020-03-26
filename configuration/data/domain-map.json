@@ -6,7 +6,9 @@
   "coronavirus_scvo_org": "default",
   "coronavirus_scvo_org_uk": "default",
   "coronavirus_scvo_scot": "default",
+  "coronavirus_getinvolved_scot": "default",
   "coronavirus_local": "default",
   "coronavirus_org_uk": "ruk",
+  "coronavirus_getinvolved_org_uk": "ruk",
   "coronavirus-ruk_local": "ruk"
 }
