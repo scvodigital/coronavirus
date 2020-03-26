@@ -1,0 +1,6 @@
+"ID","Title","Organisation","Type","Support","How to access","Email","Facebook","Help offered","Help needed","Contact name","Phone","Twitter","Website","Where"
+{{#each (sortBy (keyValue @root.data.submissions) "date_last_modified" "desc")}}
+{{#compare value.status "published" ~}}
+{{{json value=key}}},{{{json value=value.title}}},{{{json value=value.organisation_name}}},{{{json value=value.type}}},{{#compare value.support "Other"}}{{{json value=value.support-other-description}}}{{else}}{{{json value=value.support}}}{{/compare}},{{{json value=value.access-support}}},{{{json value=value.email}}},{{{json value=value.facebook}}},{{{json value=value.help-offered}}},{{{json value=value.help-needed}}},{{{json value=value.name}}},{{{json value=value.telephone}}},{{{json value=value.twitter}}},{{{json value=value.website}}},{{{json value=value.where}}}
+{{/compare ~}}
+{{/each}}
