@@ -13,7 +13,7 @@
   },
   "ruk": {
     "name": "ruk",
-    "title": "Coronavirus Community Assistance Directory",
+    "title": "Coronavirus Community Assistance Directory (rUK)",
     "tagline": "Find and offer help in your community",
     "contacts": {
       "support": "digital@scvo.org.uk",
@@ -21,6 +21,6 @@
       "noreply": "no-reply@scvo.org.uk",
       "technical": "webhelpdesk@scvo.org.uk"
     },
-    "url": "https://coronavirus.org.uk"
+    "url": "https://coronavirus.getinvolved.org.uk"
   }
 }
