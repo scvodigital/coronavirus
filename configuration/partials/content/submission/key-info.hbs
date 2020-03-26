@@ -61,6 +61,11 @@
     {{#compare view "full" ~}}
     <h2 class="t-margin">
       {{{title}}}
+      {{#if @root.data.auth.uid ~}}
+      <a href="/help/submission/{{Id}}/{{#if title}}{{slugify title}}{{/if}}/edit/admin" class="btn btn-link caption">
+        Edit
+      </a>
+      {{/if ~}}
     </h2>
     {{else}}
     <div class="card-title h5">
