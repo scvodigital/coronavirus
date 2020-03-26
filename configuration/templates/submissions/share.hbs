@@ -404,14 +404,30 @@
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js?render=6LdlceIUAAAAAEB_DGTWR7hfR0EfHtl8Rz52pH6l"></script>
 <script type="text/javascript">
-$.validator.methods.email = function( value, element ) {
-  return this.optional( element ) || /[a-z]+@[a-z]+\.[a-z]+/.test( value );
-}
-$.validator.methods.postcodes = function( value, element ) {
-  return this.optional( element ) || /([A-PR-UWYZ][A-HK-Y0-9](?:[A-HJKS-UW0-9][ABEHMNPRV-Y0-9]?)?\s*[0-9][ABD-HJLNP-UW-Z]{2}|GIR\s*0AA)+(?:,\s*([A-PR-UWYZ][A-HK-Y0-9](?:[A-HJKS-UW0-9][ABEHMNPRV-Y0-9]?)?\s*[0-9][ABD-HJLNP-UW-Z]{2}|GIR\s*0AA))*/.test( value );
-}
 $(document).ready(function() {
+  $.validator.methods.email = function( value, element ) {
+    return this.optional( element ) || value.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)+$/);
+  }
+  $.validator.methods.postcodes = function( value, element ) {
+    return this.optional( element ) || /^([A-PR-UWYZ][A-HK-Y0-9](?:[A-HJKS-UW0-9][ABEHMNPRV-Y0-9]?)?\s*[0-9][ABD-HJLNP-UW-Z]{2}|GIR\s*0AA)+(?:,\s*([A-PR-UWYZ][A-HK-Y0-9](?:[A-HJKS-UW0-9][ABEHMNPRV-Y0-9]?)?\s*[0-9][ABD-HJLNP-UW-Z]{2}|GIR\s*0AA))*$/.test( value );
+  }
   $("#share").validate({
+    rules: {
+      "email": {
+        email: true
+      },
+      "author-email": {
+        email: true
+      },
+      "postcodes": {
+        postcodes: true,
+      }
+    },
+    messages: {
+      postcodes: {
+        postcodes : "This must be a list of valid postcodes, separated by commas"
+      }
+    },
    submitHandler: function(form) {
      grecaptcha.ready(function() {
        grecaptcha.execute('6LdlceIUAAAAAEB_DGTWR7hfR0EfHtl8Rz52pH6l', {action:'validate_captcha'}).then(function(token) {
