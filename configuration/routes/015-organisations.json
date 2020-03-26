@@ -1,5 +1,5 @@
 {
-  "name": "organisations",
+  "name": "page_organisations",
   "pattern": "/organisations",
   "debug": true,
   "errorRoute": "five_hundred",

@@ -1,6 +1,6 @@
 {
-  "name": "page_volunteer",
-  "pattern": "/volunteer",
+  "name": "page_cookies",
+  "pattern": "/cookies",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
@@ -23,7 +23,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_volunteer"
+              "body": ">context.metaData.handlebars.templates.pages_cookies"
             },
             "contentType": "text/html"
           }
