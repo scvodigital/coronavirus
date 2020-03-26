@@ -1,10 +1,10 @@
 <div class="container b-padding-full">
-  {{#compare @root.data.primaryResponse.status "!==" "published" ~}}
+  {{#ifAll (compare @root.route.name "!==" "share") (compare @root.data.primaryResponse.status "!==" "published") ~}}
   <div class="label label-error x-padding">
     <span class="fal fa-exclamation-triangle r-margin-full"></span>
     This submission has been {{@root.data.primaryResponse.status}}
   </div>
-  {{/compare ~}}
+  {{/ifAll ~}}
 
   {{#ifAny (compare @root.route.name "share") (compare (concat '' @root.data.primaryResponse.secret_key) @root.request.params.secret_key) (compare @root.data.auth.uid "!==" "") ~}}
   {{#compare (default @root.request.params.type @root.data.primaryResponse.type) "assistance" ~}}
