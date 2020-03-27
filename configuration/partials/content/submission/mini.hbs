@@ -1,5 +1,5 @@
 <div class="mdc-card content-primary mini">
   {{> content_submission_key_info view="mini"}}
-  {{> content_submission_description description=help_offered}}
+  {{> content_submission_description description=(truncate (default help_offered help_needed) 100)}}
   {{> content_submission_actions slug=slug Id=Id}}
 </div>

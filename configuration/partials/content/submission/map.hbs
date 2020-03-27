@@ -13,16 +13,11 @@
   </div>
   {{/if ~}}
   <div class="">
-    {{#if help_offered ~}}
+    {{#ifAny help_offered help_needed ~}}
     <div style="max-height: 2.8rem;" class="post-info-description faded-overflow">
-      {{help_offered}}
+      {{> content_submission_description description=(truncate (default help_offered help_needed) 200)}}
     </div>
-    {{/if ~}}
-    {{#if help_needed ~}}
-    <div style="max-height: 2.8rem;" class="post-info-description faded-overflow">
-      {{help_needed}}
-    </div>
-    {{/if ~}}
+    {{/ifAny ~}}
   </div>
   <div class="">
     <a href="/help/submission/{{Id}}/{{slugify title}}{{> query_search}}" class="no-underline">Find out more</a>
