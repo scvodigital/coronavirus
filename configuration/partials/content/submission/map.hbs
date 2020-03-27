@@ -15,7 +15,7 @@
   <div class="">
     {{#ifAny help_offered help_needed ~}}
     <div style="max-height: 2.8rem;" class="post-info-description faded-overflow">
-      {{> content_submission_description description=(truncate (default help_offered help_needed) 200)}}
+      {{truncate (default help_offered help_needed) 200}}
     </div>
     {{/ifAny ~}}
   </div>
