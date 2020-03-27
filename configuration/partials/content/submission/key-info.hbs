@@ -61,24 +61,32 @@
     {{#compare view "full" ~}}
     <h2 class="t-margin">
       {{{title}}}
-      {{#if @root.data.auth.uid ~}}
+      {{#ifAll @root.data.auth.uid (compare content_type "coronavirus-submission") ~}}
       <a href="/help/submission/{{Id}}/{{#if title}}{{slugify title}}{{/if}}/edit/admin" class="btn btn-link caption">
         Edit
       </a>
-      {{/if ~}}
+      {{/ifAll ~}}
     </h2>
     {{else}}
     <div class="card-title h5">
       <a href="/help/submission/{{Id}}{{#if title}}/{{slugify title}}{{/if}}{{> query_search}}">
         <span class="hover-underline">{{{title}}}</span>
       </a>
-      {{#if @root.data.auth.uid ~}}
+      {{#ifAll @root.data.auth.uid (compare content_type "coronavirus-submission") ~}}
       <a href="/help/submission/{{Id}}/{{#if title}}{{slugify title}}{{/if}}/edit/admin" class="btn btn-link">
         Edit
       </a>
-      {{/if ~}}
+      {{/ifAll ~}}
     </div>
     {{/compare ~}}
+    {{#compare content_type "coronavirus-group" ~}}
+    <ul class="fa-ul group">
+      <li class="card-subtitle">
+        <span class="fa-li"><span class="far fa-life-ring" title="Mutual aid group"></span></span>
+        Mutual aid group
+      </li>
+    </ul>
+    {{else}}
     {{#if organisation_name ~}}
     <ul class="fa-ul organisation">
       <li class="card-subtitle">
@@ -87,5 +95,6 @@
       </li>
     </ul>
     {{/if ~}}
+    {{/compare ~}}
   </div>
 </div>
