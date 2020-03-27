@@ -24,7 +24,7 @@
           <select class="form-select select-lg" id="support" name="support">
             <option value="">Main type of support</option>
             {{#ifAny path (compare @root.request.params.type 'for-people') ~}}
-            {{#each (split "Emotional or social support,Food / grocery delivery,Transportation,Information and advice,Other" ",") ~}}
+            {{#each (split "Emotional or social support,Food / grocery delivery,Mutual aid,Transportation,Information and advice,Other" ",") ~}}
             <option value="{{slugify this}}"{{#compare @root.request.params.query.support (slugify this)}} selected{{/compare}}>{{this}}</option>
             {{/each ~}}
             {{else}}
