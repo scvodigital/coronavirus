@@ -437,7 +437,7 @@ $(document).ready(function() {
         postcodes : "This must be a list of valid postcodes, separated by commas"
       }
     },
-   submitHandler: function(form) {
+    submitHandler: function(form) {
      grecaptcha.ready(function() {
        grecaptcha.execute('6LdlceIUAAAAAEB_DGTWR7hfR0EfHtl8Rz52pH6l', {action:'validate_captcha'}).then(function(token) {
          $('<input />').attr("type", "hidden").attr("name", "recaptcha_response").attr("value", token).appendTo('#share');
