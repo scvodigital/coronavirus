@@ -1,0 +1,20 @@
+{
+  "name": "redirect-coronavirus",
+  "pattern": {
+    "coronovirus": "/coronavirus",
+    "covid19": "/coronavirus",
+    "covid-19": "/coronavirus",
+    "corona": "/coronavirus"
+  },
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/",
+        "statusCode": 302
+      }
+    }
+  ]
+}
+
