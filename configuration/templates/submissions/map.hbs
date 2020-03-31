@@ -41,8 +41,18 @@
             {{#each @root.data.search_data.map_results.hits.hits ~}}
               {{#if _source.geo_coords ~}}
                 {{#each (arrayify _source.geo_coords) ~}}
-                  {{#if @root.request.params.query.distance ~}}
-                    {{#compare (itemAt ../fields.distance @index) "<" @root.request.params.query.distance ~}}
+                  {{#ifAll lat lon ~}}
+                    {{#if @root.request.params.query.distance ~}}
+                      {{#compare (itemAt ../fields.distance @index) "<" @root.request.params.query.distance ~}}
+                        {
+                          type: "Marker",
+                          popupContent: `
+                            {{> content_submission_map ../_source map_postcode=(itemAt (arrayify (split ../_source.postcode ",")) @index) content_type=../_type id=(replace ../_id "ccad_" "")}}
+                          `,
+                          latLng: { lat: {{lat}}, lng: {{lon}} }
+                        },
+                      {{/compare ~}}
+                    {{else}}
                       {
                         type: "Marker",
                         popupContent: `
@@ -50,16 +60,8 @@
                         `,
                         latLng: { lat: {{lat}}, lng: {{lon}} }
                       },
-                    {{/compare ~}}
-                  {{else}}
-                    {
-                      type: "Marker",
-                      popupContent: `
-                        {{> content_submission_map ../_source map_postcode=(itemAt (arrayify (split ../_source.postcode ",")) @index) content_type=../_type id=(replace ../_id "ccad_" "")}}
-                      `,
-                      latLng: { lat: {{lat}}, lng: {{lon}} }
-                    },
-                  {{/if ~}}
+                    {{/if ~}}
+                  {{/ifAll ~}}
                 {{/each ~}}
               {{/if ~}}
             {{/each ~}}

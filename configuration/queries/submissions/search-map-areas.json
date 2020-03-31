@@ -9,7 +9,7 @@
         {{>queries_submission_search_filters @root.request.params.query}}
       ],
       "must": [
-        {{>queries_submission_search_must @root.request.params.query}}
+        {{>queries_submission_search_must @root.request.params.query}},
         {{#if location ~}},
         {
           "bool": {

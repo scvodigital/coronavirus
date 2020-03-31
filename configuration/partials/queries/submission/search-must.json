@@ -2,5 +2,6 @@
 {{>queries_query_string
   querystring=keywords
   fields=(split (concat "text_bag_boost^" @root.context.metaData.searchKnobs.textBagBoost ",text_bag,title,location") ",")
-}}
+}},
 {{/if ~}}
+{{>queries_do_nothing}}
