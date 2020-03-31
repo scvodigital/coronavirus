@@ -1,6 +1,6 @@
 <div class="map-content">
   <h4 class="map-info post-title">
-    <a href="/help/submission/{{Id}}/{{slugify title}}{{> query_search}}">{{title}}</a>
+    <a href="{{> content_submission_link}}{{> query_search}}">{{title}}</a>
   </h4>
   {{#if organisation_name ~}}
   <div class="v-margin">
@@ -20,6 +20,6 @@
     {{/ifAny ~}}
   </div>
   <div class="">
-    <a href="/help/submission/{{Id}}/{{slugify title}}{{> query_search}}" class="no-underline">Find out more</a>
+    <a href="{{> content_submission_link}}{{> query_search}}" class="no-underline">Find out more</a>
   </div>
 </div>

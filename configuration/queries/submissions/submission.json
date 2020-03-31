@@ -16,6 +16,11 @@
         },
         {
           "term": {
+            "_id": "ccad_{{@root.request.params.id}}"
+          }
+        },
+        {
+          "term": {
             "slug": "{{@root.request.params.id}}"
           }
         }

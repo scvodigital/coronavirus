@@ -27,7 +27,7 @@ HIGHLIGHTS:
       </pre>
     </div>
   {{/if}}
-  {{> content_submission_search_result _source distance=fields.distance.[0] content_type=_type}}
+  {{> content_submission_search_result _source distance=fields.distance.[0] content_type=_type id=(replace _id 'ccad_' '')}}
 {{/each ~}}
 
 <div class="foot">

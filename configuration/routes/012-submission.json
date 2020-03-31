@@ -16,7 +16,7 @@
         },
         "queryTemplates": {
           "index": "{$../data/elasticsearch-index.txt}",
-          "type": "coronavirus-submission",
+          "type": "coronavirus-submission,coronavirus-group",
           "template": ">context.metaData.handlebars.queries.submissions_submission"
         }
       },

@@ -52,13 +52,13 @@
           {
             "name": "map_results",
             "index": "{$../data/elasticsearch-index.txt}",
-            "type": "coronavirus-submission",
+            "type": "coronavirus-submission,coronavirus-group",
             "template": ">context.metaData.handlebars.queries.submissions_search-map"
           },
           {
             "name": "areas_results",
             "index": "{$../data/elasticsearch-index.txt}",
-            "type": "coronavirus-submission",
+            "type": "coronavirus-submission,coronavirus-group",
             "template": ">context.metaData.handlebars.queries.submissions_search-map-areas"
           }
         ]

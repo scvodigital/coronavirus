@@ -2,7 +2,14 @@
 {{>queries_term field="type" term=(replace (replace (itemAt (split @root.request.params.type '&') 0) 'needed' 'assistance') 'for-' '')}},
 {{/if ~}}
 {{#if @root.request.params.query.support ~}}
+{{#compare @root.request.params.query.support 'mutual-aid' ~}}
+{{>queries_query_string
+  querystring="Mutual aid"
+  fields="support_category"
+}},
+{{else}}
 {{>queries_term field="support_category_slug" term=@root.request.params.query.support}},
+{{/compare ~}}
 {{/if ~}}
 {{#if location ~}}
 {

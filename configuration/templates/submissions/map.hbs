@@ -46,7 +46,7 @@
                       {
                         type: "Marker",
                         popupContent: `
-                          {{> content_submission_map ../_source map_postcode=(itemAt (arrayify (split ../_source.postcode ",")) @index)}}
+                          {{> content_submission_map ../_source map_postcode=(itemAt (arrayify (split ../_source.postcode ",")) @index) content_type=../_type id=(replace ../_id "ccad_" "")}}
                         `,
                         latLng: { lat: {{lat}}, lng: {{lon}} }
                       },
@@ -55,7 +55,7 @@
                     {
                       type: "Marker",
                       popupContent: `
-                        {{> content_submission_map ../_source map_postcode=(itemAt (arrayify (split ../_source.postcode ",")) @index)}}
+                        {{> content_submission_map ../_source map_postcode=(itemAt (arrayify (split ../_source.postcode ",")) @index) content_type=../_type id=(replace ../_id "ccad_" "")}}
                       `,
                       latLng: { lat: {{lat}}, lng: {{lon}} }
                     },

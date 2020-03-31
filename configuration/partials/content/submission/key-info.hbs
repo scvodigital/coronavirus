@@ -62,18 +62,18 @@
     <h2 class="t-margin">
       {{{title}}}
       {{#ifAll @root.data.auth.uid (compare content_type "coronavirus-submission") ~}}
-      <a href="/help/submission/{{Id}}/{{#if title}}{{slugify title}}{{/if}}/edit/admin" class="btn btn-link caption">
+      <a href="{{> content_submission_link}}/edit/admin" class="btn btn-link caption">
         Edit
       </a>
       {{/ifAll ~}}
     </h2>
     {{else}}
     <div class="card-title h5">
-      <a href="/help/submission/{{Id}}{{#if title}}/{{slugify title}}{{/if}}{{> query_search}}">
+      <a href="{{> content_submission_link}}{{> query_search}}">
         <span class="hover-underline">{{{title}}}</span>
       </a>
       {{#ifAll @root.data.auth.uid (compare content_type "coronavirus-submission") ~}}
-      <a href="/help/submission/{{Id}}/{{#if title}}{{slugify title}}{{/if}}/edit/admin" class="btn btn-link">
+      <a href="{{> content_submission_link}}/edit/admin" class="btn btn-link">
         Edit
       </a>
       {{/ifAll ~}}
