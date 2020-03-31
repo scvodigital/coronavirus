@@ -171,7 +171,14 @@
     <a href="mailto:{{@root.data.currentSite.contacts.support}}?subject=Report%20submission:%20{{urlencode title}}%20via%20COVID-19%20help%20search&body=I%20would%20like%20to%20report%20this%20submission%20for%20the%20following%20reasons:" class="no-underline">Report as inappropriate</a>
   </div>
   <div class="mdc-typography--body2 last-modified">
+    {{#if date_last_modified ~}}
     <span class="far fa-calendar-alt" aria-hidden="true"></span>
     <span title="Added on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Added {{momentFromNow date_last_modified}}</span>
+    {{else}}
+    {{#compare content_type "coronavirus-group" ~}}
+    <span class="far fa-file-import" aria-hidden="true"></span>
+    Listing sourced from <a href="https://covidmutualaid.org">covidmutualaid.org</a>
+    {{/compare ~}}
+    {{/if ~}}
   </div>
 </div>
