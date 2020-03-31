@@ -5,4 +5,13 @@
     {{inflect (length (arrayify (split postcodes ','))) "location" "locations" true}}
   </li>
 </ul>
+{{else}}
+{{#compare content_type "coronavirus-group" ~}}
+<ul class="fa-ul location">
+  <li class="mdc-typography--body2">
+    <span class="fa-li"><span class="far fa-location-arrow fa-fw" title="Location"></span></span>
+    {{location}}
+  </li>
+</ul>
+{{/compare ~}}
 {{/compare ~}}

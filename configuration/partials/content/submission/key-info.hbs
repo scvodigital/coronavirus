@@ -49,11 +49,11 @@
       {{> content_submission_location_areas}}
     </div>
     {{else}}
-    {{#if (contains where_slug "in-a-local-community") ~}}
+    {{#ifAny (contains where_slug "in-a-local-community") (contains where "In a local community") ~}}
     <div class="v-margin pull-right search-distance">
       {{> content_submission_location_postcodes}}
     </div>
-    {{/if ~}}
+    {{/ifAny ~}}
     {{/if ~}}
     {{/if ~}}
     {{/ifAll ~}}

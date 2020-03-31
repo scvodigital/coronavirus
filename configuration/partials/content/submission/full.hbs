@@ -38,12 +38,13 @@
         <p>
           Around {{inflect (length (arrayify (split postcodes ','))) "postcode" "postcodes"}}: {{#each (arrayify (split postcodes ','))}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
         </p>
+        {{/if ~}}
         {{else}}
         {{#if location ~}}
+        <h4>Support provided locally</h4>
         <p>
           Location: {{location}}
         </p>
-        {{/if ~}}
         {{/if ~}}
         {{/compare ~}}
         {{/compare ~}}
