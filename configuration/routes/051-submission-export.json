@@ -23,7 +23,7 @@
         "template": ">context.metaData.handlebars.templates.submissions_export",
         "output": "body",
         "filename": "coronavirus-community-directory-submissions-export_{{momentFormat (moment (dateMath 'now') 'x') 'YYYY-MM-DD-HH-mm-ss'}}.csv",
-        "contentType": "text/html"
+        "contentType": "text/csv"
       }
     }
   ]
