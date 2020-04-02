@@ -8,7 +8,6 @@
         {{>queries_submission_search_filters @root.request.params.query}}
       ],
       "must": [
-        {{>queries_submission_search_must @root.request.params.query}},
         {
           "bool": {
             "should": [
@@ -17,7 +16,8 @@
             ],
             "minimum_should_match": 2
           }
-        }
+        },
+        {{>queries_submission_search_must @root.request.params.query}}
       ]
     }
   }

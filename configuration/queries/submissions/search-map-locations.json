@@ -9,7 +9,6 @@
         {{>queries_submission_search_filters @root.request.params.query}}
       ],
       "must": [
-        {{>queries_submission_search_must @root.request.params.query}},
         {{#if location ~}},
         {
           "bool": {
@@ -19,8 +18,9 @@
             ],
             "minimum_should_match": {{#if distance}}2{{else}}1{{/if}}
           }
-        }
+        },
         {{/if ~}}
+        {{>queries_submission_search_must @root.request.params.query}}
       ]
     }
   },
