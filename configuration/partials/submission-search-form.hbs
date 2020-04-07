@@ -239,10 +239,40 @@
     }
   ],
   nothingSelectedTasks: [
-    "empty-location-fields",
     {
-      type: "run",
-      config: { code: "metadata.instance.clearSelection()" }
+      type: "switch",
+      config: {
+        which: {
+          __template: "\{{#if metadata.currentRemoteData.[0]}}selectFirst\{{/if}}"
+        },
+        branches: {
+          default: {
+            tasks: [
+              {
+                type: "run",
+                config: { code: "console.log('NO DATA LOADED SO CLEARING LOCATION FIELDS')" }
+              },
+              "empty-location-fields",
+              {
+                type: "run",
+                config: { code: "metadata.instance.clearSelection()" }
+              }
+            ]
+          },
+          selectFirst: {
+            tasks: [
+              {
+                type: "run",
+                config: { code: "console.log('DATA LOADED SO SELECTING FIRST', metadata.currentRemoteData)" }
+              },
+              {
+                type: "run",
+                config: { code: "metadata.instance.typeaheadSelect(metadata.event, metadata.currentRemoteData[0])" }
+              }
+            ]
+          }
+        }
+      }
     }
   ],
   datasets: [
