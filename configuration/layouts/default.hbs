@@ -43,6 +43,8 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.8.3/polyfill.min.js"></script>
   <script>
+    console.log('Client IP', {{{json value=request.clientIp}}});
+
   window.dataLayer = window.dataLayer || [];
 
   {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
