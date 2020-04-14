@@ -71,6 +71,11 @@
         <i class="form-icon"></i> Food / grocery delivery
       </label>
       <label class="form-radio">
+        <input type="radio" name="support" class="support-not-other-option" value="Mutual aid" disabled />
+        <i class="form-icon"></i> Mutual aid
+        <p class="form-input-hint label label-warning no-margin"><span class="h-padding">Please <a href="https://covidmutualaid.org/local-groups">register your mutual aid group on the UK-wide directory</a></span></p>
+      </label>
+      <label class="form-radio">
         <input type="radio" name="support" class="support-not-other-option" value="Transportation"{{#compare @root.data.primaryResponse.support 'Transportation'}} checked{{/compare}} />
         <i class="form-icon"></i> Transportation
       </label>
