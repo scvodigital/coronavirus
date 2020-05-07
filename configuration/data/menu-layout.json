@@ -19,12 +19,6 @@
       "route": "^/help/for-organisations|^/share/organisations"
     },
     {
-      "label": "For organisations",
-      "icon": "",
-      "path": "/organisations",
-      "route": "^/organisations$"
-    },
-    {
       "label": "Volunteer",
       "icon": "",
       "path": "/volunteer",

@@ -1,8 +1,18 @@
 <div class="">
   <div class="container b-padding-full">
-    {{> submission_search_header}}
+    {{> warning_medical}}
 
-    {{> submission_search_form path="/help/for-people"}}
+    <p>
+      Our coronavirus community assistance directory was set up for those supporting their communities around Scotland to find and offer help. We have now consolidated our directory to include resources we are aware of, both locally and nationally, to help you find what you need whether you are an individual or organisation.
+    </p>
+    <p>
+      We want to help you find what you need as easily as possible so here are the options for you:
+    </p>
+    <h2>For individuals</h2>
+    {{> info_for_individuals}}
+    <h2>For organisations</h2>
+    {{> info_for_organisations}}
+
     <p class="text-center t-margin">
       <a href="/volunteer" class="btn">Volunteer or help out in your community</a>
     </p>
@@ -11,18 +21,14 @@
     </p>
   </div>
 </div>
-<div class="bg-gray">
+{{!-- <div class="bg-gray">
   <div class="container v-padding-full">
-    {{!-- <div class="columns">
+    <div class="columns">
       <div class="column col-2 col-md-3 col-sm-4 align-centre">
         <span class="fal fa-building fa-5x" aria-hidden="true"></span>
       </div>
-      <div class="column col-10 col-md-9 col-sm-8"> --}}
-        <h3>
-          For organisations
-        </h3>
-        {{> info_for_organisations}}
-      {{!-- </div>
-    </div> --}}
+      <div class="column col-10 col-md-9 col-sm-8">
+      </div>
+    </div>
   </div>
-</div>
+</div> --}}
