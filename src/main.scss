@@ -1293,9 +1293,9 @@ a.author:hover,
     display: block;
     background: none;
   }
-  a:hover {
-    color: $secondary-color-dark;
-  }
+  // a:hover {
+  //   color: $secondary-color-dark;
+  // }
   .columns {
     margin-left: -($padding/2);
     margin-right: -($padding/2);
@@ -1313,7 +1313,7 @@ a.author:hover,
     // padding-top: $unit;
     a {
       display: inline-block;
-      color: white;
+      color: $secondary-color;
       padding: 0;
       background: none;
       border-radius: 0;
@@ -1330,8 +1330,8 @@ a.author:hover,
     }
     a:hover,
     a.active {
-      color: $primary-color-light;
-      border-bottom-color: $primary-color-light;
+      // color: $primary-color-light;
+      border-bottom-color: $secondary-color;
     }
   }
 }

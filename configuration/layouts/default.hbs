@@ -161,14 +161,14 @@
         </a>
       </div>
     </header>
-    <header class="bg-secondary">
+    <header class="bg-blue">
       <div class="container">
         <section class="nav hide-lg">
           <div class="main-menu">
             <a href="/" class="{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">Home</a>
             {{#each @root.context.metaData.menus.nav ~}}
               <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
-            {{/each}}
+            {{/each ~}}
             {{#if @root.data.auth.uid ~}}
             {{#each @root.context.metaData.menus.admin ~}}
             <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
@@ -295,7 +295,7 @@
     <div id="toaster"></div>
 
     {{#compare @root.data.currentSite.name "default" ~}}
-    {{> layout_scvo_hub}}
+    {{!-- {{> layout_scvo_hub}} --}}
 
     {{> footers_tfn_related}}
     {{/compare ~}}
