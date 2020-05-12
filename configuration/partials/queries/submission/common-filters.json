@@ -17,6 +17,13 @@
                 "field": "geo_coords"
               }
             }
+          ],
+          "must_not": [
+            {
+              "term": {
+                "_id": "ccad_andromeda"
+              }
+            }
           ]
         }
       },
