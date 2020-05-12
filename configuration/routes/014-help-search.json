@@ -38,7 +38,7 @@
           {
             "name": "detailed_results",
             "index": "{$../data/elasticsearch-index.txt}",
-            "type": "coronavirus-submission,coronavirus-group",
+            "type": "coronavirus-submission,coronavirus-group,aliss-service",
             "template": ">context.metaData.handlebars.queries.submissions_search-list"
           }
         ]

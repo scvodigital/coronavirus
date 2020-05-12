@@ -1,3 +1,11 @@
+{{#ifAll (compare (getType postcodes) "array") (compare (length postcodes) ">" 0) ~}}
+<ul class="fa-ul postcodes">
+  <li class="mdc-typography--body2">
+    <span class="fa-li"><span class="fas fa-location-arrow fa-fw" title="Location"></span></span>
+    {{inflect (length postcodes ',') "location" "locations" true}}
+  </li>
+</ul>
+{{else}}
 {{#compare (length (arrayify (split postcodes ','))) ">" 0 ~}}
 <ul class="fa-ul postcodes">
   <li class="mdc-typography--body2">
@@ -15,3 +23,4 @@
 </ul>
 {{/compare ~}}
 {{/compare ~}}
+{{/ifAll ~}}

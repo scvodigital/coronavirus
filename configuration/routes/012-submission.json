@@ -16,7 +16,7 @@
         },
         "queryTemplates": {
           "index": "{$../data/elasticsearch-index.txt}",
-          "type": "coronavirus-submission,coronavirus-group",
+          "type": "coronavirus-submission,coronavirus-group,aliss-service",
           "template": ">context.metaData.handlebars.queries.submissions_submission"
         }
       },
@@ -34,13 +34,13 @@
           {
             "name": "types",
             "index": "{$../data/elasticsearch-index.txt}",
-            "type": "coronavirus-submission",
+            "type": "coronavirus-submission,coronavirus-group,aliss-service",
             "template": ">context.metaData.handlebars.queries.submissions_types"
           },
           {
             "name": "related",
             "index": "{$../data/elasticsearch-index.txt}",
-            "type": "coronavirus-submission",
+            "type": "coronavirus-submission,coronavirus-group,aliss-service",
             "template": ">context.metaData.handlebars.queries.submissions_related"
           }
         ]

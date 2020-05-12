@@ -1,3 +1,19 @@
+{{#ifAll (compare (getType areas) "array") (compare (length areas) ">" 0) ~}}
+{{#compare (length areas) ">" 0 ~}}
+<ul class="fa-ul areas">
+  <li class="mdc-typography--body2">
+    <span class="fa-li"><span class="far fa-location-arrow fa-fw" title="Location"></span></span>
+    {{#compare (length areas) ">" 2 ~}}
+    {{inflect (length areas) "area" "areas" true}}
+    {{else}}
+    {{#each areas ~}}
+    {{{this}}}{{#unless @last}} and {{/unless}}
+    {{/each ~}}
+    {{/compare ~}}
+  </li>
+</ul>
+{{/compare ~}}
+{{else}}
 {{#compare (length (arrayify (split areas ','))) ">" 0 ~}}
 <ul class="fa-ul areas">
   <li class="mdc-typography--body2">
@@ -12,3 +28,4 @@
   </li>
 </ul>
 {{/compare ~}}
+{{/ifAll ~}}

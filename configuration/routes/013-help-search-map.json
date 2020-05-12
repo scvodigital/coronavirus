@@ -21,13 +21,13 @@
           {
             "name": "locations_results",
             "index": "{$../data/elasticsearch-index.txt}",
-            "type": "coronavirus-submission",
+            "type": "coronavirus-submission,coronavirus-group,aliss-service",
             "template": ">context.metaData.handlebars.queries.submissions_search-map-locations"
           },
           {
             "name": "national_results",
             "index": "{$../data/elasticsearch-index.txt}",
-            "type": "coronavirus-submission",
+            "type": "coronavirus-submission,coronavirus-group,aliss-service",
             "template": ">context.metaData.handlebars.queries.submissions_search-map-national"
           },
           {
@@ -52,13 +52,13 @@
           {
             "name": "map_results",
             "index": "{$../data/elasticsearch-index.txt}",
-            "type": "coronavirus-submission,coronavirus-group",
+            "type": "coronavirus-submission,coronavirus-group,aliss-service",
             "template": ">context.metaData.handlebars.queries.submissions_search-map"
           },
           {
             "name": "areas_results",
             "index": "{$../data/elasticsearch-index.txt}",
-            "type": "coronavirus-submission,coronavirus-group",
+            "type": "coronavirus-submission,coronavirus-group,aliss-service",
             "template": ">context.metaData.handlebars.queries.submissions_search-map-areas"
           }
         ]

@@ -3,6 +3,16 @@
   <div class="columns b-margin-full">
     <div class="column col-8 col-md-12">
       <div class="detailed-info">
+        {{#compare type 'aliss-service' ~}}
+        {{#if aliss_categories ~}}
+        <h4>{{inflect (length aliss_categories) "Type" "Types"}} of support available</h4>
+        <ul>
+          {{#each aliss_categories ~}}
+          <li>{{this}}</li>
+          {{/each ~}}
+        </ul>
+        {{/if ~}}
+        {{else}}
         {{#if support_category ~}}
         <h4>Type of support for {{type}}</h4>
         <p>
@@ -13,6 +23,7 @@
           {{/compare ~}}
         </p>
         {{/if ~}}
+        {{/compare ~}}
         {{#if help_offered ~}}
         <h4>Help offered</h4>
         <p>
@@ -32,6 +43,23 @@
         </p>
         {{/if ~}}
         {{#compare where "In a local community" ~}}
+        {{#ifAll (compare (getType postcodes) "array") (compare (length postcodes) ">" 0) ~}}
+        {{#compare (length postcodes) ">" 0 ~}}
+        <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} locally</h4>
+        {{#if postcodes ~}}
+        <p>
+          Around {{inflect (length postcodes) "postcode" "postcodes"}}: {{#each postcodes}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+        </p>
+        {{/if ~}}
+        {{else}}
+        {{#if location ~}}
+        <h4>Support provided locally</h4>
+        <p>
+          Location: {{location}}
+        </p>
+        {{/if ~}}
+        {{/compare ~}}
+        {{else}}
         {{#compare (length (arrayify (split postcodes ','))) ">" 0 ~}}
         <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} locally</h4>
         {{#if postcodes ~}}
@@ -47,8 +75,20 @@
         </p>
         {{/if ~}}
         {{/compare ~}}
+        {{/ifAll ~}}
         {{/compare ~}}
         {{#compare where "Across one or more local authority areas" ~}}
+        {{#if (compare (getType areas) "array") ~}}
+        <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} in {{inflect (length areas) "this area" "these areas"}}</h4>
+        {{#compare (length areas) ">" 0 ~}}
+        <p>
+          In
+          {{#each areas ~}}
+          {{#if @last}}{{#compare (length ../areas) ">" 1 ~}} and {{/compare ~}}{{/if}}{{{this}}}{{#unless @last}}{{#compare (length ../areasZ) ">" 2}},{{/compare}} {{else}}.{{/unless}}
+          {{/each ~}}
+        </p>
+        {{/compare ~}}
+        {{else}}
         <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} in {{inflect (length (arrayify (split areas ','))) "this area" "these areas"}}</h4>
         {{#compare (length (arrayify (split areas ','))) ">" 0 ~}}
         <p>
@@ -58,11 +98,12 @@
           {{/each ~}}
         </p>
         {{/compare ~}}
+        {{/if ~}}
         {{/compare ~}}
         {{#compare where "Across the whole of Scotland" ~}}
         <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} across the whole of Scotland</h4>
         {{/compare ~}}
-        {{#ifAny name website telephone email facebook twitter ~}}
+        {{#ifAny name website url telephone email facebook twitter ~}}
         <h4>More information</h4>
         <div class="columns">
           {{#if name ~}}
@@ -79,6 +120,14 @@
           </div>
           <div class="column col-9 col-md-8 col-sm-12">
             <a href="{{#if (contains website 'http')}}{{fixUrl website}}{{else}}http://{{website}}{{/if}}">{{website}}</a>
+          </div>
+          {{/if ~}}
+          {{#if url ~}}
+          <div class="column col-3 col-md-4 col-sm-12">
+            <strong>Website</strong>
+          </div>
+          <div class="column col-9 col-md-8 col-sm-12">
+            <a href="{{#if (contains url 'http')}}{{fixUrl url}}{{else}}http://{{url}}{{/if}}">{{url}}</a>
           </div>
           {{/if ~}}
           {{#if telephone ~}}
@@ -118,6 +167,55 @@
       </div>
     </div>
 
+    {{#if (compare (getType postcodes) "array") ~}}
+    {{#compare (length postcode) ">" 0 ~}}
+    <div class="column col-4 col-md-12">
+      <div id="map-content-primary" style="height: 40vh; width: 100%;" data-component="LeafletMap,TasksTrigger" data-LeafletMap='{
+          mapOptions: {
+            fullscreenControl: true,
+            scrollWheelZoom: false,
+            trackResize: false,
+            zoom: 11
+          },
+          initialLatLng: { lat: 55.94528820000001, lng: -3.200755699999945 },
+          featureGroups: [
+            {
+              boundToThis: true,
+              features: [
+                {{#each (arrayify geo_coords) ~}}
+                {
+                  type: "Marker",
+                  popupContent: `
+                    <strong>{{../organisation_name}}</strong>
+                    <p class="">{{../title}}</p>
+                    {{#if (itemAt ../postcodes @index) ~}}
+                    <div class="v-margin">
+                      Postcode: {{itemAt ../postcodes @index}}
+                    </div>
+                    {{/if ~}}
+                  `,
+                  latLng: { lat: {{lat}}, lng: {{lon}} }
+                },
+                {{/each}}
+              ]
+            }
+          ]
+        }' data-TasksTrigger='{
+          visibilityChange: {
+            visible: [
+              {
+                type: "run",
+                config: {
+                  code: { __template: `ComponentManager.componentRegistry["\{{jquery rootElement "data" (split "LeafletMapUid")}}"].map.invalidateSize()` }
+                }
+              }
+            ]
+          }
+        }'>
+      </div>
+    </div>
+    {{/compare ~}}
+    {{else}}
     {{#compare (length (arrayify (split postcodes ','))) ">" 0 ~}}
     <div class="column col-4 col-md-12">
       <div id="map-content-primary" style="height: 40vh; width: 100%;" data-component="LeafletMap,TasksTrigger" data-LeafletMap='{
@@ -165,20 +263,32 @@
       </div>
     </div>
     {{/compare ~}}
+    {{/if ~}}
   </div>
+  {{#compare content_type "coronavirus-submission" ~}}
   <div class="mdc-typography--body1 report pull-right">
     <span class="fas fa-flag fa-fw text-error" title="Report as inappropriate"></span>
     <a href="mailto:{{@root.data.currentSite.contacts.support}}?subject=Report%20submission:%20{{urlencode title}}%20via%20COVID-19%20help%20search&body=I%20would%20like%20to%20report%20this%20submission%20for%20the%20following%20reasons:" class="no-underline">Report as inappropriate</a>
   </div>
+  {{/compare ~}}
   <div class="mdc-typography--body2 last-modified">
     {{#if date_last_modified ~}}
     <span class="far fa-calendar-alt" aria-hidden="true"></span>
-    <span title="Added on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Added {{momentFromNow date_last_modified}}</span>
-    {{else}}
+    <span title="Added on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
+    {{/if ~}}
     {{#compare content_type "coronavirus-group" ~}}
-    <span class="far fa-file-import" aria-hidden="true"></span>
+    <br /><span class="far fa-file-import" aria-hidden="true"></span>
     Listing sourced from <a href="https://covidmutualaid.org">covidmutualaid.org</a>
     {{/compare ~}}
-    {{/if ~}}
+    {{#compare content_type "aliss-service" ~}}
+    <br /><span class="far fa-file-import" aria-hidden="true"></span>
+    Listing sourced from <a href="https://www.aliss.org">ALISS</a>
+    {{/compare ~}}
   </div>
+  {{#compare content_type "coronavirus-submission" ~}}
+  <hr />
+  <p>
+    Information on the website is provided by users and is not verified, so please report any incorrect or inappropriate listings, and never give personal or financial details online to someone you don't know.
+  </p>
+  {{/compare ~}}
 </div>

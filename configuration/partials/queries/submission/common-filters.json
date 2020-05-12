@@ -44,6 +44,32 @@
             }
           ]
         }
+      },
+      {
+        "bool": {
+          "must": [
+            {
+              "term": {
+                "_type": {
+                  "value" : "aliss-service"
+                }
+              }
+            },
+            {
+              "term": {
+                "status": "published"
+              }
+            },
+            {
+              "simple_query_string": {
+                "query": "Coronavirus COVID-19",
+                "default_operator": "or",
+                "fields": ["text_bag"],
+                "analyzer": "snowball"
+              }
+            }
+          ]
+        }
       }
     ]
   }
