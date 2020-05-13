@@ -3,7 +3,7 @@
   <div class="columns b-margin-full">
     <div class="column col-8 col-md-12">
       <div class="detailed-info">
-        {{#compare type 'aliss-service' ~}}
+        {{#compare content_type 'aliss-service' ~}}
         {{#if aliss_categories ~}}
         <h4>{{inflect (length aliss_categories) "Type" "Types"}} of support available</h4>
         <ul>
@@ -42,7 +42,7 @@
           {{access_support}}
         </p>
         {{/if ~}}
-        {{#compare where "In a local community" ~}}
+        {{#compare where_slug "in-a-local-community" ~}}
         {{#ifAll (compare (getType postcodes) "array") (compare (length postcodes) ">" 0) ~}}
         {{#compare (length postcodes) ">" 0 ~}}
         <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} locally</h4>
@@ -77,7 +77,7 @@
         {{/compare ~}}
         {{/ifAll ~}}
         {{/compare ~}}
-        {{#compare where "Across one or more local authority areas" ~}}
+        {{#compare where_slug "across-one-or-more-local-authority-areas" ~}}
         {{#if (compare (getType areas) "array") ~}}
         <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} in {{inflect (length areas) "this area" "these areas"}}</h4>
         {{#compare (length areas) ">" 0 ~}}
@@ -100,7 +100,7 @@
         {{/compare ~}}
         {{/if ~}}
         {{/compare ~}}
-        {{#compare where "Across the whole of Scotland" ~}}
+        {{#compare where_slug "across-the-whole-of-scotland" ~}}
         <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} across the whole of Scotland</h4>
         {{/compare ~}}
         {{#ifAny name website url telephone email facebook twitter ~}}
@@ -160,6 +160,14 @@
           </div>
           <div class="column col-9 col-md-8 col-sm-12">
             <a href="{{#if (contains twitter 'twitter.com')}}{{fixUrl twitter}}{{else}}https://twitter.com/{{replace twitter '@' ''}}{{/if}}">{{twitter}}</a>
+          </div>
+          {{/if ~}}
+          {{#if aliss_url ~}}
+          <div class="column col-3 col-md-4 col-sm-12">
+            <strong>Full listing on ALISS</strong>
+          </div>
+          <div class="column col-9 col-md-8 col-sm-12">
+            <a href="{{aliss_url}}">{{aliss_url}}</a>
           </div>
           {{/if ~}}
         </div>
