@@ -61,11 +61,8 @@
               }
             },
             {
-              "simple_query_string": {
-                "query": "Coronavirus COVID-19",
-                "default_operator": "or",
-                "fields": ["text_bag"],
-                "analyzer": "snowball"
+              "term": {
+                "aliss_categories": "COVID 19"
               }
             }
           ]

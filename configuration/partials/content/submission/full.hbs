@@ -78,14 +78,18 @@
         {{/ifAll ~}}
         {{/compare ~}}
         {{#compare where_slug "across-one-or-more-local-authority-areas" ~}}
-        {{#if (compare (getType areas) "array") ~}}
-        <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} in {{inflect (length areas) "this area" "these areas"}}</h4>
-        {{#compare (length areas) ">" 0 ~}}
+        {{#if (compare (getType locations) "array") ~}}
+        <h4>Support {{#compare type "assistance"}}needed{{else}}provided{{/compare}} in {{inflect (length locations) "this area" "these areas"}}</h4>
+        {{#compare (length locations) ">" 0 ~}}
         <p>
           In
-          {{#each areas ~}}
-          {{#if @last}}{{#compare (length ../areas) ">" 1 ~}} and {{/compare ~}}{{/if}}{{{this}}}{{#unless @last}}{{#compare (length ../areasZ) ">" 2}},{{/compare}} {{else}}.{{/unless}}
+          {{#each locations ~}}
+          {{#if @last}}{{#compare (length ../locations) ">" 1 ~}} and {{/compare ~}}{{/if}}{{{this}}}{{#unless @last}}{{#compare (length ../locations) ">" 2}},{{/compare}} {{else}}.{{/unless}}
           {{/each ~}}
+        </p>
+        {{else}}
+        <p>
+          No areas specified
         </p>
         {{/compare ~}}
         {{else}}
