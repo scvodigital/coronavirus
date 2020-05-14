@@ -1,10 +1,28 @@
 {
-  "terms": {
-    "areas": [
-      {{#each @root.data.location_data.la_results.aggregations.local_authority_areas.buckets ~}}
-        {{{stringify (replace (replace (replace key " and " " & ") "City of " "") " City" "")}}}
-        {{#unless @last}},{{/unless}}
-      {{/each}}
-    ]
+  "bool": {
+    "should": [
+      {
+        "terms": {
+          "areas": [
+            {{#each @root.data.location_data.la_results.aggregations.local_authority_areas.buckets ~}}
+              {{{stringify (replace (replace (replace key " and " " & ") "City of " "") " City" "")}}}
+              {{#unless @last}},{{/unless}}
+            {{/each}}
+          ]
+        }
+      },
+      {
+        "terms": {
+          "areas_array": [
+            {{#each @root.data.location_data.la_results.aggregations.local_authority_areas.buckets ~}}
+              {{{stringify (replace (replace (replace key " and " " & ") "City of " "") " City" "")}}}
+              {{#unless @last}},{{/unless}}
+            {{/each}}
+          ]
+        }
+      },
+      {{>queries_do_nothing}}
+    ],
+    "minimum_should_match": 2
   }
 },
