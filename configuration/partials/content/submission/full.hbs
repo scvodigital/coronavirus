@@ -198,7 +198,7 @@
                 {
                   type: "Marker",
                   popupContent: `
-                    <strong>{{../organisation_name}}</strong>
+                    <strong>{{default ../organisation_name ../aliss_organisation.name}}</strong>
                     <p class="">{{../title}}</p>
                     {{#if (itemAt ../postcodes @index) ~}}
                     <div class="v-margin">
@@ -246,7 +246,7 @@
                 {
                   type: "Marker",
                   popupContent: `
-                    <strong>{{../organisation_name}}</strong>
+                    <strong>{{default ../organisation_name ../aliss_organisation.name}}</strong>
                     <p class="">{{../title}}</p>
                     {{#if (itemAt (arrayify (split ../postcodes ",")) @index) ~}}
                     <div class="v-margin">
@@ -283,18 +283,28 @@
     <a href="mailto:{{@root.data.currentSite.contacts.support}}?subject=Report%20submission:%20{{urlencode title}}%20via%20COVID-19%20help%20search&body=I%20would%20like%20to%20report%20this%20submission%20for%20the%20following%20reasons:" class="no-underline">Report as inappropriate</a>
   </div>
   {{/compare ~}}
-  <div class="mdc-typography--body2 last-modified">
-    {{#if date_last_modified ~}}
-    <span class="far fa-calendar-alt" aria-hidden="true"></span>
-    <span title="Added on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
-    {{/if ~}}
-    {{#compare content_type "coronavirus-group" ~}}
-    <br /><span class="far fa-file-import" aria-hidden="true"></span>
-    Listing sourced from <a href="https://covidmutualaid.org">covidmutualaid.org</a>
-    {{/compare ~}}
+  <div class="columns">
+    <div class="column col-10 col-xl-9 col-lg-8 col-md-7 col-sm-6">
+      <div class="mdc-typography--body2 last-modified">
+        {{#if date_last_modified ~}}
+        <span class="far fa-calendar-alt" aria-hidden="true"></span>
+        <span title="Added on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
+        {{/if ~}}
+        {{#compare content_type "coronavirus-group" ~}}
+        <br /><span class="far fa-file-import" aria-hidden="true"></span>
+        Listing sourced from <a href="https://covidmutualaid.org">covidmutualaid.org</a>
+        {{/compare ~}}
+        {{#compare content_type "aliss-service" ~}}
+        <br />
+        <span class="far fa-file-import" aria-hidden="true"></span>
+        Listing sourced from <a href="https://www.aliss.org">ALISS</a>
+        {{/compare ~}}
+      </div>
+    </div>
     {{#compare content_type "aliss-service" ~}}
-    <br /><span class="far fa-file-import" aria-hidden="true"></span>
-    Listing sourced from <a href="https://www.aliss.org">ALISS</a>
+    <div class="column col-2 col-xl-3 col-lg-4 col-md-5 col-sm-6">
+      <a href="https://www.aliss.org" class="no-ext no-underline"><img src="{{~>asset_url url='images/aliss.png'~}}" class="img-responsive" /></a>
+    </div>
     {{/compare ~}}
   </div>
   {{#compare content_type "coronavirus-submission" ~}}

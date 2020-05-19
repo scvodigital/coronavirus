@@ -87,14 +87,14 @@
       </li>
     </ul>
     {{else}}
-    {{#if organisation_name ~}}
+    {{#ifAny organisation_name aliss_organisation.name ~}}
     <ul class="fa-ul organisation">
       <li class="card-subtitle">
         <span class="fa-li"><span class="far fa-home-heart" title="Organisation"></span></span>
-        {{organisation_name}}
+        {{default organisation_name aliss_organisation.name}}
       </li>
     </ul>
-    {{/if ~}}
+    {{/ifAny ~}}
     {{/compare ~}}
   </div>
 </div>
