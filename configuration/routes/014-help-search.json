@@ -52,11 +52,27 @@
       "config": {
         "logic": {
           "if": [
+            {
+              "in": [
+                "download=csv",
+                {
+                  "var": "request.fullUrl"
+                }
+              ]
+            },
+            "csv",
             "default"
           ]
         },
         "output": "body",
         "layouts": {
+          "csv": {
+            "layout": ">context.metaData.handlebars.layouts.csv",
+            "parts": {
+              "content": ">context.metaData.handlebars.templates.submissions_search-csv"
+            },
+            "contentType": "text/csv"
+          },
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {

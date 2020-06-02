@@ -1,0 +1,5 @@
+{{#each @root.data.search_data.detailed_results.hits.hits ~}}
+{{#with _source ~}}
+https://coronavirus.scvo.org/help/submission/{{Id}}/{{slugify title}},{{{stringify title}}},{{{stringify access_support}}},{{{stringify areas}}},{{{stringify email}}},{{{stringify date_last_indexed}}},{{{stringify date_last_modified}}},{{{stringify facebook}}},{{{stringify help_offered}}},{{{stringify organisation_name}}},{{{stringify postcodes}}},{{{stringify support_category}}},{{{stringify support_other_description}}},{{{stringify telephone}}},{{{stringify twitter}}},{{{stringify website}}},{{{stringify where}}}
+{{/with ~}}
+{{/each ~}}

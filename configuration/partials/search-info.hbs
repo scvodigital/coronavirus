@@ -14,6 +14,8 @@
   {{#if @root.request.params.query.exclude ~}}
   &ensp;<a href="{{replace @root.request.url.pathname '/map' ''}}?{{{querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null}}}">Show all</a>
   {{/if ~}}
+  &ensp;
+  <a href="{{replace @root.request.url.pathname '/map' ''}}?{{{querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null}}}&download=csv"><span class="far fa-file-csv"></span></a>
 </div>
 {{else}}
 {{#ifAny @root.request.params.query.keywords @root.request.params.query.location @root.request.params.query.activities @root.request.params.query.themes @root.request.params.query.age ~}}
