@@ -1,6 +1,11 @@
 {
+  {{#if (contains @root.request.fullUrl "download=csv") ~}}
+  "size": 10000,
+  "from": 0,
+  {{else}}
   "size": 10,
   "from": {{multiply (subtract (default @root.request.params.query.page 1) 1) 10}},
+  {{/if ~}}
   "highlight": {
     "fields": {
       "text_bag": {},
