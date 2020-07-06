@@ -1,0 +1,30 @@
+{
+  "name": "admin_export-links",
+  "debug": true,
+  "pattern": "/admin/export-links",
+  "tasks": [
+    "context.metaData.commonTasks.currentSite",
+    "context.metaData.commonTasks.authRequired",
+    {
+      "name": "submissions",
+      "taskModule": "firebaseRtbGet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "coronavirus",
+        "pathTemplate": "/submissions",
+        "defaultData": {}
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": ">context.metaData.handlebars.templates.submissions_export-links",
+        "output": "body",
+        "filename": "coronavirus-community-directory-submissions-export-links_{{momentFormat (moment (dateMath 'now') 'x') 'YYYY-MM-DD-HH-mm-ss'}}.csv",
+        "contentType": "text/csv"
+      }
+    }
+  ]
+}

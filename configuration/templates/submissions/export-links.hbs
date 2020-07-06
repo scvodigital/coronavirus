@@ -1,0 +1,6 @@
+"Author Email","Author Name","Submission Edit"
+{{#each (sortBy (keyValue @root.data.submissions) "date_last_modified" "desc")}}
+{{#compare value.status "published" ~}}
+{{{json value=value.author-email}}},{{{json value=value.author-name}}},{{{json value=(concat @root.data.currentSite.url '/help/submission/' key '/' (slugify value.title) '/edit/' value.secret_key)}}}
+{{/compare ~}}
+{{/each}}
