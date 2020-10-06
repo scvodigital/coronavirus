@@ -4,7 +4,7 @@
     "title",
     "site",
     "path",
-    "image.small",
+    "image.medium",
     "d_published"
   ],
   "query": {
@@ -14,7 +14,21 @@
           "must": [
             {
               "term": {
+                "k_post_status": "publish"
+              }
+            },
+            {
+              "term": {
                 "type": "tfn-post"
+              }
+            },
+            {
+              "terms": {
+                "k_post_type": [
+                  "news",
+                  "list",
+                  "feature"
+                ]
               }
             }
           ],
