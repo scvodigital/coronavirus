@@ -1,4 +1,4 @@
-{{#compare @root.data.tfn_related_posts.hits.total ">" 0 ~}}
+{{#compare @root.data.tfn_related_posts.hits.total.value ">" 0 ~}}
 <div class="latest-posts v-padding-full bg-tfn">
   <div class="container v-padding-full">
     <h3>
@@ -10,7 +10,7 @@
       {{#each (split "0,1,2" ",") ~}}
       {{#with (getProperty @root.data.tfn_related_posts.hits.hits (concat this '._source')) ~}}
       <div class="column col-4 col-lg-6 col-sm-12">
-        {{> content_featured name="related-tfn" link=(replace (replace (replace (trim url) 'utm_source=tfn' 'utm_source=ccad') 'utm_medium=bulletin' 'utm_medium=website') 'utm_campaign=list' 'utm_campaign=footer') heading="h4" title=(trim title) body=(momentFormat (moment date_published 'x') "Do MMMM YYYY") ratio="16:9" image=image hide_read_more=true}}
+        {{> content_featured name="related-tfn" link=(concat site path '?utm_source=ccad&utm_medium=website&utm_campaign=footer') heading="h4" title=(trim title) body=(momentFormat (moment d_published 'x') "Do MMMM YYYY") ratio="16:9" image=image.small hide_read_more=true}}
       </div>
       {{/with ~}}
       {{/each ~}}

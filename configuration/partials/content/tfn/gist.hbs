@@ -2,13 +2,13 @@
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-1-phone">
-        <a href="{{{url}}}?utm_source=Widget&amp;utm_medium=Widget&amp;utm_campaign=Widget-Traffic" target="_blank" class="thumbnail" rel="noopener">
-          <img src="{{replace (replace image_portrait_small 'https://' '//') 'http://' '//'}}" alt="{{{title}}}" />
+        <a href="{{{site}}}{{{path}}}?utm_source=ccad&amp;utm_medium=website&amp;utm_campaign=footer" target="_blank" class="thumbnail" rel="noopener">
+          <img src="{{replace (replace image.medium 'https://' '//') 'http://' '//'}}" alt="{{{title}}}" />
         </a>
       </div>
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-3-phone">
         <h3 class="mdc-card__title mdc-typography--headline">
-          <a href="{{{url}}}?utm_source=Widget&amp;utm_medium=Widget&amp;utm_campaign=Widget-Traffic" rel="noopener">{{{title}}}</a>
+          <a href="{{{site}}}{{{path}}}?utm_source=ccad&amp;utm_medium=website&amp;utm_campaign=footer" rel="noopener">{{{title}}}</a>
         </h3>
         <h4 class="mdc-card__subtitle post-info">
           {{> content_tfn_info_date}}

@@ -1,23 +1,20 @@
 {
   "size": 4,
   "_source": [
-    "Id",
-    "url",
     "title",
-    "image",
-    "date_published"
+    "site",
+    "path",
+    "image.small",
+    "d_published"
   ],
   "query": {
     "function_score": {
       "query": {
         "bool": {
-          "must": {
-            "match_all": {}
-          },
-          "filter":  [
+          "must": [
             {
-              "exists": {
-                "field": "image"
+              "term": {
+                "type": "tfn-post"
               }
             }
           ],
@@ -26,7 +23,7 @@
               "simple_query_string": {
                 "query": "Coronavirus COVID-19",
                 "default_operator": "or",
-                "fields": ["text_bag"],
+                "fields": ["textbag"],
                 "analyzer": "snowball"
               }
             }
@@ -37,7 +34,7 @@
       "functions": [
         {
           "gauss": {
-            "date_published": {
+            "d_published": {
               "scale": "3d",
               "decay": 0.1
             }
