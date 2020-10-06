@@ -10,17 +10,5 @@
       "technical": "webhelpdesk@scvo.org.uk"
     },
     "url": "https://coronavirus.scvo.org"
-  },
-  "ruk": {
-    "name": "ruk",
-    "title": "Coronavirus Community Assistance Directory (rUK)",
-    "tagline": "Find and offer help in your community",
-    "contacts": {
-      "support": "webhelpdesk@scvo.org.uk",
-      "admin": "calum.macuisdean@scvo.org.uk",
-      "noreply": "no-reply@scvo.org.uk",
-      "technical": "webhelpdesk@scvo.org.uk"
-    },
-    "url": "https://coronavirus.getinvolved.org.uk"
   }
 }

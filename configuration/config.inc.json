@@ -19,7 +19,7 @@
     "assetsVersion": "{:../package.json@version}",
     "assetsBase": "https://storage.googleapis.com/scvo-assets/test/coronavirus/",
     "searchKnobs": "{:./data/search-knobs.json}",
-    "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",
+    "elasticsearchUrl": "{$./data/elasticsearch-legacy-url.txt}",
     "domain-map": "{:./data/domain-map.json}",
     "site-configurations": "{:./data/site-configurations.json}",
     "menus": "{:./data/menu-layout.json}",
