@@ -1,10 +1,10 @@
 {
   "size": 4,
   "_source": [
-    "title",
     "site",
     "path",
-    "image.medium",
+    "title",
+    "image",
     "d_published"
   ],
   "query": {
@@ -23,9 +23,7 @@
                   {
                     "terms": {
                       "k_post_type": [
-                        "news",
-                        "list",
-                        "feature"
+                        "news"
                       ]
                     }
                   }
@@ -69,11 +67,12 @@
           ],
           "should": [
             {
-              "simple_query_string": {
-                "query": "Coronavirus COVID-19",
-                "default_operator": "or",
-                "fields": ["textbag"],
-                "analyzer": "snowball"
+              "multi_match": {
+                "fields": [ "textbag", "textbag_boost_1^5" ],
+                "query": "Coronavirus COVID-19 {{@root.data.primaryResponse.hits.hits.[0]._source.title}} {{join @root.data.primaryResponse.hits.hits.[0]._source.categories}} {{join @root.data.primaryResponse.hits.hits.[0]._source.post_tags}}",
+                "type": "most_fields",
+                "tie_breaker": 0.3,
+                "operator": "OR"
               }
             }
           ],
@@ -84,7 +83,7 @@
         {
           "gauss": {
             "d_published": {
-              "scale": "3d",
+              "scale": "7d",
               "decay": 0.1
             }
           }
