@@ -4,10 +4,10 @@
     "title": "Coronavirus Community Assistance Directory",
     "tagline": "Find and offer help in your community",
     "contacts": {
-      "support": "cadsubmissions@scvo.org.uk",
-      "admin": "cadsubmissions@scvo.org.uk",
-      "noreply": "no-reply@scvo.org.uk",
-      "technical": "webhelpdesk@scvo.org.uk"
+      "support": "cadsubmissions@scvo.scot",
+      "admin": "cadsubmissions@scvo.scot",
+      "noreply": "no-reply@scvo.scot",
+      "technical": "webhelpdesk@scvo.scot"
     },
     "url": "https://coronavirus.scvo.org"
   }
